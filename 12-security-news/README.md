@@ -10,6 +10,8 @@ How to talk about one story in 60 seconds: what happened in one sentence, the on
 
 ## Five stories from autumn 2026, ranked for a trading firm
 
+*Top two stories re-verified against current reporting on 7 November 2026. Refresh again the week of your interview.*
+
 ### 1. Binance, ~$6.3bn stolen through an engineer's laptop (29 Oct 2026): matters most
 
 On 29 October 2026, starting at 20:05 UTC, an attacker drained about $6.36bn from Binance hot wallets across ten blockchains, most of it in roughly 20 minutes; Binance's entry point was a compromised DevOps engineer's laptop that led to a service container able to submit withdrawals, and no wallet private key was found to have leaked ([BleepingComputer](https://www.bleepingcomputer.com/news/security/binance-links-63-billion-crypto-theft-to-compromised-devops-laptop/)). Coverage of the 3 November report describes the chain: a tampered installer in June, a fake-job "assignment" repo in September, a pivot through an internal AI tool, then a stolen container deploy token driving the signing service ([AirdropAlert](https://airdropalert.com/blogs/binance-hack-post-mortem/)). TRM Labs and Chainalysis attribute it to North Korea's TraderTraitor; about $2.7bn was frozen.
@@ -46,7 +48,7 @@ PHP shipped emergency fixes on 21 October for two remote code execution flaws (C
 
 - **Identity is the perimeter.** Binance, ConnectWise, and most 2026 cloud breaches are credential and token misuse, not memory-corruption exploits. The defences are MFA that can't be phished, short-lived credentials, and least privilege.
 - **The software supply chain is a primary target.** npm and PyPI have had a steady run of worm-like and maintainer-takeover attacks through 2025-26 (Shai-Hulud and its variants, Axios, the tj-actions GitHub Action compromise). SBOMs, pinning and provenance are the answers.
-- **AI tooling is now in the attack path.** The Binance chain reportedly pivoted through an internal AI tool, and LiteLLM is AI infrastructure; agent and MCP security is a live research area, which is your Glasswing and Threat-modeling.io territory.
+- **AI tooling is now in the attack path.** The Binance chain reportedly pivoted through an internal AI tool, and LiteLLM is AI infrastructure; agent and MCP security is a live research area, which is your territory (the sandboxed multi-agent DAST verifier and Threat-modeling.io).
 - **Edge devices keep getting popped.** Ivanti, Palo Alto, Citrix, Fortinet, BeyondTrust all had actively-exploited floods into CISA's KEV catalogue in 2026. The lesson is to patch the edge fast and not expose management interfaces.
 
 ---

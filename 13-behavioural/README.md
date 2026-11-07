@@ -74,7 +74,7 @@ Intro above. "Why this role" ties your builder identity to their team. The mista
 </details>
 
 <details>
-<summary><b>Describe a time you handled a high-pressure incident. A time you went above and beyond.</b> · [JS Technical Support loop] [SOC]</summary>
+<summary><b>Describe a time you handled a high-pressure incident. A time you went above and beyond.</b> · [SOC, FAANG behavioural]</summary>
 
 The incident story from your bank, structured as [block 09](../09-incident-response/README.md) teaches: calm, ordered, decisions with partial information, and what you learned. "Above and beyond" wants ownership beyond your remit; pick a time you fixed the root cause nobody asked you to.
 </details>
