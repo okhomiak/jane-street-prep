@@ -2,7 +2,7 @@
 
 [← AI and LLM security](../16-ai-and-llm-security/README.md) · [Index](../README.md) · [Next: OCaml literacy →](../18-ocaml-literacy/README.md)
 
-Jane Street is a trading firm, and the security questions have a trading accent. Production engineers get "troubleshoot trading-system latency" and "FIX logs and matching-engine setup" ([Glassdoor](https://www.glassdoor.ie/Interview/Jane-Street-Interview-E255549-RVW82145680.htm)); Optiver asks "how would you connect your new startup to the French exchange" and runs a design round on trading systems ([Glassdoor](https://www.glassdoor.com/Interview/Optiver-Interview-E243355-RVW44773253.htm)); Jump asks support engineers "what is a crossed book" ([Glassdoor](https://www.glassdoor.co.nz/Interview/Jump-Trading-Interview-E251744-RVW91825140.htm)). You do product security for a greenfield cross-asset trading platform, so this block is yours to own: it gives you the vocabulary to make every generic security answer land in their world. Tags: [JS] Jane Street, [GD] Glassdoor reports, [est] established industry fact.
+Jane Street is a trading firm, and the security questions have a trading accent. Production engineers get "troubleshoot trading-system latency" and "FIX logs and matching-engine setup" ([Glassdoor](https://www.glassdoor.ie/Interview/Jane-Street-Interview-E255549-RVW82145680.htm)); Optiver asks "how would you connect your new startup to the French exchange" in its security-engineer loop ([Glassdoor](https://www.glassdoor.com/Interview/Optiver-Interview-E243355-RVW44773253.htm)); Jump asks support engineers "what is a crossed book" ([Glassdoor](https://www.glassdoor.co.nz/Interview/Jump-Trading-Interview-E251744-RVW91825140.htm)). You do product security for a greenfield cross-asset trading platform, so this block is yours to own: it gives you the vocabulary to make every generic security answer land in their world. Tags: [JS] Jane Street, [GD] Glassdoor reports, [est] established industry fact.
 
 ---
 
@@ -65,7 +65,7 @@ Use it as the proof that in trading, a deployment bug *is* a security-grade inci
 ## Answering the trading design questions
 
 <details>
-<summary><b>"How would you connect your new startup to the French exchange?" (and trading-system design rounds)</b> · [GD Optiver]</summary>
+<summary><b>"How would you connect your new startup to the French exchange?"</b> · [GD Optiver]</summary>
 
 Treat it as a secure-design question with a trading frame. Walk the path:
 

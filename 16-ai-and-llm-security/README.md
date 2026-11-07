@@ -177,7 +177,7 @@ Route each one back to a Jane Street need. Do not list them; deploy the one that
 | How would you red-team an LLM feature; what counts as a finding | same | same |
 | Direct vs indirect injection; name the OWASP risk and a defence | recruiter screen | [techinterview.org](https://www.techinterview.org/post/3233477280/prompt-injection-llm-security-interview/) |
 | MCP: a tool description aimed at the model; rug pulls; scoped tokens | MCP loops | [techinterview.org](https://www.techinterview.org/post/3233477288/mcp-interview-questions/) |
-| Cosine similarity of two vectors, then what a high score means to an attacker (RAG) | Fortune 500 AI security engineer | [r/cybersecurity](https://reddit.sentinel-team.org/posts/1tdjhjf/snapshots/2026-05-15T19%3A38%3A52.790732Z) |
+| Cosine similarity of two vectors, then what a high score means to an attacker (RAG) | Fortune 500 AI security engineer | [r/cybersecurity (archived snapshot)](https://reddit.sentinel-team.org/posts/1tdjhjf/snapshots/2026-05-15T19%3A38%3A52.790732Z) |
 | How AI security differs from AppSec; threat-model an agent system | curated 20-question set | [PracHub](https://prachub.com/resources/ai-security-interview-questions-prompt-injection-data-leakage-model-abuse-and-guardrails) |
 | Prompt injection vs jailbreak; poisoned vector DB; model theft via API; STRIDE for AI; MITRE ATLAS | curated 54-question set | [Practical DevSecOps](https://www.practical-devsecops.com/ai-security-interview-questions/) |
 | Scale an LLM-token service to 100k rps (Anthropic design round; not asked to go deep on security) | Anthropic Senior Security Engineer | [Glassdoor](https://www.glassdoor.co.uk/Interview/Anthropic-Interview-E8109027-RVW104412006.htm) |
