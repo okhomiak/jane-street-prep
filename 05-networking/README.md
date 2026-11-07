@@ -2,7 +2,7 @@
 
 [← Security fundamentals](../04-security-fundamentals/README.md) · [Index](../README.md) · [Next: Linux →](../06-linux/README.md)
 
-Jane Street's network engineers get asked to list every TCP header field and explain BGP local preference ([Glassdoor](https://www.glassdoor.sg/Interview/Jane-Street-Interview-E255549-RVW81660298.htm)); its support engineers get openssl, certificates and the TCP handshake ([Glassdoor](https://static.glassdoor.fr/Interview/technical-support-engineer-interview-questions-SRCH_KO0,26_IP939.htm)). A security candidate won't get CCNP depth, but the same interviewers will go one layer below the obvious. Tags: [JS] Jane Street, [DM] Miessler, [TW] tadwhitaker, [GN] gracenolan, [GD] Glassdoor.
+Jane Street's network engineers get asked to list every TCP header field and explain BGP local preference ([Glassdoor](https://www.glassdoor.sg/Interview/Jane-Street-Interview-E255549-RVW81660298.htm)), and the HK security loop asked candidates to trace the full data flow when a user logs into a website and why POST not GET ([block 01](../01-process/README.md)). A security candidate won't get CCNP depth, but the same interviewers will go one layer below the obvious. Tags: [JS] Jane Street, [DM] Miessler, [TW] tadwhitaker, [GN] gracenolan, [GD] Glassdoor.
 
 ---
 

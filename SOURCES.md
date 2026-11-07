@@ -21,9 +21,9 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [Security Engineer interviews (Glassdoor)](https://www.glassdoor.com/Interview/Jane-Street-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,29.htm), password/TOTP/website-flow questions, the 2FA pushback, the failed-login coding build-up
 - [Cyber Security Engineer interviews (Glassdoor)](https://www.glassdoor.com/Interview/Jane-Street-Cyber-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,35.htm), three phone calls plus six-hour day, two-letter binaries, fresh Windows install, coding feedback
 - [Network Engineer report (Glassdoor SG)](https://www.glassdoor.sg/Interview/Jane-Street-Interview-E255549-RVW81660298.htm), TCP headers, BGP local preference, process shape
-- [Linux Engineer report (Glassdoor CA)](https://www.glassdoor.ca/Interview/Jane-Street-Interview-E255549-RVW57309745.htm) and [two-letter commands report](https://www.glassdoor.co.nz/Interview/Jane-Street-Interview-E255549-RVW4711912.htm)
+- [Linux Engineer report (Glassdoor CA, NY, Sep 2021)](https://www.glassdoor.ca/Interview/Jane-Street-Interview-E255549-RVW57309745.htm) and [two-letter commands report (Software Developer, 2014)](https://www.glassdoor.co.nz/Interview/Jane-Street-Interview-E255549-RVW4711912.htm)
 - [Trading Systems DevOps report](https://www.glassdoor.co.in/Interview/Jane-Street-Interview-E255549-RVW23314043.htm), FizzBuzz-level Unix
-- [Technical Support Engineer reports](https://static.glassdoor.fr/Interview/technical-support-engineer-interview-questions-SRCH_KO0,26_IP939.htm), openssl, certs, TCP handshake
+- [Technical Support Engineer report (Jul 2025)](https://static.glassdoor.fr/Interview/technical-support-engineer-interview-questions-SRCH_KO0,26_IP939.htm), behavioural round plus a probability brainteaser (the openssl/cert/TCP-handshake items on that page are a Postman review, not Jane Street)
 - [IT Operations Engineer report](https://www.glassdoor.com/Interview/Jane-Street-Interview-E255549-RVW90356392.htm), PowerShell test
 - [Dataford Jane Street Security Engineer guide](https://dataford.io/interview-guides/jane-street/security-engineer), aggregated themes, treat as secondary
 - [Exponent Jane Street SWE guide](https://www.tryexponent.com/guides/jane-street-software-engineer-interview)

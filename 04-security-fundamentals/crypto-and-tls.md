@@ -2,7 +2,7 @@
 
 [← Block 04](README.md) · [Auth and identity](auth-and-identity.md) · [Web and AppSec →](web-and-appsec.md)
 
-These are the most repeated fundamentals questions across every source, and Jane Street's adjacent teams ask them too (their Technical Support Engineer loop covered openssl, certificates and the TCP handshake, [Glassdoor](https://static.glassdoor.fr/Interview/technical-support-engineer-interview-questions-SRCH_KO0,26_IP939.htm)). Tags: [DM] Daniel Miessler, [TW] tadwhitaker collection, [GN] gracenolan notes, [GD] Glassdoor reports.
+These are the most repeated fundamentals questions across every source. The Jane Street security loops reported crypto questions directly (the HK May 2023 loop asked what makes a password strong, how a password manager derives its key, and how TOTP works, [block 01](../01-process/README.md)); treat crypto and TLS as core, not adjacent. Tags: [DM] Daniel Miessler, [TW] tadwhitaker collection, [GN] gracenolan notes, [GD] Glassdoor reports.
 
 ---
 
@@ -91,7 +91,7 @@ With RSA key exchange, yes: the session secret was encrypted to that key, so a r
 ## TLS and PKI
 
 <details>
-<summary><b>Describe the TLS handshake.</b> · [DM] [TW] [GN] [GD Google] [JS Technical Support loop]</summary>
+<summary><b>Describe the TLS handshake.</b> · [DM] [TW] [GN] [GD Google, Amazon, detection loops]</summary>
 
 TLS 1.3: ClientHello carries supported versions, cipher suites, SNI and the client's ECDHE key share. ServerHello picks the suite and sends its key share; both derive the handshake keys, so everything after this is already encrypted. The server sends its certificate chain, a CertificateVerify (a signature over the transcript with the certificate's private key, which is the authentication step) and Finished (an HMAC over the transcript). The client validates the chain to a trusted root, checks the hostname, verifies the signature, sends its Finished, and application data flows under keys derived from the shared secret. One round trip; 0-RTT resumption exists at the cost of replay. TLS 1.2 did the same in two round trips with the key exchange after the certificate.
 </details>
