@@ -94,6 +94,19 @@ Keys only, no root login, no agent forwarding by default (`ProxyJump` instead), 
 Give both sides and no tribalism; Miessler flags bias as a red flag. Linux: transparent, scriptable, minimal installs, strong isolation primitives (namespaces, seccomp, MAC), but configuration sprawl and no single directory service built in. Windows: Active Directory and Group Policy give fleet control that Linux shops have to build, mature EDR and attestation (TPM, Credential Guard), but a huge legacy attack surface (NTLM, SMB, macros) and an ecosystem attackers study hardest. Most firms run both, so the answer is knowing the failure modes of each.
 </details>
 
+<details>
+<summary><b>How is a container isolated, and what are namespaces, cgroups and seccomp?</b> · [GN] [relevant to Jane Street's agent sandboxing]</summary>
+
+A container is not a VM; it's a normal process the kernel lies to. Three mechanisms:
+
+- **Namespaces** partition what a process can *see*: PID (its own process tree), mount (its own filesystem view), network (its own interfaces), UTS (hostname), IPC, user (map container root to an unprivileged host UID), and cgroup. User namespaces are the big security win, because container-root maps to a nobody on the host.
+- **cgroups** limit what a process can *use*: CPU, memory, PIDs, I/O. This is denial-of-service containment, not a security boundary on its own.
+- **Capabilities** slice up root: drop everything and add back only what's needed (`CAP_NET_BIND_SERVICE`, not full root).
+- **seccomp-bpf** filters which syscalls the process may make, shrinking the kernel attack surface that a container still shares with the host.
+
+The honest line for the interview: the shared kernel is the weak point. A kernel bug is a container escape, so for strong isolation you add a MAC profile (SELinux/AppArmor), a seccomp filter, no `--privileged`, read-only root filesystem, and for untrusted code a stronger boundary like gVisor, Kata (a thin VM), or Firecracker. This is exactly the shape of Jane Street's agent sandbox (bwrap builds a namespace-and-mount sandbox, pasta gives it an isolated network stack, seccomp learns and limits syscalls), so you can connect the primitive to their design in [block 16](../16-ai-and-llm-security/README.md).
+</details>
+
 ## Operations questions that leak into security loops
 
 <details>

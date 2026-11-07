@@ -36,6 +36,7 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 12 | [Security news](12-security-news/README.md) | Five autumn-2026 stories ranked for a trading firm; refresh before you go | news question |
 | 13 | [Behavioural](13-behavioural/README.md) | The 60-second intro, why Jane Street, the story bank, questions to ask | phone screen, HM |
 | 14 | [Study plan](14-study-plan/README.md) | A seven-session plan and day-before checklist | none |
+| 15 | [Malware, forensics, reversing](15-malware-forensics-reversing/README.md) | Triage funnel, the phishing-to-malware chain, memory and disk forensics, reading a binary | scenario rounds |
 
 All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
 

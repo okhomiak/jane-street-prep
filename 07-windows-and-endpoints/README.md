@@ -71,6 +71,20 @@ AD is a directory of users, computers, groups and policy, replicated across doma
 </details>
 
 <details>
+<summary><b>How would you run PKI for the firm, and where does AD Certificate Services go wrong?</b> · [JS IT Security posting names PKI]</summary>
+
+PKI is the certificate infrastructure: a root CA kept offline, issuing CAs online, certificates for users (smart-card or Windows Hello logon), machines (802.1X, IPsec), code signing, and TLS. The security work is lifecycle: short lifetimes, automatic enrolment and renewal, a published CRL or OCSP responder so revocation actually works, and HSM-backed private keys for the CAs. On the endpoint, certificate-based or Windows Hello for Business logon is phishing-resistant in a way passwords and even push MFA are not.
+
+Where ADCS goes wrong is the ESC family (Certified Pre-Owned): ESC1 is a template that lets a low-privileged user request a certificate for *any* user (enrollee-supplies-subject plus client-authentication EKU), which is instant domain-user impersonation; ESC8 is NTLM relay to the web-enrolment endpoint. Detect with certificate-issuance auditing (4886/4887) and tools like Certify/Certipy run as an auditor; fix by locking template permissions, removing enrollee-supplies-subject, enabling manager approval, and turning on the relay protections. Say that ADCS is now one of the first things an attacker looks at after a foothold, so you'd audit templates before an attacker does.
+</details>
+
+<details>
+<summary><b>Entra ID and hybrid identity: what are the attack paths?</b> · [JS postings name Entra ID and hybrid identity platforms]</summary>
+
+Most firms are hybrid: on-prem AD synced to Entra ID. The sync account (and the connect server) is a crown jewel, because it can write to both directories. Current attack paths worth naming: Primary Refresh Token (PRT) theft from a device to ride existing SSO; token theft and replay that sidesteps MFA (mitigate with token protection and conditional-access device binding); illicit OAuth consent grants (a malicious app the user approves, which survives a password reset); seamless-SSO and federation abuse (forging SAML tokens if the signing key leaks, the Golden SAML pattern). The defensive spine is conditional access: gate sign-in on compliant device, user and sign-in risk (Identity Protection), and phishing-resistant MFA, with privileged roles in PIM (just-in-time, approval, time-boxed). This is the Entra half of the "fresh Windows rollout" answer when the fleet is cloud-joined.
+</details>
+
+<details>
 <summary><b>How do the registry and Group Policy relate? What is SMB and why does it matter?</b> · [GN]</summary>
 
 Group Policy is mostly registry settings delivered centrally; persistence and hardening both end up as registry keys, which is why Run keys, services and policies are hunt locations. SMB is the file and printer sharing protocol; it carries lateral movement (PsExec, admin shares), credential relay when signing is off, and historic worms (EternalBlue on SMBv1). Enforce SMB signing, kill SMBv1, block 445 between workstations.
@@ -108,5 +122,8 @@ Gatekeeper and notarisation, System Integrity Protection, TCC prompts for camera
 | Sysmon event 1, 3, 10, 11? | Process create, network connection, process access (LSASS reads), file create. |
 | What is device attestation? | TPM-signed proof of boot state and configuration, used by conditional access to trust a device. |
 | Entra ID conditional access? | Policy engine that gates sign-in on user, device health, location and risk, where MFA and device trust get enforced. |
+| What is PAM (privileged access management)? | Vaulted, checked-out, time-boxed and recorded admin credentials (CyberArk, or Entra PIM for cloud roles), so standing admin rights go away. |
+| ESC1 in one line? | An ADCS template that lets any user request a cert for any identity: instant impersonation. Lock template permissions. |
+| What is a PRT? | Primary Refresh Token: the device-bound token behind Entra SSO; stolen, it rides your sessions, so bind it to a compliant device. |
 
 [← Linux](../06-linux/README.md) · [Index](../README.md) · [Next: Cloud and supply chain →](../08-cloud-and-supply-chain/README.md)
