@@ -4,6 +4,14 @@
 
 Two of Jane Street's rounds are the same exercise: a shell, a pile of logs from a small fictional firm, and the question "what happened?". The online version is timed and ends with a written briefing. The live version is an hour on Zoom with an engineer watching and a harder scenario, still only basic bash ([Glassdoor](https://www.glassdoor.ca/Interview/Jane-Street-Cybersecurity-Analyst-Interview-Questions-EI_IE255549.0,11_KO12,33.htm)). What they score is your method and how you explain it, not typing speed.
 
+This block has three pages:
+
+| Page | Covers |
+| --- | --- |
+| this page | The method, the command kit, what "the attack" usually is, the write-up and CEO briefing, verbal drills |
+| [windows-walkthrough.md](windows-walkthrough.md) | A full narrated run on Windows event logs (the OA was Windows), the event IDs, process-tree correlation, pass-the-hash and Kerberoasting detection, NTFS artefacts |
+| [linux-log-review.md](linux-log-review.md) | The named Hong Kong round: auth, sudo, cron, web and running-system review, read-only, defensive |
+
 ---
 
 ## What candidates report
