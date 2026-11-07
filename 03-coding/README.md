@@ -2,7 +2,16 @@
 
 [← Log investigation](../02-log-investigation/README.md) · [Index](../README.md) · [Next: Security fundamentals →](../04-security-fundamentals/README.md)
 
-One hour, your language, one practical problem that grows in parts. A London candidate was rejected in 2018 with a single line of feedback: the coding round wasn't up to scratch ([Glassdoor](https://www.glassdoor.com/Interview/Jane-Street-Cyber-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,35.htm)). This is the round to over-prepare. Every solution below passes its tests (`14 passed`), so you can trust it as a reference and rebuild it against a clock.
+One hour, your language, one practical problem that grows in parts. A London candidate was rejected in 2018 with a single line of feedback: the coding round wasn't up to scratch ([Glassdoor](https://www.glassdoor.com/Interview/Jane-Street-Cyber-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,35.htm)). This is the round to over-prepare. Every solution in this block passes its tests (25 tests across the four files), so you can trust it as a reference and rebuild it against a clock.
+
+This block has four files:
+
+| File | Covers |
+| --- | --- |
+| this page | What Jane Street asks, how to run the hour, the Jane Street problem in four parts, ten more tested tasks, the secure code-review drill, interviewer pushes, the drill sheet |
+| [log-analysis-tasks.md](log-analysis-tasks.md) | Apache failures in a window, returning users, correlating two logs, impossible travel, sessions, decoding blobs, IOC extraction and directory walks, lateral-movement BFS, port-scan detection, SQL across log tables |
+| [classic-tasks.md](classic-tasks.md) | Valid IPv4, binary to decimal, palindrome with punctuation, substring index, Two Sum, balanced brackets, word frequency, jq-lite, password generator, CSV average without pandas |
+| [shell-one-liners.md](shell-one-liners.md) | The "script up a few things" phone round: tested bash, plus the Unix questions HRT and Jane Street ask |
 
 ---
 
@@ -11,12 +20,14 @@ One hour, your language, one practical problem that grows in parts. A London can
 | Task as reported | Build-up | Source |
 | --- | --- | --- |
 | Fill `def brute_force_detect(entries): pass`, where `entries` is an array of log-like strings | Detect brute force attacks | [Glassdoor HK](https://www.glassdoor.com.hk/Interview/Jane-Street-Interview-Questions-E255549.htm) |
-| Given a log, track consecutive login attempts for one specific user | Part 2: now for all users | [Glassdoor](https://www.glassdoor.ca/Interview/Jane-Street-Cybersecurity-Analyst-Interview-Questions-EI_IE255549.0,11_KO12,33.htm) |
-| Given a list of failed-login events, decide whether to raise an alert | Then add users to the events, then timestamps: alert only if the failures by one user fall inside a time window | [Glassdoor](https://www.glassdoor.com/Interview/Jane-Street-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,29.htm) |
-| "Script up a few things" in a language of your choice (phone round) | | [Glassdoor](https://www.glassdoor.co.uk/Interview/Jane-Street-Cyber-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,35.htm) |
-| Write a script to parse system logs and find brute-force patterns; implement input validation for a critical service to prevent injection | Prep-guide versions of the same theme | [Dataford](https://dataford.io/interview-guides/jane-street/security-engineer) |
+| Given a log, track consecutive login attempts for one specific user | Part 2: now for all users (Cybersecurity Analyst, Dec 2025; rejected after this round) | [Glassdoor](https://static.glassdoor.ch/Interview/Jane-Street-Interview-E255549-RVW99892167.htm) |
+| Get the list of events with failed logins, then decide whether to alert | Then add users, then timestamps: alert on N failures per user inside a window. Done live in a shared document, discussed rather than run (Security Engineer, Hong Kong, 2023) | [Glassdoor](https://www.glassdoor.com/Interview/Jane-Street-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,29.htm) |
+| Event-log parsing about failed logins, with two engineers in the room | DevOps Engineer, Oct 2025: the same problem family given to an adjacent team | [Glassdoor](https://www.glassdoor.ca/Interview/Jane-Street-Interview-E255549-RVW101486068.htm) |
+| Two coding rounds in one loop (video "coding" and onsite "more coding"), alongside a Linux log review | SOC Analyst, Hong Kong, Apr 2026 | [Glassdoor](https://www.glassdoor.co.uk/Interview/Jane-Street-Interview-E255549-RVW103405660.htm) |
+| "Script up a few things" in a language of your choice (phone round) | Cyber Security Engineer, London, 2018 | [Glassdoor](https://www.glassdoor.com/Interview/Jane-Street-Cyber-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,35.htm) |
+| Search logs on a VM to find the source of an issue; a LeetCode-like problem with a twist after the first answer | Production Engineer, NY (the neighbouring team) | [Glassdoor](https://www.glassdoor.ie/Interview/Jane-Street-Interview-E255549-RVW82145680.htm) |
 
-Three independent reports, one theme: failed logins in a log, growing from one user to all users to a time window. Jane Street's own guidance: real code in a real language, know your language's basic data structures, no bonus points for OCaml, open-ended problems with several reasonable answers ([Jane Street](https://www.janestreet.com/preparing-for-a-software-engineering-interview/)).
+Five independent reports, one theme: failed logins in a log, growing from one user to all users to a time window to an alert decision. Expect it to be run twice (a screen and an onsite), and expect at least one version where you can't execute the code, so you desk-check it out loud. Jane Street's own guidance: real code in a real language, know your language's basic data structures, no bonus points for OCaml, open-ended problems with several reasonable answers, and the journey matters more than the snapshot ([Jane Street](https://www.janestreet.com/preparing-for-a-software-engineering-interview/)).
 
 ## What the same round looks like elsewhere
 
@@ -33,6 +44,14 @@ Three independent reports, one theme: failed logins in a log, growing from one u
 | Merge intervals, then design and implement a rate limiter | Patreon phone screen | [Blind](https://www.teamblind.com/post/patreoncom-phone-screen-wtf-ru7qwjbw) |
 | Secure code review: find the vulnerabilities in this code, why they exist, how to fix them (Amazon does this instead of coding) | Amazon Security Engineer | [Glassdoor](https://www.glassdoor.ca/Interview/Amazon-Interview-E6036-RVW92367615.htm) |
 | Security-themed practice list: ciphers, parse arbitrary logs, web scraper, port scanner, password brute-forcer, PDF metadata, recover deleted items, YARA-style signatures | Ex-Google security engineer's study notes | [gracenolan](https://github.com/gracenolan/Notes/blob/master/interview-study-notes-for-security-engineering.md) |
+| From Apache access logs, extract IPs that failed 10 times in a 5-minute window; about half of Google's detection-and-response loop is coding, usually one coding question mixed with an open-ended scenario per round | Google Detection and Response | [Blind](https://www.teamblind.com/post/Security-Engineer-Interview-at-Google-a37HOvBx) |
+| Parse timestamps and IPs from Apache logs; correlate two logs with a hashmap of lists; count word frequency; make API calls with `requests` and write tests; Caesar cipher; LC-easy string manipulation; LC-medium string problems with a stack | 8.5 security on-sites across Google, Meta, Amazon, Datadog, Snap, Uber | [Blind](https://www.teamblind.com/post/i-did-85-security-engineer-on-sites-with-top-tech-companiesa-prep-guide-lyanpve6) |
+| Screening round is log parsing and string splitting; palindrome where "Taco, cat" counts; expected themes: parse logs and build logic on top, defang IPs, enrich a dataset; two LC-easy in 45 minutes each at onsite; BFS/DFS fair game, unit tests may matter | Meta Security Engineer (detection team) | [Blind](https://www.teamblind.com/post/security-engineer-interview-meta-mei6qc2r), [Blind](https://www.teamblind.com/post/facebook-meta-security-engineer-phone-screen-coming-up-1tjiynwi) |
+| Decode a base64-encoded, compressed log and count an IP; build a password generator; average a field over 30 years from a 20-field CSV without pandas | Security engineer loops reported on Reddit | [r/cybersecurity](https://reddit.sentinel-team.org/posts/1re3tmb/snapshots/2026-02-25T23%3A00%3A22.500174Z), [r/cybersecurity](https://reddit.sentinel-team.org/posts/1quuw5n/snapshots/2026-02-03T22%3A40%3A54.044863Z) |
+| Find returning users from access logs; evaluate IP access rules; most frequent user in a log; parse and summarise HTTP access logs | Amazon and Apple (candidate-reported via prep site) | [prachub](https://prachub.com/resources/amazon-security-engineer-new-grad-interview-security-scenarios-and-preparation) |
+| Regex IOCs out of a log, then recurse over a directory tree or download the logs first; parse JSON and extract elements jq-style; three scripting rounds at Google, scripting not LeetCode | Blind megathread | [Blind](https://www.teamblind.com/post/security-engineer-interview-resources-megathread-fp1izvtl) |
+| Code screens: parse logs, call APIs, automate, scale ingestion, SQL joins across log tables; graded on completeness, edge cases, error handling and tests | Detection-engineering loops | [Julie Sparks](https://medium.com/@julieasparks/acing-your-detection-engineering-interview-9ed95f70ffd7) |
+| Validate an IP address format; binary to decimal; graph traversal; "easy mediums" on strings, file handling, dicts and sets | Facebook AppSec and Netskope infra security | [Blind](https://www.teamblind.com/post/facebook-application-security-engineer-interview-rcbrbqfj) |
 
 ---
 
@@ -41,8 +60,11 @@ Three independent reports, one theme: failed logins in a log, growing from one u
 1. **Ask five questions before you type** (about 60 seconds): What does a line look like, can I see three? Is it sorted by time? Can lines be malformed? What counts as brute force: N in a row, N in a window, or both? What do I return?
 2. **Say the plan in two sentences.** "I'll parse each line into a small tuple, then keep a counter per user. Parse errors get skipped and counted."
 3. **Write the simplest version that works**, run it on three lines you make up, then grow it.
-4. **Test out loud** before you say done: the happy path, a malformed line, a success between failures.
+4. **Test out loud** before you say done: the happy path, a malformed line, a success between failures. Write the test cases as comments if you can't run code.
 5. **Name the complexity and the next step** without being asked.
+6. **If it's a shared document with no interpreter** (the 2023 Hong Kong loop), desk-check: pick three lines, walk the state variables through them by hand, out loud. That's what they're watching for.
+
+The grading criteria one detection-engineering interviewer published: completeness, edge cases, error handling, tests ([Julie Sparks](https://medium.com/@julieasparks/acing-your-detection-engineering-interview-9ed95f70ffd7)). Jane Street adds clarity and the questions you ask.
 
 ---
 
@@ -454,8 +476,36 @@ How to talk through a review: start with the entry points (every `request.*`), f
 
 ## Know these cold in Python
 
-`Counter`, `defaultdict`, `deque`, `datetime.fromisoformat`, `timedelta`, `re` with named groups, `json.loads` per line, `sorted(key=...)`, generators for streaming files, set operations, `ipaddress`, `os.walk`, `subprocess.run` without `shell=True`, `hashlib`, `hmac.compare_digest`.
+`Counter`, `defaultdict`, `deque`, `datetime.fromisoformat` and `strptime` with `%z`, `timedelta`, `re` with named groups, `json.loads` per line, `csv.DictReader`, `sorted(key=...)`, generators for streaming files, set operations, `ipaddress`, `os.walk`, `base64`, `gzip`, `sqlite3`, `secrets`, `subprocess.run` without `shell=True`, `hashlib`, `hmac.compare_digest`. For BFS: `deque` and a `seen` set. For "write tests": a `test_` function with three asserts is enough; say you'd use `pytest`.
 
-Practice plan: delete the function bodies above, rebuild each against a 20-minute timer, and run the tests. Then invent a new variant for each (different log format, different window rule) and solve it cold.
+## What interviewers push on, and the one-line answer
+
+| Push | Answer |
+| --- | --- |
+| "Can you do it in one pass?" | Yes: stream the lines, keep per-key state in a dict, never store the file. |
+| "What's the complexity?" | O(n) time, O(keys) memory; say which structure holds the memory. |
+| "The input is a stream, not a file." | Generator over the stream; evict idle keys; buffer a few seconds for late lines. |
+| "Lines are out of order." | Sort if it fits; otherwise a bounded reorder buffer keyed on timestamp. |
+| "A line is malformed." | Skip it, count it, log a sample; never crash the whole run on one line. |
+| "Usernames vary in case or have a domain prefix." | Normalise before counting: lowercase, strip `DOMAIN\`. |
+| "The attacker spreads across IPs" / "across users." | Key on the thing that's constant: user for brute force, IP for spray. |
+| "False positives?" | Allowlist known noisy pairs; keep the success-after-failures alert even for them. |
+| "How would you test this?" | Three cases on the spot: happy path, malformed line, the boundary (exactly N, exactly the window). |
+| "Make it faster." | Compile the regex once; avoid per-line `datetime` parsing when a string prefix compare will do; batch I/O. |
+| "Now do it in SQL." | `GROUP BY user, window` with `HAVING COUNT(*) >= N`; normalise timestamps first. |
+| "What would you log or alert?" | The alert record with user, IP, first and last timestamp, count, and the evidence lines. |
+
+## Timed drill sheet
+
+Six sessions, 60 to 90 minutes each. Blank file, timer running, talking out loud the whole time. Tick when you finish inside the time with tests passing.
+
+- [ ] **Drill 1 (45 min):** the Jane Street problem, all four parts, from memory. Then desk-check Part 3 by hand on five lines without running it.
+- [ ] **Drill 2 (3 × 20 min):** `parse_apache` and `failed_ips_in_window`; `correlate` and `impossible_travel`; `decode_b64_gzip` and `count_ips`.
+- [ ] **Drill 3 (3 × 20 min):** `extract_iocs` then `walk_and_extract`; `reachable_hosts`; `port_scan_sources`.
+- [ ] **Drill 4 (3 × 15 min):** `ip_to_int` and `is_rfc1918`; `ip_to_cidr`; `firewall_allows` then `RateLimiter`.
+- [ ] **Drill 5 (6 × 8 min):** `is_valid_ipv4`, `is_palindrome`, `balanced`, `two_sum`, `jget`, `generate_password`.
+- [ ] **Drill 6 (45 min):** the secure code-review drill, all nine findings with fixes in 5 minutes; then `users_with_failures_then_success` in SQL; then 15 minutes of bash one-liners against sample logs from memory.
+
+Then invent one new variant for each family (a different log format, a different window rule, a different key) and solve it cold. The interview question will be a variant, not a copy.
 
 [← Log investigation](../02-log-investigation/README.md) · [Index](../README.md) · [Next: Security fundamentals →](../04-security-fundamentals/README.md)
