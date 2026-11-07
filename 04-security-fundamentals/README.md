@@ -4,7 +4,7 @@
 
 The fundamentals interviews are where Jane Street asks what one candidate called "undergraduate security course" questions, then pushes until you reach the edge of what you know ([Glassdoor](https://www.glassdoor.com/Interview/Jane-Street-Security-Engineer-Interview-Questions-EI_IE255549.0,11_KO12,29.htm)). Answer in three beats: the mechanism, the attack it stops or enables, the trade-off.
 
-This block has four files:
+This block has five files:
 
 | File | Covers |
 | --- | --- |
@@ -12,6 +12,7 @@ This block has four files:
 | [auth-and-identity.md](auth-and-identity.md) | Passwords, hashing, sessions, cookies, OAuth, OIDC, SAML, JWT, Kerberos, MFA, passkeys, SSO |
 | [crypto-and-tls.md](crypto-and-tls.md) | Symmetric and asymmetric, modes, IVs, HMAC, signatures, DH, forward secrecy, TLS handshake and attacks, PKI |
 | [web-and-appsec.md](web-and-appsec.md) | Same-origin, CORS, XSS, CSRF, SQLi, SSRF, XXE, IDOR, traversal, HSTS, API security, secure login design |
+| [reported-questions.md](reported-questions.md) | The drill list: every reported fundamentals question grouped by topic, each with where it was asked, answers in the pages above |
 
 Each question shows where it was asked. Click a question to see the answer, and try to say yours first.
 
