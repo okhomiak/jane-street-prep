@@ -95,7 +95,7 @@ Give both sides and no tribalism; Miessler flags bias as a red flag. Linux: tran
 </details>
 
 <details>
-<summary><b>How is a container isolated, and what are namespaces, cgroups and seccomp?</b> · [GN] [relevant to Jane Street's agent sandboxing]</summary>
+<summary><b>How is a container isolated, and what are namespaces, cgroups and seccomp?</b> · [relevant to Jane Street's agent sandboxing]</summary>
 
 A container is not a VM; it's a normal process the kernel lies to. Three mechanisms:
 
@@ -104,7 +104,7 @@ A container is not a VM; it's a normal process the kernel lies to. Three mechani
 - **Capabilities** slice up root: drop everything and add back only what's needed (`CAP_NET_BIND_SERVICE`, not full root).
 - **seccomp-bpf** filters which syscalls the process may make, shrinking the kernel attack surface that a container still shares with the host.
 
-The honest line for the interview: the shared kernel is the weak point. A kernel bug is a container escape, so for strong isolation you add a MAC profile (SELinux/AppArmor), a seccomp filter, no `--privileged`, read-only root filesystem, and for untrusted code a stronger boundary like gVisor, Kata (a thin VM), or Firecracker. This is exactly the shape of Jane Street's agent sandbox (bwrap builds a namespace-and-mount sandbox, pasta gives it an isolated network stack, seccomp learns and limits syscalls), so you can connect the primitive to their design in [block 16](../16-ai-and-llm-security/README.md).
+The honest line for the interview: the shared kernel is the weak point. A kernel bug is a container escape, so for strong isolation you add a MAC profile (SELinux/AppArmor), a seccomp filter, no `--privileged`, read-only root filesystem, and for untrusted code a stronger boundary like gVisor, Kata (a thin VM), or Firecracker. This is exactly the shape of Jane Street's agent sandbox (bwrap builds a namespace-and-mount sandbox, pasta gives it an isolated network stack, and seccomp limits syscalls with a profile learned by watching what the process touches), so you can connect the primitive to their design in [block 16](../16-ai-and-llm-security/README.md).
 </details>
 
 ## Operations questions that leak into security loops
