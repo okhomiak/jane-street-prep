@@ -51,7 +51,7 @@ A decorator is a callable that takes a function and returns a new function, appl
 <details>
 <summary><b>How does a dict work, and why is that a security question?</b></summary>
 
-A hash table: average O(1) insert and lookup, keys must be hashable (immutable). Collisions degrade to a chain scan, and an attacker who can craft many colliding keys (for example as JSON field names) can turn O(1) into O(n²) and stall a service, the hash-flooding denial of service. CPython randomises string hashing per process since 3.3 to make that hard (`PYTHONHASHSEED`), which is also why dict and set iteration order of strings used to vary between runs. Dicts preserve insertion order since 3.7.
+A hash table: average O(1) insert and lookup, keys must be hashable (immutable). Collisions degrade to a long probe sequence (CPython uses open addressing, not chaining), and an attacker who can craft many colliding keys (for example as JSON field names) can turn O(1) into O(n²) and stall a service, the hash-flooding denial of service. CPython randomises string hashing per process since 3.3 to make that hard (`PYTHONHASHSEED`), which is also why dict and set iteration order of strings used to vary between runs. Dicts preserve insertion order since 3.7.
 </details>
 
 <details>
@@ -63,7 +63,7 @@ Bare `except:` and `except Exception: pass` swallow errors, including the ones t
 <details>
 <summary><b>How do you find a memory leak in a Python script?</b> · [Meta]</summary>
 
-`tracemalloc` snapshots at two points in time and `compare_to` shows which lines allocated the growth; `objgraph` shows what is holding references. The usual culprits: an unbounded cache or dict used as a cache, a global list that only grows, closures or logging handlers that keep references, C extensions, and generators you turned into lists. Reference cycles with `__del__` can defeat the cycle collector. Answer with the method, then the usual suspects.
+`tracemalloc` snapshots at two points in time and `compare_to` shows which lines allocated the growth; `objgraph` shows what is holding references. The usual culprits: an unbounded cache or dict used as a cache, a global list that only grows, closures or logging handlers that keep references, C extensions, and generators you turned into lists. Before 3.4, reference cycles containing `__del__` were uncollectable; since PEP 442 they are collected, so the modern culprits are references held by C extensions and anything parked in `gc.garbage`. Answer with the method, then the usual suspects.
 </details>
 
 ---
@@ -73,7 +73,7 @@ Bare `except:` and `except Exception: pass` swallow errors, including the ones t
 <details>
 <summary><b>`random` versus `secrets`; `subprocess` safely; `pickle`, `yaml.load`, `eval`.</b></summary>
 
-- `random` is a Mersenne Twister, predictable from a few outputs; `secrets` (and `os.urandom`) is the CSPRNG. Tokens, passwords, nonces: `secrets.token_urlsafe()`, never `random`.
+- `random` is a Mersenne Twister, fully predictable once an attacker has seen 624 consecutive outputs; `secrets` (and `os.urandom`) is the CSPRNG. Tokens, passwords, nonces: `secrets.token_urlsafe()`, never `random`.
 - `subprocess.run(["ls", path])` passes arguments as a list, so a filename with `; rm -rf` is just a filename. `shell=True` with string formatting is command injection. If you must use the shell, `shlex.quote`.
 - `pickle.loads` on untrusted data executes code; it is not a parser, it is a deserialiser with arbitrary object construction. Same for `yaml.load` without `SafeLoader` (use `yaml.safe_load`), and for `eval`/`exec` on anything that touched user input. The interview phrase: deserialisation of untrusted data is remote code execution with extra steps.
 - Compare secrets with `hmac.compare_digest`, not `==`, which short-circuits on the first differing byte and leaks timing.

@@ -15,7 +15,7 @@ The two numbers to carry: **2^10 ≈ 10^3** (so 2^20 ≈ a million, 2^30 ≈ a b
 
 Entropy in bits = length × log2(alphabet size), *if the characters are random*. Lowercase only: log2(26) ≈ 4.7 bits per character; lowercase plus digits: 5.2; full printable ASCII (95): 6.6. So eight random lowercase letters ≈ 37 bits; twelve random mixed characters ≈ 79 bits; a four-word random passphrase from a 7,776-word list (Diceware) ≈ 4 × 12.9 ≈ 52 bits.
 
-Crack time = 2^entropy ÷ guesses per second. The guess rate depends entirely on the hash: offline against MD5 or NTLM a single GPU does on the order of 10^10 to 10^11 guesses a second, against bcrypt at a sane cost maybe 10^4 to 10^5, and online against a rate-limited login a few per second. So 37 bits (≈ 10^11 guesses) against NTLM is seconds; against bcrypt it is days to weeks; and 79 bits (≈ 10^24) is beyond any attacker against anything.
+Crack time = 2^entropy ÷ guesses per second. The guess rate depends entirely on the hash: offline against MD5 or NTLM a single GPU does on the order of 10^10 to 10^11 guesses a second, against bcrypt at a sane cost maybe 10^4 to 10^5, and online against a rate-limited login a few per second. So 37 bits (≈ 10^11 guesses) against NTLM is seconds; against bcrypt it is weeks to months; and 79 bits (≈ 10^24) is millennia for one GPU against a fast hash and out of reach for anyone against bcrypt, though a nation-state-scale cluster at 10^17 guesses a second would still clear it against NTLM in a couple of months, which is why 128 bits is the comfort line.
 
 The judgement point Jane Street was after: a human-chosen `Summer2026!` has nowhere near 6.6 bits per character, because it is drawn from a tiny space of patterns a cracker's rules enumerate first, so you estimate from *how it was generated*, not how it looks. Length and randomness beat character classes, and the hash function matters as much as the password.
 </details>
@@ -23,7 +23,7 @@ The judgement point Jane Street was after: a human-chosen `Summer2026!` has nowh
 <details>
 <summary><b>How much does rate limiting buy you online?</b> · [est]</summary>
 
-At 10 guesses a second with no lockout, an attacker makes about 10^6 guesses a day. A 1-in-10^6 password (a common top-million list) falls in a day per account; spread across 10,000 accounts in a password spray, the attacker tries one guess per account per day and stays under every per-account lockout while still covering a million account-guesses a month. That is why you rate-limit per source and per account, alert on many-accounts-one-password patterns, and why MFA is the control that makes the arithmetic irrelevant.
+At 10 guesses a second with no lockout, an attacker makes about 10^6 guesses a day. A 1-in-10^6 password (a common top-million list) falls in a day per account; spread across 10,000 accounts in a password spray, the attacker tries one guess per account per day and stays under every per-account lockout while still covering 300,000 account-guesses a month (a million if they allow themselves three a day). That is why you rate-limit per source and per account, alert on many-accounts-one-password patterns, and why MFA is the control that makes the arithmetic irrelevant.
 </details>
 
 ---

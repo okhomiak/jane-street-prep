@@ -87,9 +87,9 @@ Use the same four questions, but enumerate the pieces that are specific to agent
 </details>
 
 <details>
-<summary><b>Design a firm-wide permissioning system.</b> · [JS: their cybersecurity SWE built exactly this] [likely design prompt]</summary>
+<summary><b>Design a firm-wide permissioning system.</b> · [JS: their cybersecurity SWE owns exactly this] [likely design prompt]</summary>
 
-Minjie's profile says he built the firm-wide internal permissioning system and spends his days onboarding teams onto it ([block 00](../00-jane-street-intel/README.md)), so this is a live system they can ask you to design or critique. Walk it:
+Minjie's profile says the firm-wide internal permissioning system is one of his main projects, used by everyone in the firm, and that he onboards other teams onto it ([block 00](../00-jane-street-intel/README.md)), so this is a live system they can ask you to design or critique. Walk it:
 
 1. **What it decides.** Who (a person, a service, or at Jane Street an AI counterpart identity) can do what (read, write, approve, run) to which resource (a dataset, a repo, a desk's positions, a production host), under what conditions (time, location, device health, an approval). Say that identities now include agents, so the model must carry attribution for AI-originated actions ([block 16](../16-ai-and-llm-security/README.md)).
 2. **Pick the model deliberately.** RBAC (roles bundle permissions; simple, but role explosion at scale), ABAC (policies over attributes of subject, resource and context; flexible, harder to reason about), and ReBAC (permissions derived from relationships, the Google Zanzibar model, tuples like `desk:fx#trader@user:oleh`, with a `check` API and `expand` for "who can see this"). A trading firm's needs, team and desk membership that implies data access, map naturally onto ReBAC with ABAC conditions for device and time. Say which and why.
