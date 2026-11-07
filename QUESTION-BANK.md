@@ -41,6 +41,8 @@ These came from Jane Street security or near-security loops, or from your own OA
 
 The Jane Street failed-login build-up (rows 1 to 4 above), plus: Apache failures in a time window; correlate two log formats; impossible travel; sessionise events; extract IOCs; lateral-movement graph (BFS); detect a port scan; join logs in SQL with a timestamp gotcha; and classics (palindrome, two-sum, IPv4 validation, password generator, average a field in a 20-field CSV without pandas, decode a base64+gzip log and count an IP). Also a secure code-review drill, and the tested bash one-liners.
 
+**Know your language ([Python internals](03-coding/know-your-language-python.md)):** what is the GIL and when do threads help; what `yield` does, generators vs lists; what a decorator is and what it's for; context managers; mutable default arguments; `is` vs `==`; how a dict works and the hash-flooding DoS; exceptions you must not swallow; finding a memory leak; `random` vs `secrets`, `subprocess` safely, why `pickle`/`yaml.load`/`eval` are RCE; constant-time comparison; path containment; type hints and dataclasses.
+
 ## Log investigation ([block 02](02-log-investigation/README.md))
 
 The six-step method; the ACME/Windows-workstation OA; the CEO briefing; and the verbal drills (what do you look at first, how do you baseline, when do you stop looking).
@@ -49,7 +51,9 @@ The six-step method; the ACME/Windows-workstation OA; the CEO briefing; and the 
 
 **Auth and identity:** password storage; rainbow tables and salting; a stolen DB hashed with one round of SHA-256 and a static salt, now what; why scheduled rotation is harmful; account brute-forcing; biometrics vs passwords; cookies vs sessions vs tokens; HTTP statelessness; JWT and what goes wrong; OAuth 2.0 and OIDC, bearer-token theft; SAML and SSO; Kerberos; authn vs authz, ACLs/RBAC/service accounts; comparing MFA methods; U2F/FIDO2 phishing resistance; getting the whole firm onto a password manager.
 
-**Crypto and TLS:** encoding vs encryption vs hashing vs signing vs obfuscation; symmetric vs asymmetric; which key encrypts and which signs; block vs stream ciphers and modes; IV reuse; HMAC; the TLS handshake; forward secrecy; certificate chains and pinning; notable TLS attacks.
+**Crypto and TLS:** encoding vs encryption vs hashing vs signing vs obfuscation; symmetric vs asymmetric; which key encrypts and which signs; block vs stream ciphers and modes; IV reuse; HMAC; the length-extension attack; timing and other side channels; the TLS handshake; forward secrecy; certificate chains and pinning; notable TLS attacks.
+
+**Back-of-envelope ([maths](04-security-fundamentals/back-of-envelope.md)):** estimate a password's strength and crack time; how much rate limiting buys online; the birthday bound and why 128-bit hashes give 64-bit collision resistance; why GCM nonces have a key budget; a 99%-accurate detector whose alerts are mostly false (base-rate fallacy); events per second and storage for a SIEM; how fast a network scan or ransomware runs; expected value and conditional probability if a brainteaser appears.
 
 **Web and appsec:** same-origin and CORS with preflight; HSTS, certificate transparency, HttpOnly; XSS; CSRF; SQL injection; SSRF; XXE/IDOR/traversal/LFI-RFI/open redirects/deserialisation; API security; secure login on a high-traffic site; securing a LAMP stack; MITM; conducting a secure code review; GitHub webhook abuse and secret scanning.
 
@@ -59,11 +63,11 @@ What happens when you type a URL; the TCP handshake and SYN/ACK; TCP vs UDP; eve
 
 ## Linux ([block 06](06-linux/README.md))
 
-Five two-letter binaries; inodes and hard vs soft links; du vs df; `mv *`, alternatives to `ls`, installing Linux on 100 nodes; RAID 5 vs 6; finding an unauthorised process from logs; IPC security trade-offs; first three steps hardening a server; privilege escalation paths; SELinux/MAC vs DAC and what /proc, /tmp, /etc/shadow expose; the syscall path; buffer overflows and defences; hardening SSH; Linux vs Windows; container isolation (namespaces, cgroups, seccomp); high CPU and Python memory leaks; hardening a laptop for Defcon and a home network.
+Five two-letter binaries; inodes and hard vs soft links; du vs df; `mv *`, alternatives to `ls`, installing Linux on 100 nodes; RAID 5 vs 6; finding an unauthorised process from logs; IPC security trade-offs; first three steps hardening a server; privilege escalation paths; SELinux/MAC vs DAC and what /proc, /tmp, /etc/shadow expose; the syscall path; buffer overflows and defences; hardening SSH; Linux vs Windows; container isolation (namespaces, cgroups, seccomp); pipe vs redirect, `kill -15` vs `-9`, how you kill a process; high CPU and Python memory leaks; hardening a laptop for Defcon and a home network.
 
 ## Windows and endpoints ([block 07](07-windows-and-endpoints/README.md))
 
-Fresh firm-wide Windows build; the login event IDs and 4624/4625; detecting pass-the-hash; Kerberoasting; golden/silver tickets, Mimikatz, DCSync; investigating a PowerShell/scheduled-task/EDR alert; how AD and LDAP relate; running PKI and where AD CS goes wrong (ESC1/ESC8); Entra ID and hybrid-identity attack paths (PRT, OAuth consent, Golden SAML); registry and Group Policy, SMB; EDR vs AV and ASR rules; a user's PC acting weird; macOS essentials.
+Fresh firm-wide Windows build; the login event IDs and 4624/4625; detecting pass-the-hash; Kerberoasting; golden/silver tickets, Mimikatz, DCSync; investigating a PowerShell/scheduled-task/EDR alert; how AD and LDAP relate; running PKI and where AD CS goes wrong (ESC1/ESC8); Entra ID and hybrid-identity attack paths (PRT, OAuth consent, Golden SAML); registry and Group Policy, SMB; EDR vs AV and ASR rules; a user's PC acting weird; macOS essentials; hardware and firmware (Secure Boot vs measured boot, TPM, DMA attacks, BadUSB, firmware inventory, MTE, NUMA and why the order path has no inline inspector).
 
 ## Cloud and supply chain ([block 08](08-cloud-and-supply-chain/README.md))
 
@@ -75,7 +79,7 @@ Malware on a corporate system; failed logins then a success from an odd location
 
 ## Threat modelling and design ([block 10](10-threat-modelling-and-design/README.md))
 
-Threat-model a Signal-type app; threat-model a given product; name three attack vectors and mitigations for an architecture; design network-anomaly monitoring; design a SIEM; how a botnet works (defensive framing); design a secure supply chain / secret store / CI-CD pipeline; teach threat modelling to a new team; threat-model an LLM agent system.
+Threat-model a Signal-type app; threat-model a given product; name three attack vectors and mitigations for an architecture; design network-anomaly monitoring; design a SIEM; how a botnet works (defensive framing); design a secure supply chain / secret store / CI-CD pipeline; teach threat modelling to a new team; threat-model an LLM agent system; design a firm-wide permissioning system (RBAC/ABAC/ReBAC, JIT, information barriers); design a vulnerability-management programme (inventory, KEV/EPSS over CVSS, SLAs, automation); design the security automation for a SOC (what to automate first, what never).
 
 ## Judgement and hygiene ([block 11](11-judgement-and-hygiene/README.md))
 
@@ -87,7 +91,7 @@ Be able to rank five current stories for a trading firm and name one big-headlin
 
 ## Behavioural ([block 13](13-behavioural/README.md))
 
-The 60-second intro; why Jane Street; why leave J.P. Morgan; compensation; questions for them; tell me about yourself; a mistake and what you learned; a high-pressure incident; a time you went above and beyond; how you stay current; defending a technical decision to a senior stakeholder; why a trading firm over big tech.
+The 60-second intro; why Jane Street; why leave J.P. Morgan; compensation; questions for them; tell me about yourself; a mistake and what you learned; a high-pressure incident; a time you went above and beyond; how you stay current; defending a technical decision to a senior stakeholder; why a trading firm over big tech; what you would do in your first 90 days.
 
 ## Malware, forensics, reversing ([block 15](15-malware-forensics-reversing/README.md))
 
@@ -104,6 +108,10 @@ Why latency and market hours change the controls; the trade path and a crossed b
 ## OCaml literacy ([block 18](18-ocaml-literacy/README.md))
 
 The "why OCaml" answer; reading a variant/pattern-match/option snippet; the ecosystem names; the memory-safety and AI-verification framing; the honest "never shipped it" close.
+
+## Detection engineering and email security ([block 21](21-detection-engineering/README.md))
+
+From "we should detect X" to a rule in production (the lifecycle); write a Sigma rule and get it onto Elastic or ElastAlert (the rule types: frequency, spike, flatline, new_term, cardinality); the pyramid of pain and why behaviours beat indicators; tuning and the economics of false positives; how to measure a detection programme or a SOC; what threat hunting is and how to run a hunt; consuming threat intelligence; Zeek vs Suricata vs NetFlow; detecting a beacon and detecting DNS tunnelling; SPF, DKIM and DMARC and what each actually stops; business email compromise; analyse this suspicious email.
 
 ---
 

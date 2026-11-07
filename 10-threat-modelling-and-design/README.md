@@ -86,6 +86,45 @@ Run it on their own system, not a slide deck. 45 minutes, a whiteboard, four que
 Use the same four questions, but enumerate the pieces that are specific to agents: the assets (the model, the system prompt, tool credentials, the memory/context store, the data the tools reach), the identities (the agent's own identity, the user it acts for, the tools' credentials), and crucially **every path where untrusted content reaches the model** (user input, retrieved documents, tool descriptions, tool outputs) and **where the model's output then flows** (a shell, SQL, HTML, another agent). Then the controls per path: least-privilege tools, deterministic authorisation the model cannot override, human approval for irreversible actions, output validation, and a sandbox. The full version, with Jane Street's own design, is [block 16](../16-ai-and-llm-security/README.md); here, the point to show is that an agent is just a system with an untrusted component wired to real tools, so the method does not change, only the data-flow map does.
 </details>
 
+<details>
+<summary><b>Design a firm-wide permissioning system.</b> · [JS: their cybersecurity SWE built exactly this] [likely design prompt]</summary>
+
+Minjie's profile says he built the firm-wide internal permissioning system and spends his days onboarding teams onto it ([block 00](../00-jane-street-intel/README.md)), so this is a live system they can ask you to design or critique. Walk it:
+
+1. **What it decides.** Who (a person, a service, or at Jane Street an AI counterpart identity) can do what (read, write, approve, run) to which resource (a dataset, a repo, a desk's positions, a production host), under what conditions (time, location, device health, an approval). Say that identities now include agents, so the model must carry attribution for AI-originated actions ([block 16](../16-ai-and-llm-security/README.md)).
+2. **Pick the model deliberately.** RBAC (roles bundle permissions; simple, but role explosion at scale), ABAC (policies over attributes of subject, resource and context; flexible, harder to reason about), and ReBAC (permissions derived from relationships, the Google Zanzibar model, tuples like `desk:fx#trader@user:oleh`, with a `check` API and `expand` for "who can see this"). A trading firm's needs, team and desk membership that implies data access, map naturally onto ReBAC with ABAC conditions for device and time. Say which and why.
+3. **Make the dangerous things hard.** Deny by default; least privilege with **just-in-time elevation** and approvals for admin actions, with automatic expiry; separation of duties for anything that moves money or changes production; break-glass that is loud and audited.
+4. **Information barriers.** A trading firm has a specific requirement that most companies do not: certain desks or roles must not see each other's positions or research. Model that as an explicit *negative* relationship or a policy check that cannot be overridden by a positive grant, and test it continuously, because it is the control a regulator and an insider both care about. Keep it technical: enforcement at the data layer, not a policy document.
+5. **Operate it.** A single policy decision point everything calls (so there is one place to audit), fast cached decisions on the hot path, a complete decision log (who asked, what was decided, which rule), access reviews driven by data (dormant permissions, outliers versus peers), and self-service requests with approvals so the security team is not the bottleneck. That last point is the onboarding work Minjie describes.
+6. **What you would skip.** Do not try to model every permission on day one; start with the crown-jewel resources and the admin paths, leave low-risk resources coarse, and widen as the model proves itself.
+</details>
+
+<details>
+<summary><b>Design a vulnerability management programme.</b> · [GD Optiver, Jan 2026: asked directly] [JS Vulnerability Management posting]</summary>
+
+An Optiver security loop asked this and expected thinking under pressure ([Glassdoor](https://www.glassdoor.co.in/Interview/Optiver-Interview-E243355-RVW102659786.htm)); Jane Street has a whole posting for it that reads like the answer key: validate and dedupe scanner findings, prioritise by real exploitability not severity score, scanning coverage and data quality, SBOM and software inventory, dashboards and SLAs, and automation because "manual triage doesn't scale at our size" ([posting](https://www.janestreet.com/join-jane-street/position/8596433002)). Build the answer on that spine:
+
+1. **Inventory first.** You cannot prioritise what you have not found: assets (hosts, containers, cloud resources, appliances), software (an SBOM per build, so "are we affected" takes minutes not days, the Log4j test), and owners. Coverage is the first metric.
+2. **Find.** Scanners (Tenable, Qualys, Rapid7 are the ones they name), agent-based where possible, plus SCA in CI for dependencies and cloud posture checks. Then **validate and dedupe**: the same CVE across three tools is one finding; a scanner's "critical" on an unreachable port is not.
+3. **Prioritise by risk, not CVSS.** CVSS measures severity, not likelihood. Combine: is it in CISA's Known Exploited Vulnerabilities list; EPSS (probability of exploitation in the next 30 days); is the asset exposed and reachable; is the vulnerable code path actually used; asset criticality (the order path versus a lab box). A medium CVSS on the exchange gateway outranks a critical on an isolated test host. Say that sentence.
+4. **Fix with SLAs by tier**, and be realistic about a trading firm: patches to the trading path land in change windows outside market hours, so compensating controls (segmentation, virtual patching, monitoring) cover the gap and you track the exception, not pretend it is not there.
+5. **Automate the triage.** Ticket creation and routing to owners, auto-closure on rescan, enrichment with KEV/EPSS/exposure, and, where safe, automated remediation for well-understood classes (this is your remediation bot: say what it fixed, what it never touched, and the human gate for anything risky). The Jane Street posting explicitly allows AI tooling here with a human in the loop.
+6. **Measure.** Coverage (assets and software inventoried and scanned), time-to-remediate by tier, SLA adherence, exceptions open and ageing, and the one that matters to leadership: exposure of crown-jewel assets to known-exploited vulnerabilities, trending down.
+</details>
+
+<details>
+<summary><b>Design the security automation for our SOC. What do you automate first, and what never?</b> · [JS: "security automation required"; "self-healing systems" in the ops posting]</summary>
+
+Automation is the stated requirement of this role, and the trap is automating response before you have automated understanding. Order of operations:
+
+1. **Enrich, always.** Every alert arrives with context attached: asset owner and criticality, user's role and normal locations, hash and domain reputation, recent related alerts, the EDR process tree. This is pure upside and it is where most analyst minutes go.
+2. **Triage and score, mostly.** Rules and models that close the known-benign (the admin running the scheduled task they always run), raise the suspicious, and route the rest. Measure the auto-close false-negative rate on a sampled review.
+3. **Contain, with guardrails.** Isolate a host, disable a token, block a domain, only when the signal is high confidence *and* the action is reversible *and* the target is not on the never-auto list (domain controllers, exchange gateways, executives' devices, anything on the trading path during market hours). Rate-limit and circuit-break so a bad rule cannot isolate the fleet.
+4. **Remediate, last.** Reversible first (revoke and reissue a credential, roll back a config), and anything destructive or production-touching (reimage, account deletion, a change to the order path) gets a human approval step. This is the same principle as the AI-agent design in [block 16](../16-ai-and-llm-security/README.md): the automation proposes, a deterministic policy decides, a person approves the irreversible.
+
+Engineering rules that make it trustworthy: every action is idempotent and logged under the automation's own identity; a dry-run mode that shows what it would have done before you turn it on; playbooks in version control with tests and a staging environment; and metrics (actions taken, actions reversed, analyst time saved, false-action rate). Your remediation bot is the story here: lead with what it was allowed to change, what it escalated, and the measured result (fewer post-deployment incidents, faster approvals), not with the tooling.
+</details>
+
 ---
 
 ## Design principles to name

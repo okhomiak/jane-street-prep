@@ -13,6 +13,7 @@ This block has five files:
 | [crypto-and-tls.md](crypto-and-tls.md) | Symmetric and asymmetric, modes, IVs, HMAC, signatures, DH, forward secrecy, TLS handshake and attacks, PKI |
 | [web-and-appsec.md](web-and-appsec.md) | Same-origin, CORS, XSS, CSRF, SQLi, SSRF, XXE, IDOR, traversal, HSTS, API security, secure login design |
 | [reported-questions.md](reported-questions.md) | The drill list: every reported fundamentals question grouped by topic, each with where it was asked, answers in the pages above |
+| [back-of-envelope.md](back-of-envelope.md) | Estimation out loud, in their register: password entropy and crack time, the birthday bound, the base-rate fallacy behind every detection answer, SIEM sizing, and the probability shapes that appear in adjacent loops |
 
 Each question shows where it was asked. Click a question to see the answer, and try to say yours first.
 

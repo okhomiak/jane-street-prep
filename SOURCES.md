@@ -43,6 +43,8 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [Hudson River Trading Systems Engineer (Glassdoor)](https://www.glassdoor.com/Interview/Hudson-River-Trading-Systems-Engineer-Interview-Questions-EI_IE470937.0,20_KO21,37.htm), inodes, links, RAID, `du`/`df`, `mv *`
 - [Citadel Securities SWE (Glassdoor)](https://www.glassdoor.com/Interview/Citadel-Securities-Software-Engineer-Interview-Questions-EI_IE1443495.0,18_KO19,36.htm) and [Dataford](https://dataford.io/interview-guides/citadel-securities/software-engineer), IPC isolation, TCP/UDP in HFT, code reading
 - [Optiver Security Engineer (Glassdoor)](https://www.glassdoor.com/Interview/Optiver-Security-Engineer-Interview-Questions-EI_IE243355.0,7_KO8,25.htm), scripting plus file-analysis, "say what you'd do"
+- [Optiver Information Security Engineer, Jan to Mar 2026 (Glassdoor IN)](https://www.glassdoor.co.in/Interview/Optiver-Interview-E243355-RVW102659786.htm) and [(Glassdoor IE)](https://www.glassdoor.ie/Interview/Optiver-Interview-E243355-RVW102961387.htm), "how would you design a vulnerability management programme", which security trends you follow, how you select an AI agent
+- [Hudson River Trading SRE, Jul 2025 (Glassdoor CA)](https://www.glassdoor.ca/Interview/Hudson-River-Trading-Interview-E470937-RVW98611866.htm), pipe vs redirect, `kill -15` vs `-9`, Python `yield`, generators and decorators
 - [Blind: Jane Street security engineer thread](https://www.teamblind.com/post/jane-street-security-engineer-krwvr2zb), Jump and Millennium comparison
 
 ## Big tech and curated question banks
@@ -65,6 +67,16 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [rootguard: SOC prep questions (Windows event IDs)](https://rootguard.gitbook.io/cyberops/resources-hub/blogs/posts-field-notes/soc-prep-interview-questions)
 - [SIEM XPERT: 25 scenario-based SOC questions](https://www.siemxpert.com/blog/top-25-soc-analyst-scenario-based-interview-questions-in-2026/)
 - [Indeed: 50 SOC analyst questions](https://in.indeed.com/career-advice/interviewing/soc-analyst-interview-questions)
+
+## Detection engineering and email security (block 21)
+
+Reported-question sources are the SOC banks above and the Jane Street postings in the official section (Senior Cybersecurity Operations Engineer, Detection and Response, SOC). The technical content is established practice; the reference points named in the block:
+- [Sigma: generic signature format for SIEM systems](https://sigmahq.io/)
+- [MITRE ATT&CK](https://attack.mitre.org/)
+- [ElastAlert 2 documentation (rule types)](https://elastalert2.readthedocs.io/)
+- [Zeek documentation](https://docs.zeek.org/)
+- David Bianco's "Pyramid of Pain" (2013) for the indicator-versus-behaviour argument
+- RFC 7208 (SPF), RFC 6376 (DKIM), RFC 7489 (DMARC) for the email mechanics
 
 ## Security news (block 12)
 

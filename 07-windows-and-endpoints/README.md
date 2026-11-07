@@ -108,6 +108,20 @@ Don't reboot or "clean" it yet. Take it off the network but keep it on, note wha
 Gatekeeper and notarisation, System Integrity Protection, TCC prompts for camera and files, FileVault, the Secure Enclave for keys and Touch ID, MDM for configuration, Endpoint Security framework for EDR. Historic lesson: `goto fail` (2014), a duplicated line that skipped signature verification in TLS, the argument for tests and code review of crypto paths. Persistence lives in LaunchAgents and LaunchDaemons, login items and configuration profiles.
 </details>
 
+<details>
+<summary><b>Hardware and firmware: Secure Boot, TPM, DMA, BadUSB. How far below the OS do you go?</b> · [JS: "understand systems from the hardware up"] [Jump: CPU placement question] [Apple: memory tagging]</summary>
+
+Jane Street says its technologists understand systems down to the hardware; Jump asked a security candidate how to place a CPU on a motherboard for multithreaded performance; Apple's offensive loop went to memory tagging at the silicon layer ([block 15](../15-malware-forensics-reversing/README.md)). You will not be asked to design a chip, but you should be fluent one layer below the kernel:
+
+- **The boot chain.** UEFI firmware verifies the bootloader's signature, which verifies the kernel, which verifies drivers: **Secure Boot** stops unsigned or tampered early-boot code (bootkits). **Measured boot** is different: the TPM records a hash of each stage into Platform Configuration Registers, so you can *prove* what booted rather than just block the unsigned. BitLocker seals its key to those PCRs, which is why changing the boot configuration prompts for the recovery key, and why "device attestation" in conditional access works.
+- **The TPM** is a tamper-resistant chip (or firmware equivalent) that holds keys that never leave it, does the measurements above, and backs Windows Hello and Credential Guard's virtualisation-based security. Attack surface to name: sniffing the TPM-to-CPU bus on older discrete TPMs when no PIN is set, which is why BitLocker with TPM plus PIN beats TPM alone for high-value laptops.
+- **DMA attacks.** Thunderbolt and PCIe devices can read and write memory directly; a malicious dock or a plugged-in attacker tool can pull BitLocker keys from RAM on a locked machine. Defence: an IOMMU with Kernel DMA Protection, disabling Thunderbolt on locked screens, and pre-boot authentication.
+- **BadUSB** (the Jane Street IT question on third-party keyboards). A USB device can present as a keyboard and type commands, or reprogram its firmware to do so. Defence: USB device control (allow-list by class and ID), disabling new HID enrolment when locked, and treating unknown USB as untrusted input.
+- **Firmware itself.** Firmware is software nobody patches: BIOS/UEFI, NIC, SSD, BMC/iDRAC on servers. Say you inventory firmware versions, apply vendor updates through a managed channel (fwupd/LVFS on Linux, vendor tooling on Windows), and that a server's management controller on a reachable network is a classic foothold.
+- **Hardware memory safety.** ARM's Memory Tagging Extension and pointer authentication (the Apple question) make whole classes of memory-corruption exploits unreliable by tagging allocations and signing return addresses in hardware; the software analogue is the memory-safe language argument in [block 06](../06-linux/README.md).
+- **The performance crossover.** Jump's CPU question is the hardware-aware ops mindset: NUMA (keep a process's memory on the socket it runs on), core pinning and isolating cores from the scheduler for latency-critical threads, cache locality. You do not need to be the one who does it; you need to recognise why a trading firm's infrastructure engineers care, and that kernel-bypass networking on the order path is exactly why you cannot put an inline inspector there ([block 17](../17-trading-domain/README.md)).
+</details>
+
 ## Rapid-fire
 
 | Question | One-line answer |

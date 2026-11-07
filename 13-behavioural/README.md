@@ -91,6 +91,18 @@ Staying current: two or three sources you actually read and why ([block 12](../1
 The stakeholder story from the bank: evidence, not authority, and a relationship intact afterwards. Trading firm versus big tech: smaller surface, faster feedback, ownership end to end, and you find the security problems more interesting than ad fraud or content moderation. Mean it.
 </details>
 
+<details>
+<summary><b>What would you do in your first 90 days?</b> · [hiring-manager staple; shape it for a flat, build-first firm]</summary>
+
+The trap for a senior hire is to arrive with a programme. At a firm that puts little weight on seniority and builds everything in-house, the right shape is learn, ship something small, then propose.
+
+- **First 30: learn the system and the people.** Sit the on-call rotation, triage real alerts, read the existing detections and the incident history, map the crown jewels (order path, market data, research, exchange credentials) against what is actually monitored. Ask a lot of questions; "asking great questions matters more than knowing all the answers" is their line. Find out what the team hates doing.
+- **By 60: ship one useful thing.** Something small, concrete and theirs: automate the triage step everyone does by hand, add the detection for the gap you found, fix the tool that pages wrongly. Credibility here comes from a merged change, not a strategy document. Pick it with the team, not for them.
+- **By 90: propose, with evidence.** Now you have earned a view: here is the biggest gap between what matters and what we can see, here is what I would build, here is what I would stop doing. Written up for engineers, with the trade-offs, and offered for debate rather than announced.
+
+Then say what you would *not* do: rename things, bring the bank's governance vocabulary, or propose a reorg. The posting wants someone who can be methodical with open-ended problems and bring others along; a 90-day plan that is mostly listening and one shipped tool shows both.
+</details>
+
 ---
 
 ## How to show the four principles without reciting them

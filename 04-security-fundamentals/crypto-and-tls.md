@@ -45,6 +45,18 @@ A per-message value mixed in so the same plaintext under the same key gives diff
 </details>
 
 <details>
+<summary><b>Explain the length-extension attack.</b> · [est] [classic follow-up to HMAC]</summary>
+
+MD5, SHA-1 and SHA-256 are Merkle-Damgård constructions: they process the message in blocks and the final output *is* the internal state after the last block. So if you know `H(secret ‖ message)` and the length of `secret ‖ message`, you can set the hash's internal state to that output and keep hashing, producing a valid `H(secret ‖ message ‖ padding ‖ extra)` without ever knowing the secret. A web app that authenticates `?user=bob&role=user&sig=H(secret‖params)` lets an attacker append `&role=admin` and forge the signature (tools like hash_extender automate it). Fixes: HMAC, or a hash that does not expose its state (SHA-3, BLAKE2, or the truncated SHA-512/256). The interview point: this is why "just hash it with a secret" is not a MAC, and why you name HMAC without being asked.
+</details>
+
+<details>
+<summary><b>Timing and other side channels, and why `==` on a secret is a bug.</b> · [est]</summary>
+
+A side channel leaks information through *how* a computation runs rather than its output: time, power, cache behaviour, error messages. The everyday one: comparing a submitted token to the real one with `==` returns as soon as the first byte differs, so response time reveals how many leading bytes were right, and an attacker recovers the token byte by byte over the network. Fix: constant-time comparison (`hmac.compare_digest` in Python, `crypto/subtle` in Go). Others to name: padding-oracle attacks (a different error for bad padding versus bad MAC breaks CBC, which is why you MAC-then-verify before touching the ciphertext and why AEAD modes exist), Spectre and Meltdown as cache side channels across privilege boundaries ([block 08](../08-cloud-and-supply-chain/README.md)), and RSA key recovery from timing in early OpenSSL. Say that cryptographic code is one of the few places where "it returns the right answer" is not the whole specification.
+</details>
+
+<details>
 <summary><b>What's the difference between a MAC and a digital signature?</b> · [GN]</summary>
 
 Both give integrity. A MAC uses a shared secret, so either side could have produced it: fast, no non-repudiation. A signature uses a private key only the signer holds, so it proves origin to anyone with the public key. Pick a MAC inside one system and a signature across trust boundaries.

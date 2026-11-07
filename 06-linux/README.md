@@ -116,6 +116,14 @@ CPU: a runaway process or loop, a crypto-miner (check `top`, unknown binaries in
 </details>
 
 <details>
+<summary><b>Pipe versus redirect. `kill -15` versus `kill -9`. How do you kill a process?</b> · [HRT SRE] [JS Trading Systems DevOps: "how do you kill a process"]</summary>
+
+A **pipe** (`|`) connects one process's stdout to another's stdin, so data streams between programs without touching disk (`grep fail auth.log | sort | uniq -c`). A **redirect** (`>`, `>>`, `<`, `2>`) connects a stream to a file: `>` truncates and writes, `>>` appends, `2>&1` sends stderr to wherever stdout currently points, and order matters (`cmd > out 2>&1` captures both; `cmd 2>&1 > out` sends stderr to the terminal). Security angle: `>` with a predictable filename in `/tmp` is the symlink race from the inode answer above.
+
+`kill` sends a signal, not a bullet. `kill -15` (SIGTERM, the default) asks the process to exit; a well-behaved program catches it, flushes buffers, closes connections and cleans up. `kill -9` (SIGKILL) cannot be caught or ignored; the kernel removes the process immediately, with no cleanup, so you can leave corrupt files, orphaned locks and half-written logs. Order: `kill <pid>`, wait, then `kill -9` if it ignores you. `kill -1` (SIGHUP) often means "reload config". A process that survives `-9` is in uninterruptible sleep (`D` state, usually stuck on I/O) or is a zombie whose parent has not reaped it; neither is fixed by more signals. Finding the pid: `pgrep -f name`, `ps aux | grep`, `lsof -i :port`, `fuser`. For a security engineer the follow-up is the forensics one: before you kill suspected malware, capture `/proc/<pid>/exe`, `cmdline`, `maps` and its network connections, because `-9` destroys the evidence that lives only in that process.
+</details>
+
+<details>
 <summary><b>How would you harden your work laptop for Defcon? Your home network?</b> · [TW]</summary>
 
 Defcon: a clean loaner with nothing on it, full-disk encryption, Wi-Fi and Bluetooth off, mobile hotspot or a known VPN only, no charging from unknown USB, updates applied before travel, passkeys so a captured password is useless, and wipe it after. Home: router firmware current, WPA3, no WPS, separate guest and IoT networks, DNS with filtering, no port forwards, UPnP off, unique admin password, and the honest trade-off that you don't run enterprise controls at home because you'd stop using them.

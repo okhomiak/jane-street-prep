@@ -25,8 +25,8 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 00 | [Jane Street intel](00-jane-street-intel/README.md) | The team, how they interview, culture, the AI programme, the Windows signal, OCaml stance; read first | all |
 | 01 | [Process](01-process/README.md) | Every reported loop, what Jane Street says it wants, what each round rewards | all |
 | 02 | [Log investigation](02-log-investigation/README.md) | The six-step method, a tested command kit, the CEO briefing, verbal drills | OA, live round |
-| 03 | [Coding](03-coding/README.md) | The `brute_force_detect` build-up and ten more tasks, all with tested solutions; a secure code-review drill | coding round |
-| 04 | [Security fundamentals](04-security-fundamentals/README.md) | The five Jane Street questions in full, plus [auth](04-security-fundamentals/auth-and-identity.md), [crypto/TLS](04-security-fundamentals/crypto-and-tls.md), [web/appsec](04-security-fundamentals/web-and-appsec.md) | fundamentals |
+| 03 | [Coding](03-coding/README.md) | The `brute_force_detect` build-up and ten more tasks, all with tested solutions; a secure code-review drill; [know your language: Python internals](03-coding/know-your-language-python.md) | coding round |
+| 04 | [Security fundamentals](04-security-fundamentals/README.md) | The five Jane Street questions in full, plus [auth](04-security-fundamentals/auth-and-identity.md), [crypto/TLS](04-security-fundamentals/crypto-and-tls.md), [web/appsec](04-security-fundamentals/web-and-appsec.md), [back-of-envelope maths](04-security-fundamentals/back-of-envelope.md) | fundamentals |
 | 05 | [Networking](05-networking/README.md) | TCP, DNS, TLS, BGP, OSI, the "what happens when you type a URL" chain | fundamentals |
 | 06 | [Linux and systems](06-linux/README.md) | Two-letter binaries, finding an unauthorised process, hardening, IPC trade-offs | fundamentals |
 | 07 | [Windows and endpoints](07-windows-and-endpoints/README.md) | Fresh-install hardening, the event IDs, AD attacks, EDR | fundamentals, scenarios |
@@ -42,7 +42,8 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 17 | [Trading domain](17-trading-domain/README.md) | FIX, market data, order entry, pre-trade risk and kill switches, Knight Capital, why latency changes the controls | design, scenarios, HM |
 | 18 | [OCaml literacy](18-ocaml-literacy/README.md) | The two-evening minimum: the "why OCaml" answer, concepts to recognise, the ecosystem names, the honest close | HM, culture fit |
 | 19 | [Mock interviews](19-mock-interviews/README.md) | Seven timed scripts with grading rubrics, one per round, weighted to coding and live investigation | all |
-| 20 | [Gap analysis](20-gap-analysis/README.md) | A critical read of your strengths and risks for this role, and a 14-day plan | none |
+| 20 | [Gap analysis](20-gap-analysis/README.md) | A critical read of your strengths and risks for this role, a coverage audit, and a 14-day plan | none |
+| 21 | [Detection engineering](21-detection-engineering/README.md) | The detection lifecycle, Sigma and ElastAlert, tuning and the base-rate problem, threat hunting, Zeek/Suricata, beacons, email security (SPF/DKIM/DMARC, BEC, phishing analysis) | fundamentals, scenarios, design |
 
 Every reported question in one place to self-test: [QUESTION-BANK.md](QUESTION-BANK.md). All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
 

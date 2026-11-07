@@ -12,6 +12,7 @@ This block has four files:
 | [log-analysis-tasks.md](log-analysis-tasks.md) | Apache failures in a window, returning users, correlating two logs, impossible travel, sessions, decoding blobs, IOC extraction and directory walks, lateral-movement BFS, port-scan detection, SQL across log tables |
 | [classic-tasks.md](classic-tasks.md) | Valid IPv4, binary to decimal, palindrome with punctuation, substring index, Two Sum, balanced brackets, word frequency, jq-lite, password generator, CSV average without pandas |
 | [shell-one-liners.md](shell-one-liners.md) | The "script up a few things" phone round: tested bash, plus the Unix questions HRT and Jane Street ask |
+| [know-your-language-python.md](know-your-language-python.md) | "Know your language" is a scored principle: the GIL, generators, decorators, context managers, dict hashing, the gotchas, and the unsafe APIs (`random`, `pickle`, `shell=True`), each with its security angle |
 
 ---
 
