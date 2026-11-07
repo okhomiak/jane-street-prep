@@ -80,6 +80,12 @@ These are design prompts as much as cloud ones; the worked answers live in [bloc
 Run it on their own system, not a slide deck. 45 minutes, a whiteboard, four questions: what are we building, what can go wrong, what are we going to do about it, did we do a good job (that's the Shostack framing). Leave them with three concrete actions and make the next session lighter so it becomes a habit rather than a gate. Mention Threat-modeling.io only if it fits, as the thing you built because the manual version didn't scale, not as a pitch.
 </details>
 
+<details>
+<summary><b>Threat model an LLM agent system.</b> · [current; given the firm's agent fleet, likely]</summary>
+
+Use the same four questions, but enumerate the pieces that are specific to agents: the assets (the model, the system prompt, tool credentials, the memory/context store, the data the tools reach), the identities (the agent's own identity, the user it acts for, the tools' credentials), and crucially **every path where untrusted content reaches the model** (user input, retrieved documents, tool descriptions, tool outputs) and **where the model's output then flows** (a shell, SQL, HTML, another agent). Then the controls per path: least-privilege tools, deterministic authorisation the model cannot override, human approval for irreversible actions, output validation, and a sandbox. The full version, with Jane Street's own design, is [block 16](../16-ai-and-llm-security/README.md); here, the point to show is that an agent is just a system with an untrusted component wired to real tools, so the method does not change, only the data-flow map does.
+</details>
+
 ---
 
 ## Design principles to name

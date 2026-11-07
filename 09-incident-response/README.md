@@ -102,6 +102,18 @@ Say what you'd look at next and what you'd ask a second pair of eyes, set a time
 Tune: look at the last hundred fires, group by what made them false, add the exclusions that are safe (specific process paths, signed binaries), raise the threshold, and keep a metric of true positives per rule. Measure: time to detect, time to contain, alert precision, coverage against ATT&CK for the techniques that matter to you, and how many incidents came from outside the SOC. Credential dumping: Sysmon 10 process access to LSASS with specific access masks from non-system processes, `comsvcs.dll MiniDump` command lines, `procdump` on LSASS, Mimikatz strings in 4688, plus Credential Guard so the dump is empty.
 </details>
 
+<details>
+<summary><b>An internal AI agent took an action it should not have (ran a command, touched production, moved data).</b> · [JS-flavoured: they run an agent fleet]</summary>
+
+Treat the agent like a compromised-or-confused service account, and lean on the fact that their RPC makes AI-originated calls identifiable ([block 16](../16-ai-and-llm-security/README.md)). Contain: suspend that agent's identity and revoke its tokens and sessions, the same first move as any credential compromise. Scope: pull the agent's action log (every tool call under its "AI user" identity), find the trigger, and check specifically for **indirect injection**, was there untrusted content in its context (a document, a repo file, a tool description) that carried the instruction. Preserve the trace, including the prompt and retrieved context, because that is the forensic record here. Eradicate and recover: roll back whatever it changed (prompts, policies, data, tool schemas are all versioned), and if it reached production treat the blast radius like any unauthorised change. Then the prevention point they will want: tighten the allow-list and move the control to the safe-path-is-the-fast-path side so no one disables it, plus a regression test that replays the injection. This is the one incident type where you can speak to their exact architecture.
+</details>
+
+<details>
+<summary><b>A market-hours incident: a strategy or system is sending bad or runaway orders.</b> · [trading-firm-specific; see block 17]</summary>
+
+Availability and money are both live, so the order of operations differs from a corporate incident. First, **stop the bleeding with the kill switch**: pull the strategy or the session, which is a prepared control, not an improvisation ([block 17](../17-trading-domain/README.md)). Then establish what is in the market (open orders, fills, positions) and reconcile against what was intended, from the FIX and order logs. Decide containment versus continuity deliberately: halting all trading has its own cost, so you scope to the affected strategy or venue if you safely can. Communicate in parallel: the desk, risk, and compliance, because there may be a regulatory and venue-notification duty. Only once it is contained do you move to root cause, and the Knight Capital lesson frames it: assume a deploy or config change until proven otherwise, and check that every node is running the intended version. Recovery is a controlled, verified redeploy with the kill switch rehearsed. This is the incident that makes a trading firm different from a tech company, so naming the kill-switch-first order shows you understand the domain.
+</details>
+
 ## The CEO briefing
 
 Jane Street's Dec 2025 assessment asked for one. Practise writing it in five minutes from a technical note.

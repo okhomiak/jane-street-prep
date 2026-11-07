@@ -38,6 +38,7 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 14 | [Study plan](14-study-plan/README.md) | A seven-session plan and day-before checklist | none |
 | 15 | [Malware, forensics, reversing](15-malware-forensics-reversing/README.md) | Triage funnel, the phishing-to-malware chain, memory and disk forensics, reading a binary | scenario rounds |
 | 16 | [AI, LLM and agent security](16-ai-and-llm-security/README.md) | Your differentiator: the lethal trifecta, securing agents, RAG and MCP, and Jane Street's own sandbox design | HM, design, judgement |
+| 17 | [Trading domain](17-trading-domain/README.md) | FIX, market data, order entry, pre-trade risk and kill switches, Knight Capital, why latency changes the controls | design, scenarios, HM |
 
 All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
 
