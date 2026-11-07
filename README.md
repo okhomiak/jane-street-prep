@@ -22,6 +22,7 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 
 | # | Block | What it covers | Rounds it serves |
 | --- | --- | --- | --- |
+| 00 | [Jane Street intel](00-jane-street-intel/README.md) | The team, how they interview, culture, the AI programme, the Windows signal, OCaml stance; read first | all |
 | 01 | [Process](01-process/README.md) | Every reported loop, what Jane Street says it wants, what each round rewards | all |
 | 02 | [Log investigation](02-log-investigation/README.md) | The six-step method, a tested command kit, the CEO briefing, verbal drills | OA, live round |
 | 03 | [Coding](03-coding/README.md) | The `brute_force_detect` build-up and ten more tasks, all with tested solutions; a secure code-review drill | coding round |
