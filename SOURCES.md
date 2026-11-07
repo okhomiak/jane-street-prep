@@ -73,6 +73,32 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [eMudhra weak CA keys (BleepingComputer)](https://bleepingcomputer.com/news/security/mozilla-google-apple-block-compromised-emudhra-ca-certificates)
 - [October 2026 cyber attacks: PHP2Shell, ConnectWise, edge devices (DEV Community)](https://dev.to/ashtech52/cyber-attacks-october-2026-the-biggest-incidents-exploited-zero-days-and-what-to-patch-this-week-2ibh)
 
+## AI, LLM and agent security (block 16)
+
+Jane Street primary:
+- [Signals and Threads ep. 31, "The Changing Craft of Programming" (agent sandbox, AI identities, observed risks)](https://signalsandthreads.com/the-changing-craft-of-programming/)
+- [John Crepezzi, "Building AI-powered developer tools at Jane Street" (AIDE, CES, JaneGPT)](https://ai.engineer/talks/building-ai-powered-developer-tools-at-jane-street)
+- [Signals and Threads ep. 20, "Solving Puzzles in Production"](https://signalsandthreads.com/solving-puzzles-in-production)
+- [Jane Street and CoreWeave $6bn compute deal (The Next Web)](https://thenextweb.com/news/jane-street-coreweave-6-billion-cloud-1-billion-equity-ai)
+
+Reported questions and frameworks:
+- [techinterview.org: prompt-injection / LLM security interview questions](https://www.techinterview.org/post/3233477256/prompt-injection-llm-security-interview-questions/) and [companion post](https://www.techinterview.org/post/3233477280/prompt-injection-llm-security-interview/)
+- [techinterview.org: MCP interview questions](https://www.techinterview.org/post/3233477288/mcp-interview-questions/)
+- [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/)
+- [OWASP Top 10 for Agentic Applications (Cycode summary)](https://cycode.com/blog/owasp-top-10-agentic-applications/)
+- [Semgrep: a security engineer's guide to MCP](https://semgrep.dev/blog/2025/a-security-engineers-guide-to-mcp/)
+- [PracHub: AI security interview questions](https://prachub.com/resources/ai-security-interview-questions-prompt-injection-data-leakage-model-abuse-and-guardrails)
+- [Practical DevSecOps: AI security interview questions](https://www.practical-devsecops.com/ai-security-interview-questions/)
+- [r/cybersecurity: Fortune 500 AI security engineer loop, RAG cosine-similarity question](https://reddit.sentinel-team.org/posts/1tdjhjf/snapshots/2026-05-15T19%3A38%3A52.790732Z)
+- [Anthropic Senior Security Engineer report (Glassdoor), scale-to-100k-rps design round](https://www.glassdoor.co.uk/Interview/Anthropic-Interview-E8109027-RVW104412006.htm)
+
+## Trading domain (block 17)
+
+- [Jane Street Production Engineer report (Glassdoor IE), FIX logs, matching-engine troubleshooting, trading-system latency](https://www.glassdoor.ie/Interview/Jane-Street-Interview-E255549-RVW82145680.htm)
+- [Optiver Security Engineer report (Glassdoor), "connect your startup to the French exchange"](https://www.glassdoor.com/Interview/Optiver-Interview-E243355-RVW44773253.htm)
+- [Jump Trading Support Engineer report (Glassdoor NZ), "what is a crossed book"](https://www.glassdoor.co.nz/Interview/Jump-Trading-Interview-E251744-RVW91825140.htm)
+- SEC Rule 15c3-5 (the Market Access Rule) and the 2012 Knight Capital event are established industry references, used for the pre-trade-risk and change-management points.
+
 ## A note on reliability
 
 Jane Street's own pages are primary and current. Candidate reports are anonymous, sometimes years old, and self-selected (more "no offer" than "offer"), so they show the format and the flavour of questions, not a guaranteed list. Aggregator guides (Dataford, Exponent, algo.monster) are generated from the same reports plus some inference, so this repo uses them only to confirm themes, never as the sole source for a specific claim. Re-verify dates and news the week of your interview.

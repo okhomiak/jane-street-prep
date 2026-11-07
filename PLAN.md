@@ -4,10 +4,9 @@ Target: make Oleh the best-prepared candidate in the Jane Street London Cybersec
 
 ## Where things stand (7 Nov 2026)
 
-- **Done:** online assessment passed in May (ACME Trading Corp shell scenario). Repo v1 built: 14 blocks, ~30k words, 158 self-test answers, all code tested. Zip delivered.
-- **Raw research on disk:** five reports (~22k words, ~370 source links) covering Jane Street and trading-firm reports, big-tech security loops, curated question banks, IR and coding tasks, behavioural and culture, AI security, OCaml. Not yet merged into the blocks.
-- **New Jane Street signals from that research, not yet in the repo:** a Hong Kong SOC Analyst loop (Apr 2026) listing rounds as behavioural, coding, Linux log review, system-analysis whiteboarding, more coding; a recruiter describing the Security Engineer role as mostly Windows-focused with security automation; a DevOps candidate given the same failed-login log-parsing task; Production Engineer rounds on FIX logs and latency troubleshooting; Desktop Support questions on BadUSB, PowerShell, DNS, AD vs workgroup.
-- **Blocked:** pushing to github.com/okhomiak/jane-street-prep. The session can't reach GitHub until the account is linked in claude.ai Settings → Connectors. Commits are local until then; a zip is delivered after each stage.
+- **Complete:** all ten stages built and committed. The repo is now 21 blocks plus a master question bank, a gap analysis and a 14-day plan. Every reported question is merged from the research and tagged with its source; every code snippet is tested; two independent verification agents fact-checked the intel, process, forensics and AI/trading blocks against their source URLs and their corrections are applied. The online assessment was passed in May (ACME Trading Corp shell scenario).
+- **Research now merged:** the five research reports (~22k words, ~370 source links) that seeded the blocks are kept under `/home/claude/research/` as the provenance trail; their content is in the blocks.
+- **Blocked:** pushing to github.com/okhomiak/jane-street-prep. The session can't reach GitHub until the account is linked in claude.ai Settings → Connectors. Commits are local until then; a zip is delivered. Once linked: `git branch -M main && git remote add origin https://github.com/okhomiak/jane-street-prep.git && git push -u origin main`.
 
 ## Method for every stage
 
