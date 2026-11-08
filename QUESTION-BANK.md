@@ -4,6 +4,8 @@
 
 Every reported and drilled question in this repo, in one place, so you can self-test. Each question links to the block that answers it; the source tag and URL live in that block. Cover the answer, say yours out loud, then check.
 
+For timed, try-before-reveal practice with follow-ups and the common wrong answers, use the [drill app](drill/README.md); this page is the complete inventory.
+
 How to use it: work the **Jane Street confirmed** set until every one is automatic. Then drill the per-round lists, hardest-first. The questions marked **[JS]** were reported in an actual Jane Street loop or asked in your own online assessment; everything else is from adjacent Jane Street roles, trading-firm and big-tech security loops, or curated banks, and is fair game because the same interviewers go one layer deeper.
 
 ---
@@ -112,6 +114,14 @@ The "why OCaml" answer; reading a variant/pattern-match/option snippet; the ecos
 ## Detection engineering and email security ([block 21](21-detection-engineering/README.md))
 
 From "we should detect X" to a rule in production (the lifecycle); write a Sigma rule and get it onto Elastic or ElastAlert (the rule types: frequency, spike, flatline, new_term, cardinality); the pyramid of pain and why behaviours beat indicators; tuning and the economics of false positives; how to measure a detection programme or a SOC; what threat hunting is and how to run a hunt; consuming threat intelligence; Zeek vs Suricata vs NetFlow; detecting a beacon and detecting DNS tunnelling; SPF, DKIM and DMARC and what each actually stops; business email compromise; analyse this suspicious email.
+
+## The Threat Modelling role ([block 22](22-threat-modelling-role/README.md))
+
+Threat-model this system, live; how would you attack this architecture, then how would you fix it; a team has never threat-modelled, how do you start and make it stick; a system owner says the risk is not real; walk me through a security decision you documented (options, trade-off, rationale); how do you prioritise which systems to model first; why this role rather than the generic engineer role.
+
+## AI-assisted threat modelling ([block 23](23-ai-threat-modelling/README.md))
+
+How does an AI-assisted threat-modelling system actually work (the pipeline); what goes wrong with AI-generated threat models (the eleven failure modes); if you built it here, what would you do differently; show me how it runs on a real change (the exchange-connectivity example); how would you scale threat modelling across hundreds of systems with a small team; how do you know the output is any good.
 
 ---
 

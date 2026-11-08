@@ -4,6 +4,8 @@
 
 An honest, unflattering read of where you stand against this specific role, and what to do with the time you have. The point of this block is not reassurance. It is to spend your preparation on the three or four things that actually decide the outcome, and not on the things you are already good at.
 
+If you are months out rather than weeks, the primary plan is the [six-month roadmap](../24-six-month-roadmap/README.md), which turns each risk below into something you fix rather than manage; the 14-day plan at the bottom of this block is then the final sprint before the first interview. If the Threat Modelling opening is your target, read [block 22](../22-threat-modelling-role/README.md) alongside this.
+
 ---
 
 ## What you have that fits (use it, don't over-practise it)

@@ -2,7 +2,7 @@
 
 A complete, source-backed prep repo for the Jane Street Cybersecurity Engineer role in London. Every question in here is one that candidates actually reported being asked, for security roles at Jane Street or at comparable firms, with a link to where it came from. Nothing is invented. Every code snippet has been run and tested.
 
-**How it's organised:** one folder per block of the interview loop. Read them in order the first time, then use the [study plan](14-study-plan/README.md) and the [14-day plan](20-gap-analysis/README.md) to drill. Answers are in collapsible `<details>` blocks so you can test yourself before you read them. Short on time: start with the [gap analysis](20-gap-analysis/README.md) to see where your hours should go, then self-test against the [question bank](QUESTION-BANK.md).
+**How it's organised:** one folder per block of the interview loop. Read them in order the first time. Answers are in collapsible `<details>` blocks so you can test yourself before you read them. Applying in months, not weeks: follow the [six-month roadmap](24-six-month-roadmap/README.md), which closes the gaps properly and builds public proof, and keep the [14-day plan](20-gap-analysis/README.md) for the final sprint. Short on time: start with the [gap analysis](20-gap-analysis/README.md), then self-test with the [drill app](drill/README.md) and the [question bank](QUESTION-BANK.md). Considering the Threat Modelling opening instead: read [block 22](22-threat-modelling-role/README.md) first.
 
 ---
 
@@ -44,8 +44,11 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 19 | [Mock interviews](19-mock-interviews/README.md) | Seven timed scripts with grading rubrics, one per round, weighted to coding and live investigation | all |
 | 20 | [Gap analysis](20-gap-analysis/README.md) | A critical read of your strengths and risks for this role, a coverage audit, and a 14-day plan | none |
 | 21 | [Detection engineering](21-detection-engineering/README.md) | The detection lifecycle, Sigma and ElastAlert, tuning and the base-rate problem, threat hunting, Zeek/Suricata, beacons, email security (SPF/DKIM/DMARC, BEC, phishing analysis) | fundamentals, scenarios, design |
+| 22 | [The Threat Modelling role](22-threat-modelling-role/README.md) | Their second security opening, line by line: fit, the CV-screen risk, how its loop differs, and whether to make it your primary target | all (for that role) |
+| 23 | [AI-assisted threat modelling](23-ai-threat-modelling/README.md) | How it works as a pipeline, the eleven ways it fails, the engineering that makes it trustworthy, a worked exchange-connectivity example | design, HM |
+| 24 | [Six-month roadmap](24-six-month-roadmap/README.md) | Month-by-month plan to close the gaps for real and build the public proof, if you apply in six months | none |
 
-Every reported question in one place to self-test: [QUESTION-BANK.md](QUESTION-BANK.md). All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
+Every reported question in one place to self-test: [QUESTION-BANK.md](QUESTION-BANK.md). Practise with the try-before-reveal [drill app](drill/README.md) (levels, follow-ups, and the wrong answer interviewers hear most). All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
 
 ---
 

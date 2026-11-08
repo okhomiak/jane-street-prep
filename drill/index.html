@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jane Street security interview drill</title>
+<style>
+  :root{--bg:#0f1115;--card:#171a21;--line:#262b36;--text:#e6e8ee;--muted:#9aa3b2;--accent:#7cc4ff;--js:#ffd166;--ok:#5ad38a;--warn:#ff8a7a;--chip:#1f2430}
+  @media (prefers-color-scheme: light){:root{--bg:#f6f7f9;--card:#fff;--line:#e3e6ec;--text:#141820;--muted:#5b6473;--accent:#0b6fc2;--js:#9a6b00;--ok:#1b8f4a;--warn:#c43d2c;--chip:#eef1f6}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  header{padding:28px 20px 10px;max-width:1000px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 14px}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;max-width:1000px;margin:0 auto;padding:0 20px 14px}
+  select,input[type=search],button{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+  input[type=search]{flex:1;min-width:180px}
+  button{cursor:pointer}
+  button.primary{background:var(--accent);color:#06121f;border-color:transparent;font-weight:600}
+  .stats{max-width:1000px;margin:0 auto;padding:0 20px 10px;color:var(--muted);font-size:13px;display:flex;gap:16px;flex-wrap:wrap}
+  main{max-width:1000px;margin:0 auto;padding:0 20px 60px;display:grid;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .card.nailed{border-left:4px solid var(--ok)}
+  .card.work{border-left:4px solid var(--warn)}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;font-size:12px}
+  .chip{background:var(--chip);border-radius:999px;padding:2px 9px;color:var(--muted)}
+  .chip.js{background:transparent;border:1px solid var(--js);color:var(--js);font-weight:600}
+  .chip.l{color:var(--text)}
+  .q{font-weight:600;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;gap:12px}
+  .q .hint{color:var(--muted);font-weight:400;font-size:12px;white-space:nowrap}
+  .ans{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+  .card.open .ans{display:block}
+  .ans h4{margin:10px 0 4px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .ans p,.ans li{margin:4px 0}
+  .ans ul{padding-left:18px;margin:4px 0}
+  .wrong{color:var(--warn)}
+  .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .actions button{font-size:13px;padding:6px 10px}
+  a{color:var(--accent)}
+  .empty{color:var(--muted);text-align:center;padding:40px}
+  .note{max-width:1000px;margin:0 auto;padding:0 20px 14px;color:var(--muted);font-size:13px}
+  footer{max-width:1000px;margin:0 auto;padding:20px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Jane Street security interview drill</h1>
+  <p class="sub">Try each question out loud before you open it. Then compare against the short answer, the follow-ups the interviewer will reach for, and the wrong answer they hear most. Full answers live in the repo blocks.</p>
+</header>
+
+<div class="bar">
+  <input id="search" type="search" placeholder="Search questions">
+  <select id="level"><option value="">All levels</option><option value="L1">L1 Screen</option><option value="L2">L2 Working</option><option value="L3">L3 Senior</option><option value="L4">L4 Staff</option></select>
+  <select id="type"><option value="">All types</option></select>
+  <select id="block"><option value="">All blocks</option></select>
+  <select id="status"><option value="">Any status</option><option value="unseen">Not yet tried</option><option value="work">Needs work</option><option value="nailed">Nailed</option></select>
+  <label style="display:flex;gap:6px;align-items:center;color:var(--muted);font-size:13px"><input id="jsonly" type="checkbox"> Jane Street confirmed only</label>
+  <button id="random" class="primary">Random drill</button>
+  <button id="reset">Reset progress</button>
+</div>
+<div class="stats" id="stats"></div>
+<div class="note" id="note" hidden></div>
+
+<main id="list"></main>
+
+<footer>
+  Levels follow the screen / working / senior / staff convention; types are Concept, Trade-off, Estimate, Design, Code, Incident, Behavioural. Progress is saved in this browser only. Part of <a href="../README.md">jane-street-prep</a>.
+</footer>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  const list=$('#list'), stats=$('#stats'), note=$('#note');
+  let items=[], meta={};
+  const KEY='js-drill-progress-v1';
+
+  function loadProgress(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; } }
+  function saveProgress(p){ try{ localStorage.setItem(KEY, JSON.stringify(p)); }catch(e){} }
+  let progress=loadProgress();
+
+  function blockLabel(b){ return b.replace(/^\d+-/,'').replace(/-/g,' '); }
+
+  function fillSelect(sel, values, labelFn){
+    values.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=labelFn?labelFn(v):v; sel.appendChild(o); });
+  }
+
+  function filters(){
+    return {
+      q: $('#search').value.trim().toLowerCase(),
+      level: $('#level').value, type: $('#type').value, block: $('#block').value,
+      status: $('#status').value, jsonly: $('#jsonly').checked
+    };
+  }
+
+  function visible(){
+    const f=filters();
+    return items.filter(it=>{
+      if(f.level && it.level!==f.level) return false;
+      if(f.type && it.type!==f.type) return false;
+      if(f.block && it.block!==f.block) return false;
+      if(f.jsonly && !it.js) return false;
+      const st=progress[it.id]||'unseen';
+      if(f.status && st!==f.status) return false;
+      if(f.q){
+        const hay=(it.q+' '+it.short+' '+(it.followups||[]).join(' ')+' '+it.wrong+' '+it.block).toLowerCase();
+        if(!hay.includes(f.q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function render(subset){
+    list.innerHTML='';
+    if(!subset.length){ list.innerHTML='<div class="empty">Nothing matches. Loosen a filter.</div>'; updateStats(); return; }
+    subset.forEach(it=>{
+      const st=progress[it.id]||'';
+      const card=document.createElement('article');
+      card.className='card'+(st?' '+st:'');
+      card.dataset.id=it.id;
+      const fu=(it.followups||[]).map(x=>'<li>'+esc(x)+'</li>').join('');
+      card.innerHTML=
+        '<div class="meta">'+
+          (it.js?'<span class="chip js">Jane Street confirmed</span>':'')+
+          '<span class="chip l">'+esc(it.level)+' '+esc(meta.levels[it.level]||'')+'</span>'+
+          '<span class="chip">'+esc(it.type)+'</span>'+
+          '<span class="chip">'+esc(blockLabel(it.block))+'</span>'+
+          '<span class="chip">~'+it.time+' min</span>'+
+        '</div>'+
+        '<div class="q"><span>'+esc(it.q)+'</span><span class="hint">click to reveal</span></div>'+
+        '<div class="ans">'+
+          '<h4>Short answer</h4><p>'+esc(it.short)+'</p>'+
+          (fu?'<h4>Follow-ups they will reach for</h4><ul>'+fu+'</ul>':'')+
+          '<h4>Wrong answer they hear most</h4><p class="wrong">'+esc(it.wrong)+'</p>'+
+          '<p><a href="'+esc(it.link)+'">Full answer in '+esc(blockLabel(it.block))+'</a></p>'+
+          '<div class="actions">'+
+            '<button data-mark="nailed">Nailed it</button>'+
+            '<button data-mark="work">Needs work</button>'+
+            '<button data-mark="">Clear</button>'+
+          '</div>'+
+        '</div>';
+      card.querySelector('.q').addEventListener('click',()=>card.classList.toggle('open'));
+      card.querySelectorAll('[data-mark]').forEach(b=>b.addEventListener('click',e=>{
+        const m=e.currentTarget.dataset.mark;
+        if(m) progress[it.id]=m; else delete progress[it.id];
+        saveProgress(progress);
+        card.className='card open'+(m?' '+m:'');
+        updateStats();
+      }));
+      list.appendChild(card);
+    });
+    updateStats(subset);
+  }
+
+  function updateStats(subset){
+    const all=items.length, js=items.filter(i=>i.js).length;
+    const nailed=Object.values(progress).filter(v=>v==='nailed').length;
+    const work=Object.values(progress).filter(v=>v==='work').length;
+    const shown=subset?subset.length:visible().length;
+    stats.innerHTML='<span>'+shown+' shown of '+all+'</span><span>'+js+' Jane Street confirmed</span><span style="color:var(--ok)">'+nailed+' nailed</span><span style="color:var(--warn)">'+work+' need work</span><span>'+(all-nailed-work)+' not yet tried</span>';
+  }
+
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function wire(){
+    ['#search','#level','#type','#block','#status','#jsonly'].forEach(s=>$(s).addEventListener('input',()=>render(visible())));
+    $('#random').addEventListener('click',()=>{
+      const pool=visible().filter(i=>(progress[i.id]||'')!=='nailed');
+      const src=pool.length?pool:visible();
+      if(!src.length) return;
+      const pick=src[Math.floor(Math.random()*src.length)];
+      render([pick]);
+      const card=list.querySelector('.card'); if(card) card.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    $('#reset').addEventListener('click',()=>{ if(confirm('Clear all progress marks in this browser?')){ progress={}; saveProgress(progress); render(visible()); } });
+  }
+
+  function init(data){
+    meta=data.meta||{levels:{}};
+    items=data.items||[];
+    fillSelect($('#type'), (meta.types||[...new Set(items.map(i=>i.type))]));
+    fillSelect($('#block'), [...new Set(items.map(i=>i.block))].sort(), blockLabel);
+    wire();
+    render(items);
+  }
+
+  fetch('questions.json',{cache:'no-store'}).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch(err=>{
+    note.hidden=false;
+    note.innerHTML='Could not load <code>questions.json</code> ('+esc(err.message)+'). If you opened this file directly from disk, serve the folder instead (for example <code>python3 -m http.server</code> in the <code>drill</code> directory) or open it through GitHub Pages.';
+    updateStats();
+  });
+})();
+</script>
+</body>
+</html>

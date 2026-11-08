@@ -19,6 +19,7 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [Cybersecurity Engineer, SOC, NYC](https://www.janestreet.com/join-jane-street/position/8632723002/)
 - [Get to Know Us: Minjie (security SWE, Hong Kong)](https://www.janestreet.com/join-jane-street/get-to-know-us/minjie)
 - [PowerShell + DevOps Global Summit 2026: Jane Street IT-security systems engineer hardening Windows](https://pshsummit2026.sched.com/speaker/jonathan_levine.293or5zu)
+- [Cybersecurity Engineer, Threat Modelling, London](https://www.janestreet.com/join-jane-street/position/7988179002); [NYC, base $225k to $300k](https://www.janestreet.com/join-jane-street/position/7999330002); [Hong Kong (Greenhouse)](https://job-boards.greenhouse.io/janestreet/jobs/7998232002). Requires an offensive security background, teaching threat modelling, documenting decision rationale; programming "a plus"
 - [Interviewing at Jane Street](https://www.janestreet.com/join-jane-street/interviewing/)
 - [Preparing for a software engineering interview](https://www.janestreet.com/preparing-for-a-software-engineering-interview/)
 - [Departments: Cybersecurity](https://janestreet.com/join-jane-street/departments)
@@ -110,6 +111,10 @@ Reported questions and frameworks:
 - [Optiver Security Engineer report (Glassdoor), "connect your startup to the French exchange"](https://www.glassdoor.com/Interview/Optiver-Interview-E243355-RVW44773253.htm)
 - [Jump Trading Support Engineer report (Glassdoor NZ), "what is a crossed book"](https://www.glassdoor.co.nz/Interview/Jump-Trading-Interview-E251744-RVW91825140.htm)
 - SEC Rule 15c3-5 (the Market Access Rule) and the 2012 Knight Capital event are established industry references, used for the pre-trade-risk and change-management points.
+
+## Format reference (drill app)
+
+- [AI Engineering from Scratch, interview bank](https://aiengineeringfromscratch.com/interviews): the per-item level, type and time tags, follow-up probes and "wrong answers interviewers hear most" format that the [drill app](drill/README.md) adopts. Its content is AI engineering, not security, and none of it is used.
 
 ## A note on reliability
 

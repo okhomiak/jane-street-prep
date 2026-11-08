@@ -1,6 +1,6 @@
 # 21 · Detection engineering, threat hunting and email security
 
-[← Gap analysis](../20-gap-analysis/README.md) · [Index](../README.md)
+[← Gap analysis](../20-gap-analysis/README.md) · [Index](../README.md) · [Next: Threat Modelling role →](../22-threat-modelling-role/README.md)
 
 This block exists because the postings describe the job and the repo did not cover it as a discipline. The Senior Cybersecurity Operations Engineer posting names the stack: EDR and SIEM for triage, Elasticsearch and ElastAlert, network security monitoring tools, security orchestration and "self-healing" systems ([posting](https://www.janestreet.com/join-jane-street/position/8687509002/)). The Detection and Response posting wants "projects to improve our detection capabilities, automation and efficiencies" and threat hunts ([posting](https://www.janestreet.com/join-jane-street/position/7642974002/)). The SOC internship posting says investigators trace chains of activity using mostly in-house or open-source log sources and tools ([posting](https://www.janestreet.com/join-jane-street/position/8632723002/)); read that as: you will not be handed a vendor console, you will build and query. So expect questions about *building* detection, not just reading alerts. Tags: [JS] Jane Street primary, [SOC] SOC question banks, [est] established practice.
 
@@ -157,4 +157,4 @@ Work the headers top-down in the order mail travelled: `Received:` hops (bottom 
 
 Where this meets your own work: detection-as-code is the same discipline as your scanning pipeline and remediation bot, rules in version control, tested before deploy, measured after. Say that, and say which `ElastAlert` rule type you would reach for when they describe a behaviour.
 
-[← Gap analysis](../20-gap-analysis/README.md) · [Index](../README.md)
+[← Gap analysis](../20-gap-analysis/README.md) · [Index](../README.md) · [Next: Threat Modelling role →](../22-threat-modelling-role/README.md)

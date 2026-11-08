@@ -40,7 +40,7 @@ The two London Cybersecurity Engineer postings ([Greenhouse](https://job-boards.
 
 The [Threat Modelling posting](https://www.janestreet.com/join-jane-street/position/7988179002) adds: an offensive background, documenting decision rationale, teaching threat modelling, and talking with system owners who don't yet see the exploit. Jane Street considers you for every open role, so you may be routed there mid-process.
 
-None of the London or NYC Cybersecurity Engineer or Threat Modelling postings mention AI. The one that does is the NYC [Vulnerability Management](https://www.janestreet.com/join-jane-street/position/8596433002) role, which asks for automation "including AI tooling" with a human in the loop, noting that manual triage doesn't scale at their size. The firm's AI work is real and large (below), so bringing it up well is a differentiator, not a requirement.
+The Threat Modelling opening is analysed line by line in [block 22](../22-threat-modelling-role/README.md); it requires an offensive security background and the ability to teach threat modelling, treats programming as "a plus", and is arguably the closer fit to your record. None of the London or NYC Cybersecurity Engineer or Threat Modelling postings mention AI. The one that does is the NYC [Vulnerability Management](https://www.janestreet.com/join-jane-street/position/8596433002) role, which asks for automation "including AI tooling" with a human in the loop, noting that manual triage doesn't scale at their size. The firm's AI work is real and large (below), so bringing it up well is a differentiator, not a requirement.
 
 ---
 
