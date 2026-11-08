@@ -113,6 +113,6 @@ You won't need to code in OCaml; both of their interview pages say to use the la
 - **Your biggest risk** is reading as a senior bank manager. "SVP", "governance", "stakeholder alignment", "framework" are words that cost you here. Less hierarchy is a stated value.
 - **Second risk:** Windows depth. The role leans Windows; your recent years lean cloud and AppSec. [Block 07](../07-windows-and-endpoints/README.md) is mandatory, not optional.
 - **Third risk:** live coding with someone watching. The 2018 London candidate failed on exactly this. [Block 03](../03-coding/README.md) and [block 19](../19-mock-interviews/README.md) are where the hours go.
-- **Your edge nobody else will have:** you can talk about agent security using Jane Street's own published sandboxing story, and connect it to the multi-agent DAST verifier you built in a sandbox and to Threat-modeling.io.
+- **Your edge nobody else will have:** you can talk about agent security using Jane Street's own published sandboxing story, and connect it to Glasswing (the EMEA AI security programme you run at J.P. Morgan), the multi-agent DAST verifier you built in a sandbox, and Threat-modeling.io.
 
 [Index](../README.md) · [Next: Process →](../01-process/README.md)

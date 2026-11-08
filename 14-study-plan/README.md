@@ -2,7 +2,7 @@
 
 [← Behavioural](../13-behavioural/README.md) · [Index](../README.md)
 
-A seven-session plan, about 90 minutes each, built around the way Jane Street actually tests. Your strongest area is depth of knowledge; your real risk is live coding and narrating while you work, since you sat the assessment silently last time and one London candidate was cut on the coding round alone. So coding and talking out loud get the most reps.
+This is the final-week drill schedule: seven sessions of about 90 minutes, run in the last days before the first interview. The longer plans sit elsewhere: the [six-month roadmap](../24-six-month-roadmap/README.md) if you are months out, and the [14-day sprint](../20-gap-analysis/README.md) for the fortnight before. Built around the way Jane Street actually tests. Your strongest area is depth of knowledge; your real risk is live coding and narrating while you work, since you sat the assessment silently last time and one London candidate was cut on the coding round alone. So coding and talking out loud get the most reps.
 
 Tick items off as you go.
 

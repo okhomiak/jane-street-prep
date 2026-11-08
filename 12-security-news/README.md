@@ -48,7 +48,7 @@ PHP shipped emergency fixes on 21 October for two remote code execution flaws (C
 
 - **Identity is the perimeter.** Binance, ConnectWise, and most 2026 cloud breaches are credential and token misuse, not memory-corruption exploits. The defences are MFA that can't be phished, short-lived credentials, and least privilege.
 - **The software supply chain is a primary target.** npm and PyPI have had a steady run of worm-like and maintainer-takeover attacks through 2025-26 (Shai-Hulud and its variants, Axios, the tj-actions GitHub Action compromise). SBOMs, pinning and provenance are the answers.
-- **AI tooling is now in the attack path.** The Binance chain reportedly pivoted through an internal AI tool, and LiteLLM is AI infrastructure; agent and MCP security is a live research area, which is your territory (the sandboxed multi-agent DAST verifier and Threat-modeling.io).
+- **AI tooling is now in the attack path.** The Binance chain reportedly pivoted through an internal AI tool, and LiteLLM is AI infrastructure; agent and MCP security is a live research area, which is your territory (Glasswing, your EMEA AI security programme at J.P. Morgan; the sandboxed multi-agent DAST verifier; Threat-modeling.io).
 - **Edge devices keep getting popped.** Ivanti, Palo Alto, Citrix, Fortinet, BeyondTrust all had actively-exploited floods into CISA's KEV catalogue in 2026. The lesson is to patch the edge fast and not expose management interfaces.
 
 ---

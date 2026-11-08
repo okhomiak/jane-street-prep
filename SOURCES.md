@@ -20,7 +20,7 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [Get to Know Us: Minjie (security SWE, Hong Kong)](https://www.janestreet.com/join-jane-street/get-to-know-us/minjie)
 - [PowerShell + DevOps Global Summit 2026: Jane Street IT-security systems engineer hardening Windows](https://pshsummit2026.sched.com/speaker/jonathan_levine.293or5zu)
 - [Cybersecurity Engineer, Threat Modelling, London](https://www.janestreet.com/join-jane-street/position/7988179002); [NYC, base $225k to $300k](https://www.janestreet.com/join-jane-street/position/7999330002); [Hong Kong (Greenhouse)](https://job-boards.greenhouse.io/janestreet/jobs/7998232002). Requires an offensive security background, teaching threat modelling, documenting decision rationale; programming "a plus"
-- [Interviewing at Jane Street](https://www.janestreet.com/join-jane-street/interviewing/)
+- [Interviewing at Jane Street](https://www.janestreet.com/join-jane-street/interviewing/) (also the source for: re-interviewing is normal and they hire on later attempts; experienced hires should wait until experience has changed significantly; applications are considered for all open roles globally)
 - [Preparing for a software engineering interview](https://www.janestreet.com/preparing-for-a-software-engineering-interview/)
 - [Departments: Cybersecurity](https://janestreet.com/join-jane-street/departments)
 

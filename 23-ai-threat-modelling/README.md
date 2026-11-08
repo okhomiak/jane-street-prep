@@ -107,7 +107,7 @@ How to deploy this without sounding like a pitch:
 
 - When asked **how you would scale threat modelling across the firm**: start with the arithmetic (systems versus people), then the pipeline in four lines, then the two biggest failure modes and their fixes. Stop. Let them pull more.
 - When asked **what you think of AI in security**: lead with the failure list. Scepticism from someone who has built it is more convincing than enthusiasm.
-- When asked **what you have built**: the sandboxed multi-agent DAST verifier is the offensive side of this same idea (machine proposes attacks, machine verifies impact, human decides), and Threat-modeling.io is the defensive side. One sentence each, routed to their need, then back to them.
+- When asked **what you have built**: Glasswing, the EMEA AI security programme you run at J.P. Morgan, is where you did this at scale (agentic security, LLM threat modelling, AI-native tooling); the sandboxed multi-agent DAST verifier is the offensive side of the same idea (machine proposes attacks, machine verifies impact, human decides); Threat-modeling.io (Python, FastAPI; STRIDE, ATT&CK and OWASP outputs) is the defensive side. One sentence each, routed to their need, then back to them.
 - When they mention **their agent fleet**: connect it. An AI threat-modelling tool is itself an agent reading untrusted documents with access to the firm's architecture; it needs the same sandbox, identity and allow-list discipline they already built ([block 16](../16-ai-and-llm-security/README.md)).
 - Never claim it replaces the practice. The posting wants someone who teaches humans to see exploits. The strongest line you have is that the tool's purpose is to give the human hour back to judgement.
 

@@ -85,6 +85,6 @@ OCaml is not just a trading-code choice; it has a security story you can speak t
 
 ## The honest close
 
-Say it plainly, because "know what you don't know" is a scored principle: you have never shipped OCaml, you have read enough to respect why they use it, and their own pages say most engineers arrived the same way and learned it in the first eighteen months ([Departments](https://www.janestreet.com/join-jane-street/departments/), [Programming](https://janestreet.com/programming)). That answer is stronger than a shaky attempt to sound fluent. Do not fake depth here; faking it breaks the one principle they test hardest.
+Say it plainly, because "know what you don't know" is a scored principle. If you are interviewing soon: you have never shipped OCaml, you have read enough to respect why they use it, and their own pages say most engineers arrived the same way. If you have done month three of the [six-month roadmap](../24-six-month-roadmap/README.md): you have written a few hundred lines, here is the repo, here is what surprised you, and you know how far that is from fluency. Either way, their pages say most engineers learned it in the first eighteen months ([Departments](https://www.janestreet.com/join-jane-street/departments/), [Programming](https://janestreet.com/programming)). That answer is stronger than a shaky attempt to sound fluent. Do not fake depth here; faking it breaks the one principle they test hardest.
 
 [← Trading domain](../17-trading-domain/README.md) · [Index](../README.md) · [Next: Mock interviews →](../19-mock-interviews/README.md)

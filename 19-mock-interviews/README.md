@@ -130,8 +130,41 @@ How to grade: for each rubric line, mark hit / partial / miss. Any "miss" on a p
 
 ---
 
+## Mock 8 · Live threat model (45 min, Threat Modelling role)
+
+**Setup:** the reader brings a system you have not seen, described in six to eight sentences or a rough diagram (an internal permissioning service, a research-data pipeline, the agent sandbox, a new venue connection). You model it on the whiteboard while they play the system owner: they know the system, they do not see the exploits, and they will defend it.
+
+**Reader prompts:**
+1. Here is the system. Threat-model it with me.
+2. (When you name a threat) That's not a real risk, we have X. (Sometimes X genuinely covers it; sometimes it does not.)
+3. (At 35 minutes) We have ten minutes. What are we actually going to do?
+
+**Rubric:**
+- [ ] Started with assets and trust boundaries, drawn, before any threat was named.
+- [ ] Asked the owner questions and used the answers; did not lecture.
+- [ ] Named threats as paths from an entry point to a crown jewel, not as categories.
+- [ ] When challenged with "we have X", checked whether X really covers it rather than conceding or insisting; changed position when the owner was right.
+- [ ] Ranked by what reaches the crown jewels; said what you would skip.
+- [ ] Closed with three concrete actions and a named verification for each.
+- [ ] The owner left wanting to do it again (the teaching test).
+
+## Mock 9 · Attack, defend, teach (30 min, Threat Modelling role)
+
+**Reader prompts:**
+1. Here is an architecture (pick a row from the attack-path table in [block 22](../22-threat-modelling-role/README.md)). You are the attacker. First three moves.
+2. Now you are us. What breaks each move, and which one do you fix first?
+3. A senior engineer says threat modelling is paperwork that slows the team down. Convince them in two minutes.
+4. Walk me through a security decision you documented: the options, what you chose, what you accepted.
+
+**Rubric:**
+- [ ] Attacker moves were specific to the architecture shown, in path order, and reached something that matters.
+- [ ] The defender's answer broke the paths at the cheapest effective point, with one clear priority and a reason.
+- [ ] The "paperwork" answer offered a 45-minute session on their own system and a concrete outcome, not a process.
+- [ ] The documented decision had rejected options with reasons, a named residual risk, and a verification.
+- [ ] Switched altitude cleanly between whiteboard and mechanism; never stayed at management height.
+
 ## Running order for the two weeks before
 
-Do them in this order, one or two a day, repeating the ones you scored worst on: Mock 3 (coding), Mock 2 (live investigation), Mock 4 (fundamentals, heavy on Windows), Mock 5 (scenario), Mock 6 (design), Mock 1 (phone), Mock 7 (hiring manager). Coding and live investigation get at least three runs each. Your personal priorities are in [block 20](../20-gap-analysis/README.md).
+Do them in this order, one or two a day, repeating the ones you scored worst on: Mock 3 (coding), Mock 2 (live investigation), Mock 4 (fundamentals, heavy on Windows), Mock 5 (scenario), Mock 6 (design), Mock 1 (phone), Mock 7 (hiring manager). Coding and live investigation get at least three runs each. If the Threat Modelling role is your target, Mocks 8 and 9 move to the front and get three runs each too. Your personal priorities are in [block 20](../20-gap-analysis/README.md).
 
 [← OCaml literacy](../18-ocaml-literacy/README.md) · [Index](../README.md) · [Next: Gap analysis →](../20-gap-analysis/README.md)

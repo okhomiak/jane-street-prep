@@ -123,6 +123,10 @@ Threat-model this system, live; how would you attack this architecture, then how
 
 How does an AI-assisted threat-modelling system actually work (the pipeline); what goes wrong with AI-generated threat models (the eleven failure modes); if you built it here, what would you do differently; show me how it runs on a real change (the exchange-connectivity example); how would you scale threat modelling across hundreds of systems with a small team; how do you know the output is any good.
 
+## The application and the screen ([block 25](25-the-application/README.md))
+
+Why are you interested in Jane Street (the free-text box); how did you hear about us; if you have a job now, why are you looking; have you interviewed with Jane Street before, and what has changed since; why this role rather than the other security opening; walk me through your GitHub.
+
 ---
 
 Full timed scripts that chain these into real rounds: [block 19](19-mock-interviews/README.md). Your personal weak-spot plan: [block 20](20-gap-analysis/README.md).

@@ -155,6 +155,7 @@ This is the part that separates you. From [Signals and Threads ep. 31](https://s
 <details>
 <summary><b>Your own stories to connect here.</b> · [your proof points]</summary>
 
+- **Glasswing, the EMEA AI security programme you run at J.P. Morgan** (agentic system security, LLM threat modelling, AI-native security tooling) is the organisational proof: you have done this at a large firm, not read about it. One caution: Anthropic also runs something called Project Glasswing, so introduce yours as "the AI security programme I run at J.P. Morgan, Glasswing" the first time, to avoid a confused interviewer.
 - **The multi-agent DAST verifier in a sandbox** is the direct analogue of their setup: adversarial agents generating attacks, a verifier confirming real impact, all contained so a misbehaving agent cannot reach anything. You built the thing they are building.
 - **Threat-modeling.io** is the "teach threat modelling to system owners who do not see the exploit" line from the Threat Modelling posting, made real.
 - **The automated remediation bot and the zero-config scanning pipeline** (Trivy, TruffleHog, Gitleaks across GitHub Actions) are "a programmer who automates security in a real language", which is the department's self-description.

@@ -1,6 +1,6 @@
 # 24 · The six-month roadmap
 
-[← AI-assisted threat modelling](../23-ai-threat-modelling/README.md) · [Index](../README.md)
+[← AI-assisted threat modelling](../23-ai-threat-modelling/README.md) · [Index](../README.md) · [Next: The application →](../25-the-application/README.md)
 
 You are applying in about six months, not two weeks. That changes the job of this repo. The [14-day plan](../20-gap-analysis/README.md) is a sprint for someone who has to perform with what they already know; six months is enough to actually *acquire* the two or three things you are missing, and to build public evidence that answers the hardest screening question before anyone asks it. This block is that plan. It assumes a demanding full-time job: roughly eight to ten focused hours a week, more at weekends if you have them, with a bias of at least 60% doing over reading.
 
@@ -79,7 +79,7 @@ The largest content gap, and the one reading alone will not fix. Goal: you under
 
 ### Month 6: Position, apply, sprint
 
-- **Rewrite the CV and the application text.** Lead with what you built this half-year and before it; the title comes last. No governance vocabulary. The free-text box on their application asks why Jane Street, how you heard, and why you are leaving: three short paragraphs, builder's voice, specific ([block 13](../13-behavioural/README.md)).
+- **Rewrite the CV and the application text.** [Block 25](../25-the-application/README.md) has the principles, before-and-after bullets, the three free-text drafts, and how to handle having applied before. Lead with what you built this half-year and before it; the title comes last. No governance vocabulary.
 - **Choose the primary role.** [Block 22](../22-threat-modelling-role/README.md) makes the case for Threat Modelling as primary with a line expressing interest in the Cybersecurity Engineer role. Decide, then apply. The postings have stayed open and been reposted across the year, so apply when you are ready rather than waiting for a new listing.
 - **Run the 14-day sprint** from [block 20](../20-gap-analysis/README.md) in the final two weeks before the first interview. It will feel easy, which is the point.
 - **Refresh [block 12](../12-security-news/README.md)** the week of each interview.
@@ -104,4 +104,4 @@ Reading more of this repo. After the first pass, the repo is a reference, not a 
 - A mock interviewer cannot tell from your answers that you have ever had a title with "Vice President" in it.
 - Your honest answer to "where are you weakest" is a smaller thing than it is today, and you can say what you did about it.
 
-[← AI-assisted threat modelling](../23-ai-threat-modelling/README.md) · [Index](../README.md)
+[← AI-assisted threat modelling](../23-ai-threat-modelling/README.md) · [Index](../README.md) · [Next: The application →](../25-the-application/README.md)

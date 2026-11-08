@@ -47,8 +47,11 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 22 | [The Threat Modelling role](22-threat-modelling-role/README.md) | Their second security opening, line by line: fit, the CV-screen risk, how its loop differs, and whether to make it your primary target | all (for that role) |
 | 23 | [AI-assisted threat modelling](23-ai-threat-modelling/README.md) | How it works as a pipeline, the eleven ways it fails, the engineering that makes it trustworthy, a worked exchange-connectivity example | design, HM |
 | 24 | [Six-month roadmap](24-six-month-roadmap/README.md) | Month-by-month plan to close the gaps for real and build the public proof, if you apply in six months | none |
+| 25 | [The application](25-the-application/README.md) | What the CV screener pattern-matches, builder-voice bullets before and after, the free-text box drafted, re-applying honestly, referrals, timing | CV screen |
 
 Every reported question in one place to self-test: [QUESTION-BANK.md](QUESTION-BANK.md). Practise with the try-before-reveal [drill app](drill/README.md) (levels, follow-ups, and the wrong answer interviewers hear most). All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
+
+**Keeping it current over six months.** Before you apply, refresh what dates: the five stories in [block 12](12-security-news/README.md) (the week of each interview); the postings cited in [00](00-jane-street-intel/README.md) and [22](22-threat-modelling-role/README.md) (they are reposted and occasionally reworded; check the requirements lines still match); the NYC salary band; and any OWASP list numbering. Everything else here is mechanism and method and does not go stale.
 
 ---
 
