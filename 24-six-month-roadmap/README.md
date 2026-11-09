@@ -72,7 +72,8 @@ The largest content gap, and the one reading alone will not fix. Goal: you under
 
 - **Trading depth.** [Block 17](../17-trading-domain/README.md), then one layer deeper: read a FIX specification's session layer, read the SEC's Knight Capital order, and read your own platform's pre-trade risk design with fresh eyes. Write the exchange-connectivity threat model from [block 23](../23-ai-threat-modelling/README.md) by hand, as the ADR you will show.
 - **Hardware and firmware.** [Block 07](../07-windows-and-endpoints/README.md)'s hardware section, then Microsoft's documentation on Secure Boot, measured boot and Kernel DMA Protection.
-- **Mock loops, weekly.** One full mock from [block 19](../19-mock-interviews/README.md) per week with a peer who will interrupt you; rotate through all seven. Record them. Listen for the management register and strike it.
+- **Mock loops, weekly.** One full mock from [block 19](../19-mock-interviews/README.md) per week with a peer who will interrupt you; rotate through all nine. Record them. Listen for the management register and strike it.
+- **The six worked threat models, cold.** Run each model in [worked-models.md](../10-threat-modelling-and-design/worked-models.md) on the playbook clock without notes, then change one assumption and run it again. Ontology and the venue connection get the most reps.
 - **Estimation out loud.** [Back-of-envelope](../04-security-fundamentals/back-of-envelope.md), until the entropy and base-rate sums are reflexive.
 
 **Done when:** a peer says your Windows answers are as sharp as your cloud ones, and your mock scores are flat across rounds.

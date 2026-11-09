@@ -2,26 +2,33 @@
 
 [← Incident response](../09-incident-response/README.md) · [Index](../README.md) · [Next: Judgement and hygiene →](../11-judgement-and-hygiene/README.md)
 
-The London posting wants someone "familiar with threat modeling" who can explain trade-offs, and Jane Street's Threat Modelling Engineer posting wants an offensive background plus the ability to teach it ([Jane Street](https://www.janestreet.com/join-jane-street/position/7988179002)). Meta's security screen is one coding round and one threat-modelling round; the reported prompt was "threat model a Signal-type messaging application" ([Glassdoor](https://www.glassdoor.com.au/Interview/Meta-Interview-E40772-RVW70419539.htm)). Amazon's loop is "go over a specific product and threat model it" plus STRIDE ([Glassdoor](https://www.glassdoor.com.br/Entrevista/Amazon-Entrevista-E6036-RVW33223721.htm)). Tags: [JS] Jane Street, [M] Meta, [A] Amazon, [G] Google, [TW] tadwhitaker, [DF] Dataford, [GD] Glassdoor.
+This is the block that decides the Threat Modelling role and carries heavy weight in the generic one. The London posting wants someone "familiar with threat modeling" who can explain trade-offs; the Threat Modelling posting wants an offensive background plus the ability to teach it ([Jane Street](https://www.janestreet.com/join-jane-street/position/7988179002), [block 22](../22-threat-modelling-role/README.md)). Outside Jane Street the round is mainstream: Meta's security phone screen is one threat-modelling round and one coding round, Amazon opens with "threat model this product", Microsoft asks you to model a new Azure service before launch, and Stripe calls it the design round ([interview-questions.md](interview-questions.md) has every reported prompt with its source). You founded a threat-modelling company and run design reviews on a trading platform, so this is where you should be the strongest person in the room. The module is built to make sure that shows. Tags: [JS] Jane Street, [M] Meta, [A] Amazon, [G] Google, [TW] tadwhitaker, [DF] Dataford, [GD] Glassdoor, [est] established.
+
+## The module
+
+| File | What it gives you | Read it when |
+| --- | --- | --- |
+| [frameworks.md](frameworks.md) | The four questions, STRIDE to the depth they probe, DFDs and trust boundaries, attack trees, ATT&CK-based modelling, PASTA and LINDDUN in a line each, why DREAD is dead, how to rank, model-as-code, and what to lead with | First pass, and before any mock |
+| [live-exercise-playbook.md](live-exercise-playbook.md) | The 45-minute round on a clock: scoping questions, drawing, enumerating, ranking, deciding, closing; the published rubric; handling pushback; the attacker-first variant; a self-grading checklist | Before and after every mock |
+| [worked-models.md](worked-models.md) | Six complete models: Jane Street's own permissions service Ontology (from their tech talk), a new venue connection, presigned-URL storage (a reported question), a Signal-type app (Meta), a refund-capable support bot, and a research data pipeline | To learn the depth, then to drill cold |
+| [hedge-fund-threat-model.md](hedge-fund-threat-model.md) | What is different about a trading firm: the asset taxonomy, the actors' current playbook, the incidents to cite and the one not to, the business-logic abuse-case library, Jane Street specifics, a one-page reference model | Before any trading-flavoured prompt |
+| [interview-questions.md](interview-questions.md) | Every reported threat-modelling prompt with source, the conceptual questions with answer shapes, the behavioural probes, and the wrong answers interviewers hear most | To self-test |
+
+Related: how to run it as a programme at scale and where AI helps and misleads is [block 23](../23-ai-threat-modelling/README.md); the role itself, with the offensive-probe vocabulary and the documented-decision shape, is [block 22](../22-threat-modelling-role/README.md); the timed mocks are 8 and 9 in [block 19](../19-mock-interviews/README.md).
 
 ---
 
-## The 10-minute method
+## The method in one breath
 
-Draw first, talk second, and end with what you'd deliberately not do.
+Ask before you draw. Name the four questions as your structure. Draw the data flows and the trust boundaries before any threat. Mark the crown jewels. Say threats as attacker paths across each boundary, then sweep with STRIDE for what you missed. Rank with a stated method, pick three, name one you accept and who owns that. Give each mitigation a verification. Propose one design change that removes a threat rather than defending it. Finish on time with three owned actions and a question back to the owner. The full clock is in the [playbook](live-exercise-playbook.md).
 
-1. **Ask what it's for and who uses it** (30 s). Users, admins, integrations, data classification.
-2. **Draw it** (2 min). Boxes for components, arrows for data flows, dotted lines for trust boundaries (internet to edge, edge to app, app to data, user to admin, your code to third parties).
-3. **Name the crown jewels** (30 s). At a trading firm: strategy code and parameters, the ability to send orders or move money, signing keys and credentials, market data entitlements, client data, the build system.
-4. **Walk the attackers across the boundaries** (4 min). Pick the three most likely: a phished or infostealer-infected employee laptop, a malicious or hijacked dependency, an insider; add a compromised vendor or a bug in the public surface if relevant. Use STRIDE as a silent checklist per flow: spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege.
-5. **Controls** (2 min). Prefer ones that make the secure path the easy path. Prevent where cheap, detect where prevention costs too much.
-6. **Trade-offs** (1 min). What you'd skip, what residual risk you'd accept, and how you'd know you were wrong (the detection that tells you).
-
-Say the frameworks once, lightly: STRIDE for threats, attack trees for depth, ATT&CK for realism, DREAD only to say why you don't use it (subjective scores). Jane Street's own words for the trait: measured judgement.
+What they score at Jane Street on top of that: collaboration (you ask, you adjust), humility (you concede when the owner is right), measured judgement (you say what you would skip), and whether you can switch altitude from whiteboard to mechanism in one breath.
 
 ---
 
-## Prompts that have been asked, with a worked answer each
+## Design prompts with worked answers
+
+The threat-modelling exercises are in [worked-models.md](worked-models.md). The prompts below are the broader secure-design and programme-design questions that share the round.
 
 <details>
 <summary><b>Threat model a Signal-type messaging app.</b> · [M]</summary>
@@ -87,9 +94,9 @@ Use the same four questions, but enumerate the pieces that are specific to agent
 </details>
 
 <details>
-<summary><b>Design a firm-wide permissioning system.</b> · [JS: their cybersecurity SWE owns exactly this] [likely design prompt]</summary>
+<summary><b>Design a firm-wide permissioning system.</b> · [JS: their cybersecurity SWE owns exactly this; the system is public] [likely design prompt]</summary>
 
-Minjie's profile says the firm-wide internal permissioning system is one of his main projects, used by everyone in the firm, and that he onboards other teams onto it ([block 00](../00-jane-street-intel/README.md)), so this is a live system they can ask you to design or critique. Walk it:
+Minjie's profile says the firm-wide internal permissioning system is one of his main projects, used by everyone in the firm, and that he onboards other teams onto it ([block 00](../00-jane-street-intel/README.md)). Jane Street also described the system publicly: Ontology, a deductive database of typed declarations with an approval workflow and outward sync, in Nathan Linger's 2019 tech talk; a full threat model of that design is [worked model 1](worked-models.md). So this is a live system they can ask you to design or critique, and you can speak to its actual shape. Walk it:
 
 1. **What it decides.** Who (a person, a service, or at Jane Street an AI counterpart identity) can do what (read, write, approve, run) to which resource (a dataset, a repo, a desk's positions, a production host), under what conditions (time, location, device health, an approval). Say that identities now include agents, so the model must carry attribution for AI-originated actions ([block 16](../16-ai-and-llm-security/README.md)).
 2. **Pick the model deliberately.** RBAC (roles bundle permissions; simple, but role explosion at scale), ABAC (policies over attributes of subject, resource and context; flexible, harder to reason about), and ReBAC (permissions derived from relationships, the Google Zanzibar model, tuples like `desk:fx#trader@user:oleh`, with a `check` API and `expand` for "who can see this"). A trading firm's needs, team and desk membership that implies data access, map naturally onto ReBAC with ABAC conditions for device and time. Say which and why.

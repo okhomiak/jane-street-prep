@@ -32,7 +32,7 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 07 | [Windows and endpoints](07-windows-and-endpoints/README.md) | Fresh-install hardening, the event IDs, AD attacks, EDR | fundamentals, scenarios |
 | 08 | [Cloud and supply chain](08-cloud-and-supply-chain/README.md) | IAM, S3, SSRF/metadata, containers, CI/CD, the 2026 supply-chain lessons | fundamentals, design |
 | 09 | [Incident response](09-incident-response/README.md) | The seven-step scenario skeleton, every reported scenario, the CEO briefing | scenario rounds |
-| 10 | [Threat modelling and design](10-threat-modelling-and-design/README.md) | The 10-minute method, worked prompts, design principles | design round |
+| 10 | [Threat modelling and design](10-threat-modelling-and-design/README.md) | A full module: [frameworks](10-threat-modelling-and-design/frameworks.md) critically, the [45-minute playbook](10-threat-modelling-and-design/live-exercise-playbook.md) with the published rubric, [six worked models](10-threat-modelling-and-design/worked-models.md) including Jane Street's Ontology, the [trading-firm threat model](10-threat-modelling-and-design/hedge-fund-threat-model.md), [every reported prompt](10-threat-modelling-and-design/interview-questions.md), plus the secure-design prompts | design, TM role, HM |
 | 11 | [Judgement and hygiene](11-judgement-and-hygiene/README.md) | The 2FA pushback, your personal setup, the trade-off questions | judgement, HM |
 | 12 | [Security news](12-security-news/README.md) | Five autumn-2026 stories ranked for a trading firm; refresh before you go | news question |
 | 13 | [Behavioural](13-behavioural/README.md) | The 60-second intro, why Jane Street, the story bank, questions to ask | phone screen, HM |

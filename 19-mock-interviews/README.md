@@ -132,7 +132,7 @@ How to grade: for each rubric line, mark hit / partial / miss. Any "miss" on a p
 
 ## Mock 8 · Live threat model (45 min, Threat Modelling role)
 
-**Setup:** the reader brings a system you have not seen, described in six to eight sentences or a rough diagram (an internal permissioning service, a research-data pipeline, the agent sandbox, a new venue connection). You model it on the whiteboard while they play the system owner: they know the system, they do not see the exploits, and they will defend it.
+**Setup:** the reader brings a system you have not seen, described in six to eight sentences or a rough diagram (an internal permissioning service, a research-data pipeline, the agent sandbox, a new venue connection; or Jane Street's own Ontology as described in their tech talk, which is [worked model 1](../10-threat-modelling-and-design/worked-models.md)). Run it on the clock in the [playbook](../10-threat-modelling-and-design/live-exercise-playbook.md) and grade with its checklist as well as the rubric below. You model it on the whiteboard while they play the system owner: they know the system, they do not see the exploits, and they will defend it.
 
 **Reader prompts:**
 1. Here is the system. Threat-model it with me.

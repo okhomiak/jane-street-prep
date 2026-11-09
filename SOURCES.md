@@ -69,6 +69,38 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [SIEM XPERT: 25 scenario-based SOC questions](https://www.siemxpert.com/blog/top-25-soc-analyst-scenario-based-interview-questions-in-2026/)
 - [Indeed: 50 SOC analyst questions](https://in.indeed.com/career-advice/interviewing/soc-analyst-interview-questions)
 
+## Threat modelling module (block 10)
+
+Jane Street primary:
+- [A Language-Oriented System Design, Nathan Linger, 2019 (Ontology, the permissions management service)](https://www.janestreet.com/tech-talks/a-language-oriented-system-design/); [event listing](https://www.finos.org/featured-events/2019-02-27-jane-street-talks-a-language-oriented-system-design)
+- [Hacking OCaml, Corwin de Zahr (CTF culture, DEF CON wins)](https://www.janestreet.com/tech-talks/hacking-ocaml)
+- [Detection and Response posting (in-house SOAR, email scanning, alerting stack)](https://www.janestreet.com/join-jane-street/position/7642974002/)
+
+Method and frameworks:
+- [Threat Modeling Manifesto (four questions, patterns, anti-patterns)](https://threatmodelingmanifesto.org/)
+- [Shostack, The Four Question Framework for Threat Modeling, white paper, Nov 2024](https://shostack.org/files/papers/The_Four_Question_Framework.pdf)
+- [OWASP Threat Modeling Project](https://owasp.org/www-project-threat-model)
+- [CTID, Threat Modeling with ATT&CK (partners incl. JPMorgan Chase)](https://ctid.mitre.org/projects/threat-modeling-with-attack/); [overview post](https://medium.com/mitre-engenuity/turn-your-threat-model-to-supermodel-with-att-ck-a6dfaa6787c2)
+- [Thoughtworks / Martin Fowler, agile threat modelling guide](https://martinfowler.com/articles/agile-threat-modelling.html)
+- [AI and the Threat Modeling Manifesto, OWASP Global AppSec 2026 slides](https://hosted-files.sched.co/owaspglobalappseceuvienna20/1b/AI-And-the-TMM.pdf)
+- [Cloud Security Podcast, Google's threat modelling process incl. Gemini (episode summary)](https://podwise.ai/dashboard/episodes/3362827)
+
+Reported interview rounds and rubric:
+- [KORE1, AppSec interview rounds 2026 (report-link scenario, refund-bot scenario, mid/senior/walk-away table)](https://www.kore1.com/application-security-engineer-interview-questions/)
+- [Meta Security Engineer reports (TM phone round; Signal-type app)](https://www.glassdoor.com/Interview/Meta-Security-Engineer-Interview-Questions-EI_IE40772.0,4_KO5,22.htm); [Glassdoor IN mirror](https://www.glassdoor.co.in/Interview/Meta-Security-Engineer-Interview-Questions-EI_IE40772.0,4_KO5,22.htm)
+- [Amazon Security Engineer, Apr 2020 ("threat model this scenario")](https://static.glassdoor.com.br/Interview/Amazon-Interview-E6036-RVW33223721.htm); [2026 report (TM, STRIDE, XSS)](https://static.glassdoor.com.mx/Interview/Amazon-Interview-E6036-RVW91855346.htm)
+- [Presigned-URL storage threat model, Security Engineer](https://static.glassdoor.com.ar/Interview/security-engineer-interview-questions-SRCH_KO0,17_IP87.htm)
+- [Salesforce (open-ended TM)](https://www.glassdoor.com/Interview/Open-ended-threat-modeling-questions-QTN_1811235.htm); [Genesys (process questions)](https://www.glassdoor.com/Interview/What-is-Threat-Modeling-Which-Threat-Modelling-process-you-follow-Explain-How-do-you-perform-threat-modeling-What-is-QTN_4593697.htm); [Coveros](https://www.glassdoor.com/Interview/Do-you-know-what-a-threat-model-is-Tell-me-about-it-QTN_3609040.htm); [Job&Talent](https://www.glassdoor.com/Interview/The-technical-interview-consisted-of-a-threat-modeling-exercise-QTN_6432748.htm); [IT Security Engineer (threat model Alexa)](https://static.glassdoor.de/Interview/it-security-engineer-interview-questions-SRCH_KO0,20_IP302.htm)
+- [Microsoft and Stripe process guides (CleverPrep)](https://www.cleverprep.com/companies/microsoft/security-engineer), [Stripe](https://www.cleverprep.com/companies/stripe/security-engineer); [Google data-centre platforms questions (dev.to)](https://dev.to/jackm_345442a09fb53b/google-security-engineer-data-center-platforms-technical-infrastructure-interview-questions-42i3); [FinalRound security guide](https://www.finalroundai.com/blog/security-engineer-interview-guide)
+- [Blind, "Threat Modeling tips" (what candidates actually ask for)](https://www.teamblind.com/post/Threat-Modeling-tips-n7nw6Mnd); [Blind AppSec cloud TM scenario](https://www.teamblind.com/post/appsec-interview-vqjssoax)
+- [Yardstick behavioural TM questions](https://yardstick.team/interview-questions/threat-modeling); [Practical DevSecOps 50 TM questions](https://practical-devsecops.com/threat-modeling-interview-questions-and-answers); [Ouroboros senior threat modeler list](https://ouroboros-solutions.gitbook.io/offsec-wiki/threat-modeling/howtos); [interviews.chat Meta model answers](https://www.interviews.chat/questions/meta-security-engineer)
+
+Trading-firm incidents and analysis:
+- [Levitas Capital BEC, 2020: SecureWorld](https://www.secureworld.io/industry-news/hedge-fund-closes-after-bec-cyber-attac), [ACS](https://ia.acs.org.au/article/2020/dodgy-zoom-invite-brings-down--75m-hedge-fund.html), [Nefture](https://medium.com/nefture/how-a-simple-email-forced-a-75m-hedge-fund-to-close-09ecebefdd0f)
+- [Baker Tilly, hedge fund cyber risks (under-threshold wire transfers)](https://www.bakertilly.com/insights/five-best-practices-to-manage-hedge-fund-cybersecurity-risks)
+- [Compliance Week, the 2014 BAE "HFT attack" was an illustrative scenario](https://complianceweek.com/when-hackers-attack-hedge-funds/3597.article)
+- [arXiv, adversarial perturbations against algorithmic traders (market-data threat model)](https://arxiv.org/pdf/2010.09246); [arXiv, generative AI in financial institutions (model extraction, poisoning)](https://arxiv.org/pdf/2504.21574); [arXiv ISADM (financial-sector ATT&CK references)](https://arxiv.org/pdf/2512.18751)
+
 ## Detection engineering and email security (block 21)
 
 Reported-question sources are the SOC banks above and the Jane Street postings in the official section (Senior Cybersecurity Operations Engineer, Detection and Response, SOC). The technical content is established practice; the reference points named in the block:
