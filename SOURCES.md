@@ -82,7 +82,7 @@ Method and frameworks:
 - [OWASP Threat Modeling Project](https://owasp.org/www-project-threat-model)
 - [CTID, Threat Modeling with ATT&CK (partners incl. JPMorgan Chase)](https://ctid.mitre.org/projects/threat-modeling-with-attack/); [overview post](https://medium.com/mitre-engenuity/turn-your-threat-model-to-supermodel-with-att-ck-a6dfaa6787c2)
 - [Thoughtworks / Martin Fowler, agile threat modelling guide](https://martinfowler.com/articles/agile-threat-modelling.html)
-- [AI and the Threat Modeling Manifesto, OWASP Global AppSec 2026 slides](https://hosted-files.sched.co/owaspglobalappseceuvienna20/1b/AI-And-the-TMM.pdf)
+- [AI and the Threat Modeling Manifesto, slides hosted on the OWASP Global AppSec EU (Vienna) Sched site](https://hosted-files.sched.co/owaspglobalappseceuvienna20/1b/AI-And-the-TMM.pdf)
 - [Cloud Security Podcast, Google's threat modelling process incl. Gemini (episode summary)](https://podwise.ai/dashboard/episodes/3362827)
 
 Reported interview rounds and rubric:
