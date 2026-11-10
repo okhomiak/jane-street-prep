@@ -29,7 +29,7 @@ Straight, no bank-bashing: "I'm at my best with my hands on the problem. At my c
 </details>
 
 <details>
-<summary><b>Compensation, if it comes up early.</b></summary>
+<summary><b>Compensation, if it comes up early.</b> (Full scripts for the recruiter call, with pay data and a worksheet: [block 26](../26-the-recruiter-call/README.md).)</summary>
 
 "I'd like to understand the role and level first; I'm confident we'll land somewhere that works." Don't name a number first. Jane Street biases to cash, which helps you.
 </details>

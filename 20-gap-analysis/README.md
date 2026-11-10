@@ -97,6 +97,24 @@ Weighted to the five risks above, not evenly across the blocks. Adjust to your c
 
 ---
 
+## The readiness gate
+
+"Prepared" is a feeling; this is a test. Each line is something you can do in the time shown, or can't yet. Don't walk into a round with a line unticked.
+
+| Round | You're ready when you can | Time |
+| --- | --- | --- |
+| Recruiter call | Give the 60-second intro, the 30-second why Jane Street, your notice period and three questions, without notes ([block 26](../26-the-recruiter-call/README.md)) | 5 min |
+| Online assessment | Run the six-step loop on an unseen set of logs and write the five-line note ([block 02](../02-log-investigation/README.md)) | 45 min |
+| Live investigation | Narrate the same loop to a person, saying what you expect before each command | 30 min |
+| Coding | Build `brute_force_detect` from a blank file through all four parts, with tests, talking throughout ([block 03](../03-coding/README.md)) | 45 min |
+| Fundamentals | Answer the five Jane Street questions one layer deeper than asked ([block 04](../04-security-fundamentals/README.md)) | 3 min each |
+| Scenarios | Run the seven-step skeleton on two scenarios you haven't seen ([block 09](../09-incident-response/README.md)) | 10 min each |
+| News | Tell the top two stories in 60 seconds each, with what you'd check at Jane Street tomorrow ([block 12](../12-security-news/README.md)) | 2 min |
+| AI and agents | Explain their sandbox and AI-identity setup, then the one thing you'd push on, and one 2026 change ([block 16](../16-ai-and-llm-security/README.md)) | 3 min |
+| Hiring manager | Tell three stories with a mechanism and a number, and one mistake ([block 13](../13-behavioural/README.md)) | 90 s each |
+
+---
+
 ## The one-line reminders to carry in
 
 - Lead with what you built, never with your title.

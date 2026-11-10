@@ -148,6 +148,44 @@ Reported questions and frameworks:
 
 - [AI Engineering from Scratch, interview bank](https://aiengineeringfromscratch.com/interviews): the per-item level, type and time tags, follow-up probes and "wrong answers interviewers hear most" format that the [drill app](drill/README.md) adopts. Its content is AI engineering, not security, and none of it is used.
 
+## 2026 currency added in November (blocks 04, 08, 16, CHEATSHEET)
+
+- [MCP changelog, 2026-07-28 revision](https://modelcontextprotocol.io/specification/2026-07-28/changelog)
+- [MCP blog: the enterprise-managed authorisation extension is stable, June 2026](https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/)
+- [Aaron Parecki on the MCP authorisation update, November 2025](https://aaronparecki.com/2025/11/25/1/mcp-authorization-spec-update)
+- [Microsoft AI Red Team: taxonomy of failure modes in agentic AI systems, version 2.0, June 2026](https://microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us)
+- [Anthropic documentation: workload identity federation with SPIFFE](https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe)
+- [OpenAI documentation: workload identity federation with SPIFFE](https://developers.openai.com/api/docs/guides/workload-identity-federation/spiffe.md)
+- [Snyk on the March 2026 LiteLLM compromise](https://snyk.io/blog/poisoned-security-scanner-backdooring-litellm/)
+- [LiteLLM's two 2026 compromises compared (Newly)](https://newly.app/security/litellm-hacked-twice-march-vs-october)
+- [Microsoft on ChainDrop, August 2026](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/)
+- [Wiz on the s1ngularity attack, August 2025](https://www.wiz.io/blog/s1ngularity-supply-chain-attack)
+- [Semgrep on the second Shai-Hulud npm worm](https://semgrep.dev/blog/2025/digging-for-secrets-sha1-hulud-the-second-coming-of-the-npm-worm)
+- [Google Threat Intelligence on the Salesloft Drift data theft](https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift)
+- [The Hacker News on GhostAction, October 2026](https://thehackernews.com/2026/10/ghostaction-compromises-about-1900.html)
+- [Meta: Agents Rule of Two](https://ai.meta.com/blog/practical-ai-agent-security/)
+- [NCSC: prompt injection is not SQL injection, December 2025](https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection)
+- [Microsoft Entra: what's new (Agent ID)](https://learn.microsoft.com/en-us/entra/fundamentals/whats-new)
+- [Keycloak release notes (26.8 token exchange with actor claim)](https://www.keycloak.org/docs/latest/release_notes/index.html)
+- [RFC 8693, OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693)
+- [OpenID Foundation: Shared Signals, CAEP and RISC final, September 2025](https://openid.net/press-release-openid-foundation-finalizes-global-standards-for-real-time-identity-security/)
+- [Red Hat record for CVE-2026-41131 (OpenFGA cache-key collision)](https://bugzilla.redhat.com/show_bug.cgi?id=2460447)
+- [Record for CVE-2026-48096 (OpenFGA iterator cache)](https://exploit-intel.com/vuln/CVE-2026-48096)
+- [Vault release notes (2.1.2 and 2.2.1 policy-cache fixes)](https://developer.hashicorp.com/vault/docs/updates/release-notes)
+- [SentinelOne entry for CVE-2026-5006 (Vault templated policy path)](https://www.sentinelone.com/vulnerability-database/cve-2026-5006/)
+- [Istio security bulletin ISTIO-SECURITY-2026-009, November 2026](https://istio.io/latest/news/security/istio-security-2026-009/)
+- [GitLab advisory database: Jenkins OpenID Connect Provider plugin (CVE-2025-47884)](https://advisories.gitlab.com/pkg/maven/io.jenkins.plugins/oidc-provider/)
+
+## Recruiter call and pay data (block 26)
+
+Pay figures are self-reported or recruiter headlines; use them to set your own number, not to quote.
+
+- [eFinancialCareers: the UK's highest-paid tech jobs, from levels.fyi data](https://www.efinancialcareers.com/news/london-average-software-engineer-pay-financial-services)
+- [Levels.fyi: Jane Street software engineer pay, US](https://levels.fyi/company/jane-street/salaries/software-engineer)
+- [Quantt: Jane Street pay guide (office differences)](https://www.quantt.co.uk/resources/jane-street-salary)
+- [Hunter Bond ad: senior security engineer at a London hedge fund, up to £185k plus bonus](https://www.itjobswatch.co.uk/jv/Hunter-Bond/Senior-Security-Engineer-Hedge-Fund-up-to-185000-bonus-City-of-London-Job-City-of-London-Greater-London-UK-4a0sq4?jr=8n4-2j8-284)
+- [Paragon Alpha ad: application security engineer at an HFT firm, £300k headline](https://www.itjobswatch.co.uk/jv/Paragon-Alpha-Hedge-Fund-Talent-Business/Application-Security-Engineer-HFT-300K-Job-London-UK-4ypxpr)
+
 ## A note on reliability
 
 Jane Street's own pages are primary and current. Candidate reports are anonymous, sometimes years old, and self-selected (more "no offer" than "offer"), so they show the format and the flavour of questions, not a guaranteed list. Aggregator guides (Dataford, Exponent, algo.monster) are generated from the same reports plus some inference, so this repo uses them only to confirm themes, never as the sole source for a specific claim. Re-verify dates and news the week of your interview.

@@ -30,6 +30,7 @@ Target: make Oleh the best-prepared candidate in the Jane Street London Cybersec
 | 8 | `11`, `12` (refreshed), `13` + new `18-ocaml-literacy`: judgement, news, behavioural with all reported questions, Jane Street culture questions, OCaml minimum | News dated and sourced |
 | 9 | `00-question-bank/`: one master table of every question in the repo with source and block link; `19-mock-interviews`: timed scripts with grading rubrics; `20-gap-analysis`: honest assessment of Oleh's weak spots against the role and a 14-day plan | Count of questions stated; every row links to its answer |
 | 10 | Final pass: consistency, links, style, SOURCES.md, root README; tag v2 | Link checker clean, tests green |
+| 11 | Cross-reference pass (10 Nov 2026): new `26-the-recruiter-call` (every screening answer word for word, pay data, worksheet), `CHEATSHEET.md`, a readiness gate in `20`, 2026 currency in `16` (MCP 2026-07-28, enterprise-managed authorisation, Microsoft's human-step finding, federated model API keys, LiteLLM twice, agent-config worms), delegation, revocation and decision-cache bugs in `04`, the 2025 and 2026 supply-chain incidents in `08`, eight drill items | Links and dashes clean; every new fact carries its source |
 
 ## Rules that hold throughout
 

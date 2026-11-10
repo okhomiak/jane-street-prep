@@ -108,6 +108,26 @@ The browser passes the origin into the signed challenge. A key registered for `b
 Make it the easiest path: SSO into the manager, browser extension that autofills, import from the browser, a 10-minute enrolment session, shared vaults for teams so people stop pasting secrets in chat. Measure adoption and chase the stragglers one by one. The pitch is "you'll never type a password again", not "policy says".
 </details>
 
+## Delegation, revocation, and the decision point's own bugs
+
+<details>
+<summary><b>A service has to call another service on behalf of a user. Impersonation or delegation?</b> [curated] [RFC 8693]</summary>
+
+OAuth token exchange ([RFC 8693](https://www.rfc-editor.org/rfc/rfc8693)) gives you both. **Impersonation**: the new token's subject is the user and nothing records that a service is acting; the downstream can't tell the difference. **Delegation**: the subject is still the user, and an `act` claim names the service acting for them, so the downstream can authorise the pair and the log shows who really made the call. For agents, delegation is the right default: the agent's own identity sits in `act`, its rights are the intersection of its own and the user's, and the token is short-lived and scoped to one audience. Keycloak 26.8 shipped exactly this, in preview, described as for agents ([Keycloak](https://www.keycloak.org/docs/latest/release_notes/index.html)). Say why impersonation is dangerous: an audit trail that can't separate a person from a program acting as them.
+</details>
+
+<details>
+<summary><b>Someone leaves at 10:00. How long until every session and token they hold is dead?</b> [curated]</summary>
+
+Depends on the slowest path, so list them: the identity provider disables the account (seconds); refresh tokens stop working (next refresh); access tokens already issued live until expiry, so keep them short (minutes); sessions in applications that never re-check live until they time out. Push beats poll: the Shared Signals Framework, CAEP and RISC have been final OpenID standards since September 2025, so an identity provider can send a session-revoked event and a receiver can kill the session immediately ([OpenID](https://openid.net/press-release-openid-foundation-finalizes-global-standards-for-real-time-identity-security/)). Then the long-lived things nobody thinks of: SSH keys, personal access tokens, API keys, OAuth grants to third-party apps. Measure it as a number, time to revoke, and test it.
+</details>
+
+<details>
+<summary><b>You put a cache in front of an authorisation decision for speed. What can go wrong?</b> [curated, current]</summary>
+
+Two bug families showed up again and again in 2026 in the systems that make access decisions. **The cache answers the wrong question.** OpenFGA twice had cache-key collisions where one check got another request's cached answer ([CVE-2026-41131](https://bugzilla.redhat.com/show_bug.cgi?id=2460447), [CVE-2026-48096](https://exploit-intel.com/vuln/CVE-2026-48096)); Vault's policy cache could resolve policies across namespaces and, through a key collision, resolve an alias to root (fixed in 2.1.2 and 2.2.1, [release notes](https://developer.hashicorp.com/vault/docs/updates/release-notes)); Istio's JWKS resolver cached key responses on its background refresh without the checks the normal path applies ([bulletin](https://istio.io/latest/news/security/istio-security-2026-009/)). **The rule matches input its author didn't mean.** A slash in a value substituted into a Vault templated policy path escaped the intended path ([CVE-2026-5006](https://www.sentinelone.com/vulnerability-database/cve-2026-5006/)); Istio compared host headers case-sensitively, and at some proxies source-IP rules matched the proxy's own address, so a DENY failed open ([bulletin](https://istio.io/latest/news/security/istio-security-2026-009/)). So: build the cache key from every input the decision reads, including policy and data versions; keep the lifetime shorter than the fastest revocation, or evict on revoke; put inputs in one canonical form before matching; give every rule a test for the request it must refuse; and patch the decision point as fast as the secrets manager.
+</details>
+
 ## Rapid-fire
 
 | Question | Answer in one line |
@@ -120,5 +140,8 @@ Make it the easiest path: SSO into the manager, browser extension that autofills
 | Why constant-time comparison? | A byte-by-byte compare that stops at the first mismatch leaks how many bytes matched through timing. |
 | What is step-up authentication? | Ask for a stronger factor only for sensitive actions (payments, admin), keeping daily friction low. |
 | Device trust? | Certificates or MDM attestation that the device is managed and healthy, used as a factor in zero-trust access. |
+| Impersonation vs delegation? | Same subject; delegation adds an `act` claim naming who is acting, so the downstream can tell. |
+| Fastest way to kill a session elsewhere? | A pushed Shared Signals session-revoked event, plus short-lived access tokens. |
+| Cache in front of an access decision? | Key on every input, expire faster than revocation, test with the cache on. |
 
 [← Block 04](README.md) · [Crypto and TLS →](crypto-and-tls.md) · [Web and AppSec →](web-and-appsec.md)

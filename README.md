@@ -48,8 +48,9 @@ Confirm the exact order with your recruiter. Jane Street says the structure vari
 | 23 | [AI-assisted threat modelling](23-ai-threat-modelling/README.md) | How it works as a pipeline, the eleven ways it fails, the engineering that makes it trustworthy, a worked exchange-connectivity example | design, HM |
 | 24 | [Six-month roadmap](24-six-month-roadmap/README.md) | Month-by-month plan to close the gaps for real and build the public proof, if you apply in six months | none |
 | 25 | [The application](25-the-application/README.md) | What the CV screener pattern-matches, builder-voice bullets before and after, the free-text box drafted, re-applying honestly, referrals, timing | CV screen |
+| 26 | [The recruiter call](26-the-recruiter-call/README.md) | Why Jane Street, why leave, applied before, salary and current pay, deferred awards, notice and garden leave, other processes, office; pay data and a worksheet; questions; the follow-up email | recruiter call |
 
-Every reported question in one place to self-test: [QUESTION-BANK.md](QUESTION-BANK.md). Practise with the try-before-reveal [drill app](drill/README.md) (levels, follow-ups, and the wrong answer interviewers hear most). All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
+The hour before any round: [CHEATSHEET.md](CHEATSHEET.md). Every reported question in one place to self-test: [QUESTION-BANK.md](QUESTION-BANK.md). Practise with the try-before-reveal [drill app](drill/README.md) (levels, follow-ups, and the wrong answer interviewers hear most). All sources, with a reliability note, are in [SOURCES.md](SOURCES.md).
 
 **Keeping it current over six months.** Before you apply, refresh what dates: the five stories in [block 12](12-security-news/README.md) (the week of each interview); the postings cited in [00](00-jane-street-intel/README.md) and [22](22-threat-modelling-role/README.md) (they are reposted and occasionally reworded; check the requirements lines still match); the NYC salary band; and any OWASP list numbering. Everything else here is mechanism and method and does not go stale.
 

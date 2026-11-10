@@ -1,6 +1,6 @@
 # 25 · The application: CV, the free-text box, and re-applying
 
-[← Six-month roadmap](../24-six-month-roadmap/README.md) · [Index](../README.md)
+[← Six-month roadmap](../24-six-month-roadmap/README.md) · [Index](../README.md) · [Next: The recruiter call →](../26-the-recruiter-call/README.md)
 
 The only Jane Street security failure reported by a candidate in your position happened before any interview: a CV screen for the Threat Modelling role ([block 22](../22-threat-modelling-role/README.md)). You have applied to Jane Street before, more than once, so this block is about getting through the door with a profile that reads as a hands-on builder, and about handling the re-application honestly. It rests on their own words: the application form, the interviewing FAQ, and the two postings. Tags: [JS] their pages, [est] established.
 
@@ -83,4 +83,4 @@ The FAQ does not mention referrals, so there is no stated process. In practice a
 - **The week before you submit:** re-read the postings for any change; make sure the GitHub repos have READMEs a stranger can follow; check that nothing public contradicts the CV; re-run the two-minute intro ([block 13](../13-behavioural/README.md)) and make sure the CV and the intro tell the same story.
 - **After you submit:** expect the online assessment again or a recruiter screen first ([block 01](../01-process/README.md)); start the 14-day sprint in [block 20](../20-gap-analysis/README.md) the day you hear back.
 
-[← Six-month roadmap](../24-six-month-roadmap/README.md) · [Index](../README.md)
+[← Six-month roadmap](../24-six-month-roadmap/README.md) · [Index](../README.md) · [Next: The recruiter call →](../26-the-recruiter-call/README.md)

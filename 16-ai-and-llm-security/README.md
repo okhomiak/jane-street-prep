@@ -132,7 +132,7 @@ No one has reported Jane Street asking this, but it is the obvious question give
 
 - **Discover and govern.** Find every assistant in use, including personal accounts and shadow tools; route them through a central, credentialed gateway (Jane Street's JaneGPT is exactly this: one API-credential broker with a model switcher).
 - **Protect what leaves.** Classify and redact source before it goes to a model; treat any secret a session saw as compromised and rotate it; pre-commit secret scanning.
-- **Inspect untrusted repo content.** READMEs, dependencies, and rules files (`.cursorrules` and friends) can carry hidden instructions that steer generated code to exfiltrate environment variables or add a backdoor; treat repo content as untrusted input to the assistant.
+- **Inspect untrusted repo content.** Since August 2026 an npm worm has planted agent and editor configuration files to spread between developers ([Microsoft](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/)). READMEs, dependencies, and rules files (`.cursorrules` and friends) can carry hidden instructions that steer generated code to exfiltrate environment variables or add a backdoor; treat repo content as untrusted input to the assistant.
 - **Scope entitlements per mode.** Autocomplete, chat, and autonomous agent are different risk tiers. The agent mode gets the tightest repo, branch, command-class, cloud and MCP scopes, and a sandbox.
 - **Attribute and review.** Each assistant acts under an identity (Jane Street's "AI yminsky" pattern), every tool call is logged under it, and AI-written code is reviewed like a change from an unfamiliar contributor, with branch protection and lock files.
 - **Incident response.** On a suspected compromise: rotate credentials the session touched, scan history for leaked secrets, review the session records, and roll back prompts, policies, models and tool schemas by version.
@@ -161,6 +161,43 @@ This is the part that separates you. From [Signals and Threads ep. 31](https://s
 - **The automated remediation bot and the zero-config scanning pipeline** (Trivy, TruffleHog, Gitleaks across GitHub Actions) are "a programmer who automates security in a real language", which is the department's self-description.
 
 Route each one back to a Jane Street need. Do not list them; deploy the one that fits the question.
+</details>
+
+---
+
+## What changed in 2025 and 2026 (say one of these to show you're current)
+
+Six things moved in the last year that bear on how a firm like Jane Street runs agents. You don't need all six. You need two you can explain and connect to their setup above.
+
+| What changed | When | Why it matters here |
+| --- | --- | --- |
+| **MCP's current revision is 2026-07-28**: stateless, with the method and tool name in HTTP headers, and dynamic client registration deprecated in favour of client ID metadata documents ([changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)) | July 2026 | A gateway can authorise a tool call without parsing the body. Citing the 2025 authorisation spec as current dates you |
+| **The enterprise-managed authorisation extension went stable**: the corporate identity provider decides which MCP servers a user's client may reach, using the identity assertion grant, with no consent screen per server. It came with the November 2025 revision; Okta was the first identity provider and Claude Code is among the clients ([MCP blog](https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/), [explainer](https://aaronparecki.com/2025/11/25/1/mcp-authorization-spec-update)) | June 2026 | Which tool servers exist becomes an identity decision, not a per-engineer click |
+| **Microsoft's AI red team updated its taxonomy of agentic failure modes** after a year of engagements. The finding to remember: getting round the human step was the failure it exploited most consistently, through approval fatigue, chains of small steps and the agent's own description misleading the approver. It added seven failure modes, including supply-chain compromise through plugins, MCP servers and prompt templates, and one agent claiming an identity an orchestrator doesn't check ([Microsoft](https://microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us)) | June 2026 | Jane Street's denied actions can go to a person; that path is the one attackers aim at (question below) |
+| **A model API key no longer has to be a stored secret.** Anthropic and OpenAI both document exchanging a workload's SPIFFE JWT-SVID for a short-lived API token tied to a service account; neither accepts an X.509-SVID ([Anthropic](https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe), [OpenAI](https://developers.openai.com/api/docs/guides/workload-identity-federation/spiffe.md)) | Read November 2026; neither page states a release status | An internal chat that brokers every vendor's API key is the most valuable secret in the AI stack. It can federate |
+| **The model gateway library was poisoned twice.** LiteLLM shipped malicious releases in March 2026, after a compromised security scanner in CI leaked its publishing token, and again on 21 October through its own release pipeline ([Snyk on March](https://snyk.io/blog/poisoned-security-scanner-backdooring-litellm/), [the two compared](https://newly.app/security/litellm-hacked-twice-march-vs-october), [October](https://www.rescana.com/post/litellm-1-107-0-supply-chain-compromise-october-2026)) | March and October 2026 | The library that holds every provider key is a first-class target. Pin, mirror with a cooldown, and assume a bad release lasts hours |
+| **Agent configuration became a worm vector.** In August 2025 poisoned releases of a build tool used developers' own AI coding tools to hunt for secrets ([Wiz](https://www.wiz.io/blog/s1ngularity-supply-chain-attack)); in August 2026 an npm worm planted agent and editor configuration files to spread between developers ([Microsoft](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/)) | 2025 and 2026 | Rules files and agent settings in a repo are executable input. Review them like code |
+
+Two compressions travel well. Meta's **Agents Rule of Two**: of processing untrusted input, reaching sensitive systems or data, and changing state or communicating outside, an agent should hold at most two in a session unless a person supervises ([Meta](https://ai.meta.com/blog/practical-ai-agent-security/)). And the UK's NCSC said in December 2025 that prompt injection isn't like SQL injection, because there's no reliable way to separate instructions from data in a prompt, so design for an agent that will sometimes be fooled ([NCSC](https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection)).
+
+Agent identity also became a product feature: Microsoft's Entra Agent ID is generally available, with a human sponsor for each agent ([Microsoft](https://learn.microsoft.com/en-us/entra/fundamentals/whats-new)), and Keycloak 26.8 has token exchange with an actor claim, in preview, described as for agents ([Keycloak](https://www.keycloak.org/docs/latest/release_notes/index.html)). Jane Street's "AI counterpart" identity is the same idea, built in-house.
+
+<details>
+<summary><b>Denied agent actions can be escalated to a person. Microsoft's red team says the human step is the control it gets round most. How would you build that step?</b> [curated, current]</summary>
+
+Agree first, because it's true: fatigue, chains of small steps, and the agent describing its own request in friendly terms all work ([Microsoft](https://microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us)). So the person is never the first control. The sandbox and the allow-list have already said no to most things. Then four rules for the step itself. Policy decides when to ask, not the model. The screen is built from the actual call (the command, the path, the destination), never from the agent's summary of it. A compound action is shown as its parts. And the approval is bound to a hash of that exact action and expires, so what runs is what was approved. Then watch the humans: someone who approves everything in four seconds has stopped being a control, and engineers switching the sandbox off is the same problem in another form. What's left is a real residual risk worth naming: a person can approve something harmful that's described accurately.
+</details>
+
+<details>
+<summary><b>The internal chat brokers an API key for every model vendor. How do you get rid of the keys?</b> [curated, current]</summary>
+
+Federate. Give the broker a workload identity (SPIFFE, or the platform's), then exchange a short-lived JWT for a short-lived vendor token: Anthropic and OpenAI both document it ([Anthropic](https://platform.claude.com/docs/en/manage-claude/wif-providers/spiffe), [OpenAI](https://developers.openai.com/api/docs/guides/workload-identity-federation/spiffe.md)). The work is on our side: the vendor has to read the signing keys, so either a public discovery endpoint or an uploaded key set kept current; one rule per deployment, matched on the exact identity and the audience, because a broad prefix is a shared key by another name; one service account per environment; an alert on any use of the old static key, then delete it. What it doesn't fix: whoever can run code as the broker can still call the model. It removes the copyable secret, not the need to protect the workload.
+</details>
+
+<details>
+<summary><b>What changed in MCP this year, and why would a gateway care?</b> [curated, current]</summary>
+
+The 2026-07-28 revision is stateless and puts the method and tool name in HTTP headers, so a gateway can authorise a call without parsing the body; dynamic client registration gave way to client ID metadata documents ([changelog](https://modelcontextprotocol.io/specification/2026-07-28/changelog)). Separately, the enterprise-managed authorisation extension went stable in June: the identity provider decides which servers a user's client may connect to ([MCP blog](https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/)). Argument-level policy still needs the body: "may this agent read this path" isn't in a header.
 </details>
 
 ---

@@ -51,7 +51,7 @@ The six-step method; the ACME/Windows-workstation OA; the CEO briefing; and the 
 
 ## Security fundamentals ([block 04](04-security-fundamentals/README.md))
 
-**Auth and identity:** password storage; rainbow tables and salting; a stolen DB hashed with one round of SHA-256 and a static salt, now what; why scheduled rotation is harmful; account brute-forcing; biometrics vs passwords; cookies vs sessions vs tokens; HTTP statelessness; JWT and what goes wrong; OAuth 2.0 and OIDC, bearer-token theft; SAML and SSO; Kerberos; authn vs authz, ACLs/RBAC/service accounts; comparing MFA methods; U2F/FIDO2 phishing resistance; getting the whole firm onto a password manager.
+**Auth and identity:** impersonation vs delegation in token exchange; how fast a leaver's sessions die and how Shared Signals pushes it; what goes wrong with a cache in front of an access decision (added November 2026); password storage; rainbow tables and salting; a stolen DB hashed with one round of SHA-256 and a static salt, now what; why scheduled rotation is harmful; account brute-forcing; biometrics vs passwords; cookies vs sessions vs tokens; HTTP statelessness; JWT and what goes wrong; OAuth 2.0 and OIDC, bearer-token theft; SAML and SSO; Kerberos; authn vs authz, ACLs/RBAC/service accounts; comparing MFA methods; U2F/FIDO2 phishing resistance; getting the whole firm onto a password manager.
 
 **Crypto and TLS:** encoding vs encryption vs hashing vs signing vs obfuscation; symmetric vs asymmetric; which key encrypts and which signs; block vs stream ciphers and modes; IV reuse; HMAC; the length-extension attack; timing and other side channels; the TLS handshake; forward secrecy; certificate chains and pinning; notable TLS attacks.
 
@@ -73,7 +73,7 @@ Fresh firm-wide Windows build; the login event IDs and 4624/4625; detecting pass
 
 ## Cloud and supply chain ([block 08](08-cloud-and-supply-chain/README.md))
 
-Biggest AWS weaknesses; IAM role vs policy and allow/deny evaluation; protecting S3 and auto-remediating a public bucket; securing EC2 and central monitoring; SSRF to the metadata service and IMDSv2; KMS and envelope encryption, serverless; securing containers and Kubernetes RBAC; containers vs VMs vs clusters, escapes, hyperjacking; Spectre/Meltdown and site isolation; a Docker-image pipeline; CI/CD for security; a secret-storage system; supply-chain attack prevention (and the agentic supply chain); service-account lateral movement and BeyondCorp; WAF; infrastructure as code.
+Added November 2026: the 2025 and 2026 supply-chain incidents and their pattern; CI that issues OIDC tokens is an identity provider. Biggest AWS weaknesses; IAM role vs policy and allow/deny evaluation; protecting S3 and auto-remediating a public bucket; securing EC2 and central monitoring; SSRF to the metadata service and IMDSv2; KMS and envelope encryption, serverless; securing containers and Kubernetes RBAC; containers vs VMs vs clusters, escapes, hyperjacking; Spectre/Meltdown and site isolation; a Docker-image pipeline; CI/CD for security; a secret-storage system; supply-chain attack prevention (and the agentic supply chain); service-account lateral movement and BeyondCorp; WAF; infrastructure as code.
 
 ## Incident response ([block 09](09-incident-response/README.md))
 
@@ -109,7 +109,7 @@ First move on a suspicious hash; static vs dynamic analysis and static-analysis 
 
 ## AI, LLM and agent security ([block 16](16-ai-and-llm-security/README.md))
 
-The refund-agent walk-through; an indirect injection that exfiltrates an inbox and removing a leg of the trifecta; why a secret system prompt isn't enough; talking the team out of DB write access; getting a toy agent to run a shell command; shipping a 95% classifier; red-teaming an LLM feature; direct vs indirect injection and the OWASP risk; MCP tool poisoning, rug pulls and scoped tokens; the RAG cosine-similarity question; how AI security differs from AppSec; securing an internal AI coding assistant; and describing Jane Street's own agent sandbox back to them.
+Added November 2026: building the human-approval step so it survives the attacks Microsoft's red team found most effective; removing the vendor API keys from an internal model broker; what changed in MCP in 2026 and why a gateway cares. The refund-agent walk-through; an indirect injection that exfiltrates an inbox and removing a leg of the trifecta; why a secret system prompt isn't enough; talking the team out of DB write access; getting a toy agent to run a shell command; shipping a 95% classifier; red-teaming an LLM feature; direct vs indirect injection and the OWASP risk; MCP tool poisoning, rug pulls and scoped tokens; the RAG cosine-similarity question; how AI security differs from AppSec; securing an internal AI coding assistant; and describing Jane Street's own agent sandbox back to them.
 
 ## Trading domain ([block 17](17-trading-domain/README.md))
 
@@ -134,6 +134,10 @@ How does an AI-assisted threat-modelling system actually work (the pipeline); wh
 ## The application and the screen ([block 25](25-the-application/README.md))
 
 Why are you interested in Jane Street (the free-text box); how did you hear about us; if you have a job now, why are you looking; have you interviewed with Jane Street before, and what has changed since; why this role rather than the other security opening; walk me through your GitHub.
+
+## The recruiter call ([block 26](26-the-recruiter-call/README.md))
+
+Walk me through your background; why Jane Street; why leave an SVP role; you've applied before, what's changed; why the moves; salary expectations; what you earn now; anything you'd leave behind; notice and start date; other processes; three days in the office; the Threat Modelling role as well; right to work; why move you forward.
 
 ---
 

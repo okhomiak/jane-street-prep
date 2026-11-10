@@ -135,6 +135,26 @@ A WAF buys time against known attack patterns and bots at the edge, gives virtua
 Terraform, CloudFormation, Pulumi: infrastructure defined in reviewed, versioned text. Security gets review on every change, scanning before deploy, drift detection, reproducible environments, and the ability to encode guardrails (modules that only produce encrypted, private buckets). Risk: state files and plan outputs contain secrets, and the CI that applies IaC is the most powerful identity in the company.
 </details>
 
+## The 2025 and 2026 supply-chain incidents, and the pattern
+
+You need two you can tell in a sentence, and the pattern.
+
+| When | What | The lesson |
+| --- | --- | --- |
+| August 2025 | Stolen OAuth tokens for a sales-chat integration were used to export data from many companies' CRM tenants ([Google](https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift)) | A third-party OAuth grant is a standing, broadly scoped credential. Inventory them and be able to revoke by integration |
+| August 2025 | Poisoned releases of a build tool used developers' own AI coding tools to hunt for secrets ([Wiz](https://www.wiz.io/blog/s1ngularity-supply-chain-attack)) | An agent with its permission checks off is a credential harvester |
+| Autumn 2025 | Self-spreading npm worms republished victims' packages with stolen publish tokens ([Semgrep](https://semgrep.dev/blog/2025/digging-for-secrets-sha1-hulud-the-second-coming-of-the-npm-worm)) | Long-lived publish tokens turn one compromise into hundreds |
+| March 2026 | A security scanner's GitHub Action was hijacked; a pipeline running it leaked the publishing token of LiteLLM, the model-gateway library ([Snyk](https://snyk.io/blog/poisoned-security-scanner-backdooring-litellm/)) | Security tools in CI are privileged dependencies |
+| August 2026 | An npm worm across 400+ packages, some published through victims' own build identity and so able to carry valid provenance, planted agent and editor configuration files ([Microsoft](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/)) | Provenance proves where something was built, not that the build was honest |
+| October 2026 | About 1,900 GitHub accounts pushed malicious workflow files to tens of thousands of repositories, after CI secrets including AI provider keys ([The Hacker News](https://thehackernews.com/2026/10/ghostaction-compromises-about-1900.html)) | Alert on new workflow files. Rotate after a compromise, every time |
+| October 2026 | LiteLLM poisoned a second time, through its own release pipeline (above) | Hours of exposure is enough. Mirror with a cooldown |
+
+The pattern in three lines: the way in is the pipeline (a workflow that runs untrusted input, or a step that isn't pinned); the amplifier is a long-lived token; the fix is short-lived credentials issued per job to an identified workload, plus pinning and a cooldown on new releases.
+
+One more thing to know about CI identity: when the build system issues OIDC tokens, it has become an identity provider. Jenkins' OIDC plugin had a critical 2025 flaw that let someone who could configure a job shape the token that job received and impersonate a trusted one ([advisory listing](https://advisories.gitlab.com/pkg/maven/io.jenkins.plugins/oidc-provider/)). Bind cloud and vault roles to the job's subject, not to claims a build can influence, and keep the plugin patched.
+
+---
+
 ## Rapid-fire
 
 | Question | One-line answer |
@@ -147,6 +167,7 @@ Terraform, CloudFormation, Pulumi: infrastructure defined in reviewed, versioned
 | Why pin GitHub Actions to a SHA? | A tag can be moved to malicious code; the tj-actions compromise did exactly that. |
 | Difference between signing a commit and signing an artefact? | Commit proves authorship of source; artefact signature proves the build output came from a known builder. |
 | What is workload identity? | Platform-issued, short-lived identity for software (IAM roles, Kubernetes SA tokens, SPIFFE) replacing static secrets. |
+| CI issues OIDC tokens. What does that make it? | An identity provider: bind roles to the job's subject and guard who can configure jobs. |
 | What's a dependency confusion attack? | Publishing a public package with the same name as an internal one so the resolver pulls the public version; fix with scoped registries and explicit sources. |
 | How would you find every host running a vulnerable package? | SBOM search, EDR or osquery fleet query, image registry scan, and the honest answer that you need all three. |
 
