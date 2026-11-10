@@ -35,6 +35,12 @@ Straight, no bank-bashing: "I'm at my best with my hands on the problem. At my c
 </details>
 
 <details>
+<summary><b>How do you use AI tools in your own work?</b> · [curated; Jane Street's November 2026 interview post makes it likely]</summary>
+
+Concrete and honest: what you delegate (scaffolding, first drafts of parsers and tests, reading unfamiliar code), what you never delegate (deciding what to build, the tests for the dangerous edges, anything you can't defend line by line), and how you check. Then the bridge to your own work: you build agent tooling and run an AI security programme, so you've seen where models fail as well as where they help. The full answer and a drill on judging model-written code are in [block 03](../03-coding/README.md).
+</details>
+
+<details>
 <summary><b>Do you have questions for us?</b> · [JS: asking good questions is a stated value]</summary>
 
 Have five ready; ask the ones that fit the interviewer:

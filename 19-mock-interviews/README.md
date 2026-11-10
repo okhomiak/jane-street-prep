@@ -163,6 +163,19 @@ How to grade: for each rubric line, mark hit / partial / miss. Any "miss" on a p
 - [ ] The documented decision had rejected options with reasons, a named residual risk, and a verification.
 - [ ] Switched altitude cleanly between whiteboard and mechanism; never stayed at management height.
 
+## Mock 10 · Judging code a model wrote (30 min) [practice, for the newer round]
+
+**Setup:** the reader pastes the generated `brute_force_detect` from [block 03](../03-coding/README.md) without the asserts, and says only the prompt it was given. 10 minutes to review aloud, 15 to fix the top three, 5 to say what's left.
+
+**Reader prompts:** "Would you ship it?" · "Which bug would an attacker use?" · "The tests pass. Why didn't they catch this?" · "Where would you have used the model, and where not?"
+
+**Rubric:**
+- [ ] Restated the intent and the cost of each kind of failure before reading.
+- [ ] Found the crash on malformed input and the silent success, and ranked them above the arithmetic bug.
+- [ ] Explained why the model's tests passed: they share the code's blind spots.
+- [ ] Fixed with a bounded window, evidence in the alert, and a test per bug.
+- [ ] Said plainly what the model is good for and where you stopped trusting it.
+
 ## Running order for the two weeks before
 
 Do them in this order, one or two a day, repeating the ones you scored worst on: Mock 3 (coding), Mock 2 (live investigation), Mock 4 (fundamentals, heavy on Windows), Mock 5 (scenario), Mock 6 (design), Mock 1 (phone), Mock 7 (hiring manager). Coding and live investigation get at least three runs each. If the Threat Modelling role is your target, Mocks 8 and 9 move to the front and get three runs each too. Your personal priorities are in [block 20](../20-gap-analysis/README.md).

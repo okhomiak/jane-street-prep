@@ -56,6 +56,7 @@ From Jane Street's own pages ([Interviewing](https://www.janestreet.com/join-jan
 - Technical rounds over Zoom; final rounds in person, often collaborative. Phone screens are by phone (ask for Zoom if your line is bad). No weekend interviews. Expect a reply within about a week. You can ask to expedite if you hold a competing offer.
 - Be comfortable with your own setup and tools; technology interviews are hands-on.
 - Casual office, and they say they won't judge what you wear.
+- **New in November 2026:** software engineering onsites are adding rounds with less code-writing and more design, judging code, and using LLMs to produce code; most rounds stay traditional and LLM-free, and you're told in advance ([Jane Street blog](https://blog.janestreet.com/software-engineering-interviews-are-changing-a-little/)). Security isn't mentioned. Detail and what to do: [block 01](../01-process/README.md).
 
 From candidates (see [block 01](../01-process/README.md) for every report with its source):
 

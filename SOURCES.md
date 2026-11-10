@@ -24,6 +24,8 @@ Everything in this repo is built from these. Candidate reports are anonymous and
 - [Preparing for a software engineering interview](https://www.janestreet.com/preparing-for-a-software-engineering-interview/)
 - [Departments: Cybersecurity](https://janestreet.com/join-jane-street/departments)
 
+- [Software engineering interviews are changing (a little), Jane Street blog, 2 November 2026](https://blog.janestreet.com/software-engineering-interviews-are-changing-a-little/)
+
 ## Jane Street: candidate reports
 
 - [Cybersecurity Analyst interviews (Glassdoor CA)](https://www.glassdoor.ca/Interview/Jane-Street-Cybersecurity-Analyst-Interview-Questions-EI_IE255549.0,11_KO12,33.htm), Dec 2025 CEO-briefing report, the consecutive-logins coding question, the multi-round process

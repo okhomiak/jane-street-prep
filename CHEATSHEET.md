@@ -19,7 +19,7 @@ One page. Every line points to the block that backs it. If something here surpri
 
 ## The loop [01]
 
-Recruiter call → online assessment (shell and logs, then a briefing) → phone screen (culture, your questions) → live investigation (one hour, harder) → coding (one hour, your language) → final block (fundamentals, scenarios, design, news, hiring manager). Confirm the order with the recruiter.
+Recruiter call → online assessment (shell and logs, then a briefing) → phone screen (culture, your questions) → live investigation (one hour, harder) → coding (one hour, your language) → final block (fundamentals, scenarios, design, news, hiring manager). Confirm the order with the recruiter, and ask whether your onsite has one of the newer rounds (design, judging code, using LLMs) that Jane Street announced for software engineers in November 2026 [01].
 
 ## The recruiter call [26]
 
@@ -61,6 +61,7 @@ MCP revision 2026-07-28 (tool name in headers) · enterprise-managed MCP authori
 - "I don't know. Here's how I'd find out."
 - "Here's the trade-off, and here's what I'd skip."
 - "Approval is never the first control. The sandbox already said no to most things."
+- "The model's tests passed because they share its blind spots. I wrote the edge tests myself."
 
 ## Don't say this
 

@@ -475,6 +475,162 @@ How to talk through a review: start with the entry points (every `request.*`), f
 
 ---
 
+## If your onsite has the newer kind of round: judging code a model wrote
+
+Jane Street said in November 2026 that some software onsites now include rounds with less typing and more judgement: design, the quality and intent of code, correctness, and using LLMs to produce code, while most rounds stay LLM-free ([Jane Street blog](https://blog.janestreet.com/software-engineering-interviews-are-changing-a-little/), [block 01](../01-process/README.md)). Nothing says the security loop has these yet. This drill covers the part most likely to transfer: someone, or something, hands you plausible code and asks whether it's right.
+
+**How to run that kind of round** [practice]:
+
+1. Restate the intent before reading the code: what should this do, and what would a wrong answer cost? For a detector, a missed attack and a flood of false alerts are both failures.
+2. Read every line the model wrote. Plausible code that passes its own tests is the normal case, not the exception.
+3. Test the edges the model didn't: time boundaries, malformed input, repeats, the case that matters most to the business.
+4. Rank what you find by consequence, and fix the top items. Say what you'd leave.
+5. If you're driving the model, say what you're delegating and why, and when you stop using it: anything where correctness depends on context the model can't see.
+
+### The drill: a model's `brute_force_detect`
+
+The prompt was "flag any user with five or more failed logins within five minutes". The model returned this, with two tests that pass. Ten minutes: find what's wrong, rank it, then fix the top three. The block runs; the asserts at the bottom reproduce each bug, so read them only after you've looked.
+
+```python
+from datetime import datetime
+
+
+def brute_force_detect(entries, threshold=5, window_minutes=5):
+    """Return users with `threshold` or more failed logins within `window_minutes`."""
+    failures = {}
+    alerts = []
+    for line in entries:
+        parts = line.split()
+        ts = datetime.strptime(parts[0], "%Y-%m-%dT%H:%M:%SZ")
+        user = parts[2].split("=")[1]
+        result = parts[4].split("=")[1]
+        if result == "FAIL":
+            failures.setdefault(user, []).append(ts)
+            recent = [t for t in failures[user] if (ts - t).seconds < window_minutes * 60]
+            if len(recent) >= threshold:
+                alerts.append(user)
+        else:
+            failures[user] = []
+    return alerts
+
+
+# The generated tests pass, which is part of the trap.
+day = [f"2026-11-10T09:00:0{i}Z sshd user=alice src=10.0.0.5 result=FAIL" for i in range(5)]
+assert brute_force_detect(day) == ["alice"]
+assert brute_force_detect(day[:4]) == []
+
+# What the tests didn't try. Each assert shows the bug happening.
+spread = [f"2026-11-0{d}T09:00:00Z sshd user=bob src=10.0.0.6 result=FAIL" for d in range(1, 6)]
+assert brute_force_detect(spread) == ["bob"]            # five failures on five different days: alert anyway
+burst = day + ["2026-11-10T09:00:06Z sshd user=alice src=10.0.0.5 result=FAIL"]
+assert brute_force_detect(burst) == ["alice", "alice"]  # one attack, two alerts
+then_in = day + ["2026-11-10T09:00:07Z sshd user=alice src=10.0.0.5 result=OK"]
+assert brute_force_detect(then_in) == ["alice"]         # the success that matters most raises nothing
+try:
+    brute_force_detect(["garbage"] + day)
+    raise AssertionError("expected a crash")
+except (IndexError, ValueError):
+    pass                                               # one malformed line stops the detector
+print("generated version: tests pass, four bugs reproduced")
+```
+
+<details>
+<summary><b>The findings, ranked</b> [practice]</summary>
+
+1. **One malformed line stops the detector** (`IndexError` or `ValueError`). Logs contain attacker-controlled text, so this is a switch an attacker can flip to go unseen. Parse defensively, count and report bad lines, never crash.
+2. **The success after a burst raises nothing.** The `else` branch wipes the history on a successful login, so the one event that most needs an alert, a password that finally worked, is the one that clears it. Keep the window and raise a separate, louder alert for success after failures.
+3. **`.seconds` isn't the length of a timedelta.** It drops whole days, so five failures on five different days at the same time of day count as one burst. Use `ts - t <= window` with a `timedelta`, or `total_seconds()`.
+4. **One attack, many alerts.** Every failure past the threshold appends the user again, and alerts carry no evidence (when, how many, from where). Alert once per burst, with the window and the source addresses.
+5. **Memory and time grow without bound.** The per-user list is never pruned, so each event rescans the user's whole history. Keep only the window, in a deque.
+6. **Questions, not bugs:** per user only, so one address spraying many users goes unseen (ask whether to key on source too); parsing by position breaks if a field moves; it assumes lines arrive in time order.
+
+The tests passed because they were written by the same mind that wrote the code: they check the happy path at the threshold, which is the one case it handles. That's the sentence to say in the room.
+</details>
+
+<details>
+<summary><b>A fixed version</b> [practice, tested]</summary>
+
+```python
+from collections import defaultdict, deque
+from datetime import datetime, timedelta
+
+
+def parse(line):
+    """(ts, user, src, result) for a well-formed line, None for anything else."""
+    parts = line.split()
+    if not parts:
+        return None
+    try:
+        ts = datetime.strptime(parts[0], "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError:
+        return None
+    fields = dict(p.split("=", 1) for p in parts[1:] if "=" in p)
+    if not {"user", "src", "result"} <= fields.keys():
+        return None
+    return ts, fields["user"], fields["src"], fields["result"]
+
+
+def brute_force_detect(entries, threshold=5, window=timedelta(minutes=5)):
+    """One alert per burst of `threshold` failures for a user inside `window`,
+    plus a separate alert when a success follows such a burst.
+    Assumes lines arrive in time order. Returns (alerts, malformed_count)."""
+    recent = defaultdict(deque)        # user -> deque of (ts, src) failures inside the window
+    in_burst = set()
+    alerts, malformed = [], 0
+    for line in entries:
+        rec = parse(line)
+        if rec is None:
+            malformed += 1             # counted and reported, never fatal
+            continue
+        ts, user, src, result = rec
+        q = recent[user]
+        while q and ts - q[0][0] > window:
+            q.popleft()                # bounded memory: only the window is kept
+        if not q:
+            in_burst.discard(user)
+        if result == "FAIL":
+            q.append((ts, src))
+            if len(q) >= threshold and user not in in_burst:
+                in_burst.add(user)
+                alerts.append(("brute_force", user, q[0][0], ts, sorted({s for _, s in q})))
+        elif result == "OK" and user in in_burst:
+            alerts.append(("success_after_failures", user, q[0][0], ts, [src]))
+    return alerts, malformed
+
+
+day = [f"2026-11-10T09:00:0{i}Z sshd user=alice src=10.0.0.5 result=FAIL" for i in range(5)]
+alerts, bad = brute_force_detect(day)
+assert [a[:2] for a in alerts] == [("brute_force", "alice")] and bad == 0
+assert brute_force_detect(day[:4]) == ([], 0)
+
+spread = [f"2026-11-0{d}T09:00:00Z sshd user=bob src=10.0.0.6 result=FAIL" for d in range(1, 6)]
+assert brute_force_detect(spread) == ([], 0)                       # days apart: no alert
+
+burst = day + ["2026-11-10T09:00:06Z sshd user=alice src=10.0.0.5 result=FAIL"]
+assert len(brute_force_detect(burst)[0]) == 1                      # one attack, one alert
+
+then_in = day + ["2026-11-10T09:00:07Z sshd user=alice src=10.0.0.5 result=OK"]
+assert [a[0] for a in brute_force_detect(then_in)[0]] == ["brute_force", "success_after_failures"]
+
+alerts, bad = brute_force_detect(["garbage", "", "2026-11-10T09:00:00Z sshd user=x"] + day)
+assert len(alerts) == 1 and bad == 3                               # malformed lines counted, not fatal
+
+later = day + ["2026-11-10T10:00:0{i}Z sshd user=alice src=10.0.0.9 result=FAIL".format(i=i) for i in range(5)]
+assert len(brute_force_detect(later)[0]) == 2                      # a new burst an hour later alerts again
+print("fixed version: all checks pass")
+```
+
+What changed, in one breath: parse defensively and count bad lines; a bounded deque per user; `timedelta` arithmetic; one alert per burst with evidence; a separate alert for success after failures. What's still open and worth saying: lines out of time order, keying by source as well as user, and the threshold itself, which needs tuning against real traffic ([block 21](../21-detection-engineering/README.md)).
+</details>
+
+<details>
+<summary><b>What are LLMs good and bad at when you write code, and when do you stop using one?</b> [curated; the November 2026 post says this is what they look for]</summary>
+
+Good at: boilerplate, a first draft of a parser or a test harness, translating between languages and libraries, explaining unfamiliar code, and generating test cases once you've said which edges matter. Bad at: anything whose correctness depends on context it can't see (the log format's quirks, what the business can't afford to miss), subtle time and boundary logic, and judging its own output, because its tests share its blind spots. So I use it to go faster on the parts I can verify by reading and running, and I stop when I'm accepting code I couldn't defend line by line. For security code the bar is higher: the failure is silent, so I write the tests for the dangerous edges myself.
+</details>
+
+---
+
 ## Know these cold in Python
 
 `Counter`, `defaultdict`, `deque`, `datetime.fromisoformat` and `strptime` with `%z`, `timedelta`, `re` with named groups, `json.loads` per line, `csv.DictReader`, `sorted(key=...)`, generators for streaming files, set operations, `ipaddress`, `os.walk`, `base64`, `gzip`, `sqlite3`, `secrets`, `subprocess.run` without `shell=True`, `hashlib`, `hmac.compare_digest`. For BFS: `deque` and a `seen` set. For "write tests": a `test_` function with three asserts is enough; say you'd use `pytest`.

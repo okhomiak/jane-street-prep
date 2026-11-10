@@ -441,6 +441,16 @@
      "q": "Token exchange: what's the difference between impersonation and delegation?",
      "short": "Both keep the user as subject; delegation adds an act claim naming the service or agent acting, so the downstream can authorise the pair and the log shows who really called. Default to delegation for agents.",
      "followups": ["What does the agent's token contain?", "How long should it live?"],
-     "wrong": "Treating them as the same thing."}
+     "wrong": "Treating them as the same thing."},
+    {"id": "coding-26a", "block": "03-coding", "link": "../03-coding/README.md", "js": false, "level": "L3", "type": "Code", "time": 10,
+     "q": "A model wrote brute_force_detect and its two tests pass. What do you look for, and in what order?",
+     "short": "Intent first: missed attacks and alert floods both cost. Then the edges its tests didn't try: a malformed line that crashes it, a success after failures that wipes the history, timedelta.seconds dropping whole days, duplicate alerts with no evidence, unbounded history. Rank by consequence, fix the top three.",
+     "followups": ["Which bug would an attacker use?", "Why did the tests pass?", "Would you ship it?"],
+     "wrong": "Reading the passing tests as evidence it works."},
+    {"id": "coding-26b", "block": "03-coding", "link": "../03-coding/README.md", "js": false, "level": "L2", "type": "Behavioural", "time": 3,
+     "q": "What are LLMs good and bad at when you write code, and when do you stop using one?",
+     "short": "Good: boilerplate, first drafts, test harnesses, unfamiliar code. Bad: correctness that depends on context it can't see, time and boundary logic, judging its own output. Use it where you can verify by reading and running; stop when you'd accept code you can't defend line by line; write the dangerous-edge tests yourself.",
+     "followups": ["Give an example where it misled you.", "Would you use it for detection logic?"],
+     "wrong": "Either 'I never use them' or 'I use them for everything'."}
   ]
 }

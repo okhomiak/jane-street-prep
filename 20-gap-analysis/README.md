@@ -107,6 +107,7 @@ Weighted to the five risks above, not evenly across the blocks. Adjust to your c
 | Online assessment | Run the six-step loop on an unseen set of logs and write the five-line note ([block 02](../02-log-investigation/README.md)) | 45 min |
 | Live investigation | Narrate the same loop to a person, saying what you expect before each command | 30 min |
 | Coding | Build `brute_force_detect` from a blank file through all four parts, with tests, talking throughout ([block 03](../03-coding/README.md)) | 45 min |
+| Newer round, if scheduled | Review the model-written detector in block 03 cold, rank five findings and fix the top three ([block 03](../03-coding/README.md)) | 25 min |
 | Fundamentals | Answer the five Jane Street questions one layer deeper than asked ([block 04](../04-security-fundamentals/README.md)) | 3 min each |
 | Scenarios | Run the seven-step skeleton on two scenarios you haven't seen ([block 09](../09-incident-response/README.md)) | 10 min each |
 | News | Tell the top two stories in 60 seconds each, with what you'd check at Jane Street tomorrow ([block 12](../12-security-news/README.md)) | 2 min |

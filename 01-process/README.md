@@ -68,6 +68,20 @@ You sat it in May 2026 (ACME Trading Corp scenario at `europe.sneakers.janestree
 
 ---
 
+## November 2026: Jane Street's software interviews are changing a little
+
+On 2 November 2026 a Jane Street software engineer published what's changing ([Jane Street blog](https://blog.janestreet.com/software-engineering-interviews-are-changing-a-little/)). In paraphrase:
+
+- **Why.** Generating code is now cheap, so judging what to build, choosing abstractions that last, and checking that code is correct matter more.
+- **What.** New rounds with less code-writing and more software design, judging the quality, structure and intent of code, and using LLMs to produce code. They've been trialled since the summer in campus onsites, and the formats are still being worked out.
+- **What stays.** Most rounds remain traditional coding interviews done without LLM help, the rest of the process is unchanged, and the earlier interview advice still applies. Not every onsite has the new rounds, and candidates are told in advance.
+- **What they assess.** Problem-solving, how you structure work, communication and collaboration, plus design taste, abstraction choices and correctness. Where an LLM is involved: whether you know what the tool does well, where it falls short, and when to reach for something else. You don't need a polished method for driving agents or a particular setup.
+- **Experienced hires** should expect more varied interviews: producing software, designing systems, and discussing past work.
+
+**What it means for you** [inference]. The post covers software engineering only and says nothing about security, so the security loop above may not change soon. But the security team calls itself programmers first, shares interviewers with engineering, and you're an experienced hire, so three things are worth an hour each: keep the no-LLM coding drills exactly as they are, because most rounds still look like that; practise judging code a model wrote ([block 03](../03-coding/README.md)); and have a short, honest answer on where LLMs help you and where they don't ([block 13](../13-behavioural/README.md)). Ask the recruiter which rounds your onsite includes; the post says they'll tell you.
+
+---
+
 ## What each round rewards
 
 | Round | They're watching for | Block |
@@ -82,6 +96,7 @@ You sat it in May 2026 (ACME Trading Corp scenario at `europe.sneakers.janestree
 | Judgement and hygiene | A measured position you can defend under pushback | [11](../11-judgement-and-hygiene/README.md) |
 | News | Ranking what matters for a trading firm | [12](../12-security-news/README.md) |
 | Hiring manager | Fit, stories, why here, why now, questions for them | [13](../13-behavioural/README.md) |
+| An LLM-era round, if your onsite has one | Judging what to build, the quality and intent of code, correctness, knowing where the tool helps and where it doesn't | [03](../03-coding/README.md), [01](#november-2026-jane-streets-software-interviews-are-changing-a-little) |
 
 Full mock scripts for each round: [block 19](../19-mock-interviews/README.md).
 
